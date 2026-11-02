@@ -170,3 +170,32 @@ A pallet "Deck" (AMR stand-in) with 3 `JawGripper` clamps as children; each clam
 3. If both fail, fall back to the onboard robot carrying parts (T5), or ask the tutor how to model a fixture.
 
 Note: GitHub Pages caches files for ~10 min; when re-testing a changed scene, publish under a new name (T6 → T6b) or wait.
+
+---
+
+## T7 – Dynamic tote / pallet carried by a running belt ✅ (tote)
+
+**Run:** https://digital-factory.io/vebjs/?inputscene=https://mihamoscow.github.io/DF-DFE01/tests/T7_pallet_belt&repoMod3d=https://difactory.github.io/repository/models/PickPlaceCell/
+
+### Why
+In T1/T4 the carriers were kinematic (mass 0) and teleported, so physics could not transmit motion. Here the carriers have **mass (2 kg), i.e. they are dynamic bodies**, and they are moved by a belt with `surfaceVelocity` (80 mm/s, same as B1): the one mechanism the engine treats as real velocity.
+
+### Set-up
+One belt; a walled tote (`Box_part.glb`) and an open pallet (`Pallet.glb`), each holding one grippy (μ 0.95) and one slippery (μ 0.1) part. Belt on at 1 s, off at 16 s.
+
+### Results – run 2026-11-02
+| t | Tote z | Tote parts z (grip / slip) | Pallet z | Pallet parts z (grip / slip) |
+|---|---|---|---|---|
+| 0.5 s | −700 | −745 / −655 | −300 | −340 / −260 |
+| 6.5 s | −494 | −565 / −513 | −91 | −335 (left behind) / −28 |
+| 11 s | −134 | −206 / −142 | 269 | −3, **fell onto the belt** / 385 |
+| 15.5 s | 226 | 154 / 219 | 629 | 357 (riding the belt, not the pallet) / 745 |
+
+- **Tote: both parts travel with it**, the slippery one included. They settle against the rear wall and keep a constant offset (y ≈ 234, inside the tote).
+- **Open pallet: the grippy part slid off** the back and continued on the bare belt; the slippery part stayed on the pallet's top by chance.
+
+### Conclusion
+**A dynamic, walled tote on a conveyor transports loose parts physically**, no attachment needed. Walls are essential: the open pallet is not reliable. The robust building blocks are now:
+1. belt + walled tote for batch transport (all 10 parts at once, physically correct);
+2. gripper for pick and place (one part, independent of friction);
+3. robot base moved by StateChart carrying a gripped part (mobile manipulator, T5).
