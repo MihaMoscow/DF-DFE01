@@ -1,0 +1,562 @@
+{
+ "context": {
+  "UnitOfMeasureScale": 0.001,
+  "Zup": false,
+  "RepoPath": ""
+ },
+ "scene": [
+  "building",
+  "Deck",
+  "Clamp1",
+  "Clamp1.F1",
+  "Clamp1.F2",
+  "part_1",
+  "Clamp2",
+  "Clamp2.F1",
+  "Clamp2.F2",
+  "part_2",
+  "Clamp3",
+  "Clamp3.F1",
+  "Clamp3.F2",
+  "part_3",
+  "LoadTable",
+  "UnloadTable"
+ ],
+ "assets": [
+  {
+   "id": "building",
+   "type": "https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD1/OWL#IfcBuilding"
+  },
+  {
+   "id": "Deck",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Pallet.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.1,
+    "friction": 0.5,
+    "MotionType": "ANIMATED"
+   },
+   "statechart": {
+    "id": "Deck_SC",
+    "initial": "atLoad",
+    "states": {
+     "atLoad": {
+      "on": {
+       "drive": "atUnload"
+      }
+     },
+     "atUnload": {
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Deck",
+        "position": [
+         0,
+         0,
+         2500
+        ]
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "Clamp1",
+   "type": "https://w3id.org/ontoeng/factory#JawGripper",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Gripper",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    291,
+    -150
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "Deck",
+   "parentObject": "Deck",
+   "statechart": {
+    "id": "Clamp1_SC",
+    "initial": "open",
+    "states": {
+     "open": {
+      "on": {
+       "clamp": "closed"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Clamp1.F1",
+        "position": [
+         0,
+         -38,
+         38
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Clamp1.F2",
+        "position": [
+         0,
+         -38,
+         -38
+        ]
+       }
+      ]
+     },
+     "closed": {
+      "on": {
+       "unclamp": "open"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Clamp1.F1",
+        "position": [
+         0,
+         -38,
+         3
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Clamp1.F2",
+        "position": [
+         0,
+         -38,
+         -3
+        ]
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "Clamp1.F1",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Finger1",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "Clamp1",
+   "parentObject": "Clamp1",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.0,
+    "friction": 0.0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Clamp1.F2",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Finger2",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "Clamp1",
+   "parentObject": "Clamp1",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.0,
+    "friction": 0.0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "part_1",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    2,
+    229,
+    -156
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.95
+   }
+  },
+  {
+   "id": "Clamp2",
+   "type": "https://w3id.org/ontoeng/factory#JawGripper",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Gripper",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    291,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "Deck",
+   "parentObject": "Deck",
+   "statechart": {
+    "id": "Clamp2_SC",
+    "initial": "open",
+    "states": {
+     "open": {
+      "on": {
+       "clamp": "closed"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Clamp2.F1",
+        "position": [
+         0,
+         -38,
+         38
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Clamp2.F2",
+        "position": [
+         0,
+         -38,
+         -38
+        ]
+       }
+      ]
+     },
+     "closed": {
+      "on": {
+       "unclamp": "open"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Clamp2.F1",
+        "position": [
+         0,
+         -38,
+         3
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Clamp2.F2",
+        "position": [
+         0,
+         -38,
+         -3
+        ]
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "Clamp2.F1",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Finger1",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "Clamp2",
+   "parentObject": "Clamp2",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.0,
+    "friction": 0.0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Clamp2.F2",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Finger2",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "Clamp2",
+   "parentObject": "Clamp2",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.0,
+    "friction": 0.0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "part_2",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    2,
+    229,
+    -6
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.1
+   }
+  },
+  {
+   "id": "Clamp3",
+   "type": "https://w3id.org/ontoeng/factory#JawGripper",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Gripper",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    291,
+    150
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "Deck",
+   "parentObject": "Deck",
+   "statechart": {
+    "id": "Clamp3_SC",
+    "initial": "open",
+    "states": {
+     "open": {
+      "on": {
+       "clamp": "closed"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Clamp3.F1",
+        "position": [
+         0,
+         -38,
+         38
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Clamp3.F2",
+        "position": [
+         0,
+         -38,
+         -38
+        ]
+       }
+      ]
+     },
+     "closed": {
+      "on": {
+       "unclamp": "open"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Clamp3.F1",
+        "position": [
+         0,
+         -38,
+         3
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Clamp3.F2",
+        "position": [
+         0,
+         -38,
+         -3
+        ]
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "Clamp3.F1",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Finger1",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "Clamp3",
+   "parentObject": "Clamp3",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.0,
+    "friction": 0.0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Clamp3.F2",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Finger2",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "Clamp3",
+   "parentObject": "Clamp3",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.0,
+    "friction": 0.0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "part_3",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    2,
+    229,
+    144
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.101
+   }
+  },
+  {
+   "id": "LoadTable",
+   "type": "https://w3id.org/ontoeng/factory#Conveyor",
+   "representations": [
+    {
+     "file": "ConveyorNew.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.3,
+    "friction": 0.0,
+    "MotionType": "ANIMATED"
+   }
+  },
+  {
+   "id": "UnloadTable",
+   "type": "https://w3id.org/ontoeng/factory#Conveyor",
+   "representations": [
+    {
+     "file": "ConveyorNew.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    0,
+    2500
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.3,
+    "friction": 0.0,
+    "MotionType": "ANIMATED"
+   }
+  }
+ ]
+}
