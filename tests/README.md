@@ -60,3 +60,40 @@ This also explains why the provided conveyor works: `surfaceVelocity` explicitly
 2. Physical transport of loose parts must use **surface velocity (conveyors)**, **gravity (chutes/slides)** or **grasping (robot gripper)**.
 3. Every transfer must be caught by a physical surface: there is no floor collider.
 4. Slippery parts (part_08, part_09) need positive containment; open flat surfaces are not robust.
+
+---
+
+## T2 – Does the Cartesian robot gripper pick, carry and release parts, regardless of friction?
+
+**Run:** https://digital-factory.io/vebjs/?inputscene=https://mihamoscow.github.io/DF-DFE01/tests/T2_gripper&repoMod3d=https://difactory.github.io/repository/models/PickPlaceCell/
+
+### Why this test
+T1 showed that only belts, gravity and grasping can move loose parts. The robot is therefore a key building block, and the parts' different friction values might affect a gripper. The robot's fingers are configured as *triggers* (mass 0, friction 0, `isTrigger: true`), which suggests grasping is not friction-based. This test checks that directly.
+
+### Set-up
+Three identical cells side by side, each a copy of the DFE_01 robot `PP` (same StateChart: `rest → pick → place → rest`) with one part placed on a stationary conveyor directly under its pick point:
+
+| Cell | Part friction μ | Represents |
+|---|---|---|
+| PP1 | 0.95 | normal parts |
+| PP2 | 0.1 | part_08 |
+| PP3 | 0.101 | part_09 |
+
+The pick point (robot x − 71 mm, belt height 230 mm) was taken from the official PickPlaceCell example. Timeline: `goPick` at 1 s, `goPlace` at 3.5 s, `goRest` at 6 s. Positions of parts, gripper and fingers were logged every 0.25 s.
+
+### Results – run 2026-11-02
+| Time | Gripper (PP1) | Part 1 | Part parent | What happens |
+|---|---|---|---|---|
+| 0–2 s | y 426 → 291 | (−941, 229, −5) | building | gripper descends; part untouched |
+| 3.5 s | fingers close to 67 mm gap | (−941, 229, −5) | **PP1.Gripper** | part is **attached to the gripper** |
+| 5 s | moves +200 mm in x, rises to y 426 | (−741, 364, −5) | PP1.Gripper | part carried rigidly with the gripper |
+| 6 s | opens | (−741, 362, −5) | none | part released **in mid-air, 130 mm above the belt** |
+| 6–30 s | back to rest | y 362 → 36 → … | none | part falls **very slowly** (~4.5 s for 130 mm), lands beyond the belt edge, keeps falling |
+
+All three cells behaved **identically** (positions equal to the millimetre).
+
+### Conclusions
+1. **Grasping works and is independent of friction.** When the closing fingers overlap the part, VEB.js attaches the part to the gripper; on opening it detaches it. The slippery parts are no problem for the robot.
+2. **The default program is not usable as it is.** The place position is only 200 mm from the pick position and the part is released mid-air: the StateChart must be rewritten (lower the gripper before opening; new place coordinates).
+3. **The robot does not reach B1.** In DFE_01 its pick point is at x ≈ −941, while B1 runs along x = 0. The robot must be repositioned, or parts brought to it.
+4. **Gravity is about 1000× too weak.** A free fall of 130 mm took ~4.5 s (real: 0.16 s). The environment sets gravity to `[0, −9.81, 0]` while the scene uses millimetres, so it acts as 9.81 mm/s². This makes drops look like slow motion, and it also weakens friction on belts (friction force ∝ normal force ∝ g). **To verify next (T3):** set gravity to `[0, −9810, 0]` and check that falls, belts and chutes behave realistically.
