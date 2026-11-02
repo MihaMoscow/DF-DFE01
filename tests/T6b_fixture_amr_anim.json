@@ -1,0 +1,102 @@
+{
+ "context": {
+  "assetTrail": false,
+  "UnitOfMeasureScale": 0.001,
+  "Zup": false,
+  "RepoAnim": ""
+ },
+ "nodes": [
+  {
+   "id": "Clamp1",
+   "actions": [
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "1000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "clamp"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "7000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "unclamp"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Clamp2",
+   "actions": [
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "1000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "clamp"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "7000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "unclamp"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Clamp3",
+   "actions": [
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "1000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "clamp"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "7000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "unclamp"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Deck",
+   "actions": [
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "3000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "drive"
+     }
+    }
+   ]
+  }
+ ],
+ "sequences": [],
+ "bookmarks": []
+}
