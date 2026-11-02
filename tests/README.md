@@ -218,3 +218,29 @@ One belt; a walled tote (`Box_part.glb`) and an open pallet (`Pallet.glb`), each
 2. Jaws must be referenced as **`<same file>.glb#<node>`** where the **clamp body loads that same .glb**, exactly like the robot (`Pick_and_Place_Robot.glb` + `#PP_Finger1/2`).
 
 → **Next step (T9):** build a small custom `Clamp.glb` (nodes: `Body`, `Jaw1`, `Jaw2`, each a single box mesh) in `assets/`, load the clamp body from it and the jaws as `Clamp.glb#Jaw1/2`. Also to verify: whether VEB.js can load a model from our own repo (custom `RepoPath` / absolute URL) alongside the PickPlaceCell library.
+
+---
+
+## T10 – AMR deck with matched surface velocity carries a tote with loose parts ✅
+
+**Run (final):** https://digital-factory.io/vebjs/?inputscene=https://mihamoscow.github.io/DF-DFE01/tests/T10d_amr_deck&repoMod3d=https://difactory.github.io/repository/models/PickPlaceCell/
+
+### Idea
+VEB.js moves kinematic assets by rewriting their position every frame (zero velocity for physics), so nothing on them is carried. Fix: while the AMR deck moves at speed *v*, its surface is given `surfaceVelocity` = *v* in the same direction. The physics engine then drives the dynamic tote at *v*, in step with the deck; the tote's walls carry the parts (as in T7).
+
+### Set-up
+AMR deck = kinematic conveyor body (stand-in for the AMR, moved by timeline `moveAdditive`) with a StateChart switching its `surfaceVelocity`. Dynamic tote (`Box_part`, mass 2) with one grippy (μ 0.95) and one slippery (μ 0.1) part. Route: 1000 mm forward (+z), then 500 mm sideways (+x). Default gravity.
+
+### Runs
+| Run | Speed | Result |
+|---|---|---|
+| T10 | 250 mm/s, matched | tote lags: 783/1000 mm, 355/500 mm |
+| T10b | 250 mm/s deck, 312/350 mm/s surface | no improvement (tote capped at ~200 mm/s); slippery part ejected after the sideways leg |
+| T10c | 150 mm/s, timestamps 9667/13833 ms | forward leg perfect (offset change 13 mm); later events **never fired** (timestamps must be multiples of 100 ms) |
+| **T10d** | **125 mm/s, 100 ms grid** | **forward: tote +998 mm for deck +1000 mm; sideways: +452 for +500; both parts stay in the tote and settle** |
+
+### Findings
+1. **An AMR can transport a tote with loose parts in VEB.js** if its deck has a surface velocity matched to its travel speed.
+2. **Engine speed cap ≈ 200 mm/s** for dynamic bodies: AMR travel speed with a load must stay below it (125–150 mm/s works).
+3. **Timeline timestamps must be multiples of 100 ms** (the timeline ticks every 100 ms, `Animation.js`), otherwise events are skipped.
+4. Small residual lag in the sideways direction (~10%): compensate with a slightly higher sideways surface velocity or short settle stops; to be tuned in the real model.

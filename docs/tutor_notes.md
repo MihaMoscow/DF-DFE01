@@ -39,3 +39,9 @@ Test details and data: [`tests/README.md`](../tests/README.md)
 ## Update after T4 (2026-11-02)
 - Gravity −9810 tested: falls accelerate but are capped at ~200 mm/s (apparent engine speed limit); parts sank into thin tote floors. **Question:** is there a supported way to raise the speed cap, or should we keep −9.81?
 - AMR: StateChart `moveTo`, timeline + `attach`, and deck `surfaceVelocity` all failed to carry loose parts. **Question:** how should a mobile carrier be modelled? Our next candidate is a mobile manipulator (gripper on the moving base), since gripper attachment is the only mechanism that carried parts.
+
+## Update after T7–T10 (2026-11-03)
+- **AMR solution found (T10):** an AMR deck moved by `moveAdditive` *plus* a deck `surfaceVelocity` equal to its travel speed carries a dynamic tote with loose parts (incl. μ = 0.1). Tested at 125 mm/s: tote follows within 0.2% forward, ~10% sideways.
+- Engine limits found: dynamic bodies are capped at ~200 mm/s; timeline events must be on a 100 ms grid.
+- Gripper internals (T8): custom JawGripper jaws must be single meshes loaded from the clamp body's own .glb.
+- **Questions:** (1) Is the deck-surface-velocity technique acceptable as "physically consistent" transport? (2) Is the ~200 mm/s cap configurable? (3) Can we correct gravity (−9.81 → −9810)?
