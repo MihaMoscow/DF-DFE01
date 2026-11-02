@@ -199,3 +199,22 @@ One belt; a walled tote (`Box_part.glb`) and an open pallet (`Pallet.glb`), each
 1. belt + walled tote for batch transport (all 10 parts at once, physically correct);
 2. gripper for pick and place (one part, independent of friction);
 3. robot base moved by StateChart carrying a gripped part (mobile manipulator, T5).
+
+---
+
+## T8 – Why custom clamps do not grip (diagnostic) 🔍
+
+**Runs:** `tests/T8_clamp`, `tests/T8b_clamp` (two standalone clamps: A closes sideways then lifts; B descends, closes, lifts). A JS hook on the Havok plugin's `onTriggerCollisionObservable` / `onCollisionObservable` counted contact events involving the jaws.
+
+| Check | Robot gripper (T2, calibration) | Clamp T8 (jaw = `parallelepiped.glb`) | Clamp T8b (jaw = `parallelepiped.glb#Parallelepiped v1`) |
+|---|---|---|---|
+| Jaw shape is a trigger | ✅ `isTrigger = true` (single mesh shape) | ❌ false: the asset has a child mesh, so the loader builds a *container* shape | ✅ true |
+| Jaw mesh has geometry | ✅ | ✅ | ❌ zero-size: a `#node` reference loads geometry only when the **parent asset loads the same .glb** (as the robot's fingers do from `Pick_and_Place_Robot.glb`) |
+| Trigger events | 192 (`TRIGGER_ENTERED`/`EXITED` per finger) | 0 | 0 |
+| Part attached / lifted | ✅ | ❌ | ❌ |
+
+### Conclusion: requirements for a working custom gripper/clamp in VEB.js
+1. Each jaw must be a **single mesh** (no child meshes), otherwise the trigger flag is not applied (`Loader.js` ≈ l.1480 vs 1491).
+2. Jaws must be referenced as **`<same file>.glb#<node>`** where the **clamp body loads that same .glb**, exactly like the robot (`Pick_and_Place_Robot.glb` + `#PP_Finger1/2`).
+
+→ **Next step (T9):** build a small custom `Clamp.glb` (nodes: `Body`, `Jaw1`, `Jaw2`, each a single box mesh) in `assets/`, load the clamp body from it and the jaws as `Clamp.glb#Jaw1/2`. Also to verify: whether VEB.js can load a model from our own repo (custom `RepoPath` / absolute URL) alongside the PickPlaceCell library.
