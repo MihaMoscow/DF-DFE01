@@ -97,3 +97,24 @@ All three cells behaved **identically** (positions equal to the millimetre).
 2. **The default program is not usable as it is.** The place position is only 200 mm from the pick position and the part is released mid-air: the StateChart must be rewritten (lower the gripper before opening; new place coordinates).
 3. **The robot does not reach B1.** In DFE_01 its pick point is at x ≈ −941, while B1 runs along x = 0. The robot must be repositioned, or parts brought to it.
 4. **Gravity is about 1000× too weak.** A free fall of 130 mm took ~4.5 s (real: 0.16 s). The environment sets gravity to `[0, −9.81, 0]` while the scene uses millimetres, so it acts as 9.81 mm/s². This makes drops look like slow motion, and it also weakens friction on belts (friction force ∝ normal force ∝ g). **To verify next (T3):** set gravity to `[0, −9810, 0]` and check that falls, belts and chutes behave realistically.
+
+---
+
+## T4 – AMR retest: three ways to move the carrier, gravity corrected
+
+**Run:** https://digital-factory.io/vebjs/?inputscene=https://mihamoscow.github.io/DF-DFE01/tests/T4_amr&repoMod3d=https://difactory.github.io/repository/models/PickPlaceCell/
+
+Env gravity set to `[0, -9810, 0]` (mm/s²). Three totes (`Box_part`), each with one grippy (μ 0.95) and one slippery (μ 0.1) part, plus one part dropped from 1000 mm as a gravity check.
+
+| Tote | Motion method | Result |
+|---|---|---|
+| A | StateChart `moveTo` (same mechanism as robot axes) | tote moved 1000 mm in < 1 s; **parts stayed and fell** |
+| B | timeline `moveAdditive` + `attach` parts to tote at t = 1.5 s | attach had **no effect** on these parts; **parts stayed and fell** |
+| C | timeline `moveAdditive` + `surfaceVelocity` 250 mm/s on tote floor | **parts stayed and fell** |
+
+Gravity check: the dropped part accelerated at first, then fell at a **constant ~200 mm/s**. The physics engine appears to cap speed at ~200 units/s, i.e. 200 mm/s in this scene. Correcting g therefore does not make falls realistic on its own.
+
+Side effect: with g = 9810, the parts sank through the tote's 5 mm floor while settling (resting at y ≈ −11, inside the floor). Thin mesh floors are not reliable at high gravity.
+
+### Conclusion
+Every way of moving a kinematic carrier tested so far moves the carrier but not the loose parts on it. The only mechanism observed to carry parts is the **gripper attachment** (T2). That suggests a feasible AMR variant: a **mobile manipulator**, i.e. a robot/gripper mounted on the moving base that holds the part during travel (like KUKA KMR). To test next (T5).

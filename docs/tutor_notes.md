@@ -35,3 +35,7 @@
 5. Deliverables: video, report, Dec 1 presentation.
 
 Test details and data: [`tests/README.md`](../tests/README.md)
+
+## Update after T4 (2026-11-02)
+- Gravity −9810 tested: falls accelerate but are capped at ~200 mm/s (apparent engine speed limit); parts sank into thin tote floors. **Question:** is there a supported way to raise the speed cap, or should we keep −9.81?
+- AMR: StateChart `moveTo`, timeline + `attach`, and deck `surfaceVelocity` all failed to carry loose parts. **Question:** how should a mobile carrier be modelled? Our next candidate is a mobile manipulator (gripper on the moving base), since gripper attachment is the only mechanism that carried parts.
