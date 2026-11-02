@@ -118,3 +118,30 @@ Side effect: with g = 9810, the parts sank through the tote's 5 mm floor while s
 
 ### Conclusion
 Every way of moving a kinematic carrier tested so far moves the carrier but not the loose parts on it. The only mechanism observed to carry parts is the **gripper attachment** (T2). That suggests a feasible AMR variant: a **mobile manipulator**, i.e. a robot/gripper mounted on the moving base that holds the part during travel (like KUKA KMR). To test next (T5).
+
+---
+
+## T5 – Mobile manipulator: robot drives while holding a part ✅
+
+**Run:** https://digital-factory.io/vebjs/?inputscene=https://mihamoscow.github.io/DF-DFE01/tests/T5_mobile_manip&repoMod3d=https://difactory.github.io/repository/models/PickPlaceCell/
+
+### Why
+T1/T4 showed that moving carriers cannot carry loose parts, and VEB.js offers no "set velocity" action. But T2 showed the gripper holds parts by attachment, so a part held by the gripper should travel with anything that moves the gripper. This mirrors real mobile manipulators (KUKA KMR, MiR + UR, Yandex Robotics' picking robot).
+
+### Set-up
+- Robot `PP` from DFE_01 with one new StateChart state, **`carry`** (lift with fingers closed), inserted between `pick` and `place`.
+- New controller asset **`AMR`** whose StateChart drives the whole robot with `moveTo` (`PP` → z = 1500 mm).
+- One slippery part (μ = 0.1, like part_08) on a pick table; a place table 1.5 m away.
+- Timeline: `goPick` 1 s → `goCarry` 3.5 s → `drive` 5 s → `goPlace` 9 s. Default gravity.
+
+### Results – run 2026-11-02
+| Time | Robot base | Part | Part parent |
+|---|---|---|---|
+| 4.3 s | (−870, 0, 0) | (−941, 229, −5) | **PP.Gripper** (gripped) |
+| 6.3 s | (−870, 0, 0) | (−941, 364, −5) | PP.Gripper (lifted) |
+| 7.3 s | (−870, 0, 1363) | (−941, 364, 1358) | PP.Gripper (**travelling with the robot**) |
+| 8.3 s | (−870, 0, 1500) | (−941, 364, 1495) | PP.Gripper (arrived) |
+| 12.3 s | (−870, 0, 1500) | (−741, 363, 1495) | released over the place table, falls onto it |
+
+### Conclusion
+**A mobile manipulator works in VEB.js.** The part stays exactly in the gripper during travel (offset constant to the millimetre) and is released at the destination. The concept is feasible. Open points for the real design: the drive is fast (~1.5 m in ~1.5 s, needs a realistic speed), the robot needs a visible mobile base (3D asset), and the default place still releases 130 mm above the surface.
