@@ -1,0 +1,37 @@
+{
+ "context": {
+  "assetTrail": false,
+  "UnitOfMeasureScale": 0.001,
+  "Zup": false,
+  "RepoAnim": ""
+ },
+ "nodes": [
+  {
+   "id": "Belt",
+   "actions": [
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "1000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "B1startF"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "16000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "B1stop"
+     }
+    }
+   ]
+  }
+ ],
+ "sequences": [],
+ "bookmarks": []
+}
