@@ -1,0 +1,149 @@
+{
+ "context": {
+  "assetTrail": false,
+  "UnitOfMeasureScale": 0.001,
+  "Zup": false,
+  "RepoAnim": ""
+ },
+ "nodes": [
+  {
+   "id": "ToteA",
+   "actions": [
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "2000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "go"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "9000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "back"
+     }
+    }
+   ]
+  },
+  {
+   "id": "B_grip",
+   "actions": [
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "1500"
+     },
+     "event": {
+      "type": "attach",
+      "placementRelTo": "ToteB"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "7500"
+     },
+     "event": {
+      "type": "attach",
+      "placementRelTo": "building"
+     }
+    }
+   ]
+  },
+  {
+   "id": "B_slip",
+   "actions": [
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "1500"
+     },
+     "event": {
+      "type": "attach",
+      "placementRelTo": "ToteB"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "7500"
+     },
+     "event": {
+      "type": "attach",
+      "placementRelTo": "building"
+     }
+    }
+   ]
+  },
+  {
+   "id": "ToteB",
+   "actions": [
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "2000"
+     },
+     "event": {
+      "type": "moveAdditive",
+      "position": [
+       0,
+       0,
+       1000
+      ],
+      "data": 4000,
+      "loop": false
+     }
+    }
+   ]
+  },
+  {
+   "id": "ToteC",
+   "actions": [
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "2000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "run"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "2000"
+     },
+     "event": {
+      "type": "moveAdditive",
+      "position": [
+       0,
+       0,
+       1000
+      ],
+      "data": 4000,
+      "loop": false
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "6000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "stop"
+     }
+    }
+   ]
+  }
+ ],
+ "sequences": [],
+ "bookmarks": []
+}

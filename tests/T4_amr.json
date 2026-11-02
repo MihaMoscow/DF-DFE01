@@ -1,0 +1,363 @@
+{
+ "context": {
+  "UnitOfMeasureScale": 0.001,
+  "Zup": false,
+  "RepoPath": ""
+ },
+ "scene": [
+  "building",
+  "ToteA",
+  "A_grip",
+  "A_slip",
+  "ToteB",
+  "B_grip",
+  "B_slip",
+  "ToteC",
+  "C_grip",
+  "C_slip",
+  "Drop"
+ ],
+ "assets": [
+  {
+   "id": "building",
+   "type": "https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD1/OWL#IfcBuilding"
+  },
+  {
+   "id": "ToteA",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Box_part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.1,
+    "friction": 0.5,
+    "MotionType": "ANIMATED"
+   },
+   "statechart": {
+    "id": "ToteA_SC",
+    "initial": "home",
+    "states": {
+     "home": {
+      "on": {
+       "go": "station"
+      }
+     },
+     "station": {
+      "on": {
+       "back": "home2"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "ToteA",
+        "position": [
+         0,
+         0,
+         1000
+        ]
+       }
+      ]
+     },
+     "home2": {
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "ToteA",
+        "position": [
+         0,
+         0,
+         0
+        ]
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "A_grip",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    7,
+    -45
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.95
+   }
+  },
+  {
+   "id": "A_slip",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    7,
+    45
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.1
+   }
+  },
+  {
+   "id": "ToteB",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Box_part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    400,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.1,
+    "friction": 0.5,
+    "MotionType": "ANIMATED"
+   }
+  },
+  {
+   "id": "B_grip",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    400,
+    7,
+    -45
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.95
+   }
+  },
+  {
+   "id": "B_slip",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    400,
+    7,
+    45
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.1
+   }
+  },
+  {
+   "id": "ToteC",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Box_part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    800,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.1,
+    "friction": 0.5,
+    "MotionType": "ANIMATED"
+   },
+   "statechart": {
+    "id": "ToteC_SC",
+    "initial": "idle",
+    "states": {
+     "idle": {
+      "on": {
+       "run": "run"
+      },
+      "entry": {
+       "action": "surfaceVelocity",
+       "target": "ToteC",
+       "velocity": [
+        0,
+        0,
+        0
+       ]
+      }
+     },
+     "run": {
+      "on": {
+       "stop": "idle"
+      },
+      "entry": {
+       "action": "surfaceVelocity",
+       "target": "ToteC",
+       "velocity": [
+        0,
+        0,
+        250
+       ]
+      }
+     }
+    }
+   }
+  },
+  {
+   "id": "C_grip",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    800,
+    7,
+    -45
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.95
+   }
+  },
+  {
+   "id": "C_slip",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    800,
+    7,
+    45
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.1
+   }
+  },
+  {
+   "id": "Drop",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -400,
+    1000,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.95
+   }
+  }
+ ]
+}
