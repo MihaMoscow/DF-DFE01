@@ -145,3 +145,28 @@ T1/T4 showed that moving carriers cannot carry loose parts, and VEB.js offers no
 
 ### Conclusion
 **A mobile manipulator works in VEB.js.** The part stays exactly in the gripper during travel (offset constant to the millimetre) and is released at the destination. The concept is feasible. Open points for the real design: the drive is fast (~1.5 m in ~1.5 s, needs a realistic speed), the robot needs a visible mobile base (3D asset), and the default place still releases 130 mm above the surface.
+
+---
+
+## T6 – AMR deck with clamp fixture (3 clamps, 3 parts) ❌ not yet working
+
+**Run:** https://digital-factory.io/vebjs/?inputscene=https://mihamoscow.github.io/DF-DFE01/tests/T6b_fixture_amr&repoMod3d=https://difactory.github.io/repository/models/PickPlaceCell/
+
+### What we learned from the VEB.js source (`js/Control.js`)
+- Any asset of type `JawGripper` with two `JawFinger` children becomes a gripper (class registry by type, line ~320). It does not need to be part of a robot.
+- A part is attached when **both fingers' trigger shapes report `TRIGGER_ENTERED`** for the same dynamic body. The finger animation is then stopped, the part is set STATIC and `setParent(gripper)`. On exit it is set DYNAMIC and `setParent(null)`. **One part per gripper.**
+- The timeline `attach` event has no handler in this VEB.js version (explains T4/B).
+
+### Set-up
+A pallet "Deck" (AMR stand-in) with 3 `JawGripper` clamps as children; each clamp has 2 jaw blocks (`parallelepiped.glb`, trigger) around one part (μ 0.95 / 0.1 / 0.101). Clamp → drive 2.5 m → unclamp.
+
+### Results
+- Run 1: jaws used `#PP_Finger1/2` from the robot model → loaded **without geometry** (zero-size bounding box), so nothing could touch the part.
+- Run 2 (T6b, solid jaw blocks): jaws have geometry and close through the part's volume (z −105 → −120), but **no attachment occurs**; the deck then drives away with the clamps and the parts stay behind.
+
+### Hypotheses for next session
+1. Jaws are children of a moving ANIMATED deck: their physics bodies may not follow the meshes (Havok `disablePreStep`), so the trigger never overlaps physically. Test: same clamp **not** parented to the deck.
+2. Trigger events may require the jaws to approach from above, as the robot does (descend, then close). Test: clamp descends onto the part before closing.
+3. If both fail, fall back to the onboard robot carrying parts (T5), or ask the tutor how to model a fixture.
+
+Note: GitHub Pages caches files for ~10 min; when re-testing a changed scene, publish under a new name (T6 → T6b) or wait.
