@@ -1,0 +1,128 @@
+{
+ "context": {
+  "assetTrail": false,
+  "UnitOfMeasureScale": 0.001,
+  "Zup": false,
+  "RepoAnim": ""
+ },
+ "nodes": [
+  {
+   "id": "ToteA",
+   "actions": [
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "3000"
+     },
+     "event": {
+      "type": "moveAdditive",
+      "position": [
+       0,
+       0,
+       1000
+      ],
+      "data": 4000,
+      "loop": false
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "9000"
+     },
+     "event": {
+      "type": "moveAdditive",
+      "position": [
+       0,
+       0,
+       -1000
+      ],
+      "data": 1000,
+      "loop": false
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "12000"
+     },
+     "event": {
+      "type": "moveAdditive",
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "rotation": [
+       0,
+       1.5708,
+       0
+      ],
+      "data": 2000,
+      "loop": false
+     }
+    }
+   ]
+  },
+  {
+   "id": "PalletB",
+   "actions": [
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "3000"
+     },
+     "event": {
+      "type": "moveAdditive",
+      "position": [
+       0,
+       0,
+       1000
+      ],
+      "data": 4000,
+      "loop": false
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "9000"
+     },
+     "event": {
+      "type": "moveAdditive",
+      "position": [
+       0,
+       0,
+       -1000
+      ],
+      "data": 1000,
+      "loop": false
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "12000"
+     },
+     "event": {
+      "type": "moveAdditive",
+      "position": [
+       0,
+       0,
+       0
+      ],
+      "rotation": [
+       0,
+       1.5708,
+       0
+      ],
+      "data": 2000,
+      "loop": false
+     }
+    }
+   ]
+  }
+ ],
+ "sequences": [],
+ "bookmarks": []
+}
