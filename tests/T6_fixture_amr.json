@@ -112,18 +112,18 @@
         "action": "moveTo",
         "target": "Clamp1.F1",
         "position": [
-         0,
-         -38,
-         38
+         -7,
+         -55,
+         45
         ]
        },
        {
         "action": "moveTo",
         "target": "Clamp1.F2",
         "position": [
-         0,
-         -38,
-         -38
+         -7,
+         -55,
+         -30
         ]
        }
       ]
@@ -137,18 +137,18 @@
         "action": "moveTo",
         "target": "Clamp1.F1",
         "position": [
-         0,
-         -38,
-         3
+         -7,
+         -55,
+         30
         ]
        },
        {
         "action": "moveTo",
         "target": "Clamp1.F2",
         "position": [
-         0,
-         -38,
-         -3
+         -7,
+         -55,
+         -15
         ]
        }
       ]
@@ -161,7 +161,7 @@
    "type": "https://w3id.org/ontoeng/factory#JawFinger",
    "representations": [
     {
-     "file": "Pick_and_Place_Robot.glb#PP_Finger1",
+     "file": "parallelepiped.glb",
      "unit": 1
     }
    ],
@@ -173,14 +173,19 @@
     "friction": 0.0,
     "MotionType": "ANIMATED",
     "isTrigger": true
-   }
+   },
+   "position": [
+    -7,
+    -55,
+    45
+   ]
   },
   {
    "id": "Clamp1.F2",
    "type": "https://w3id.org/ontoeng/factory#JawFinger",
    "representations": [
     {
-     "file": "Pick_and_Place_Robot.glb#PP_Finger2",
+     "file": "parallelepiped.glb",
      "unit": 1
     }
    ],
@@ -192,7 +197,12 @@
     "friction": 0.0,
     "MotionType": "ANIMATED",
     "isTrigger": true
-   }
+   },
+   "position": [
+    -7,
+    -55,
+    -30
+   ]
   },
   {
    "id": "part_1",
@@ -206,7 +216,7 @@
    "position": [
     2,
     229,
-    -156
+    -150
    ],
    "rotation": [
     0,
@@ -254,18 +264,18 @@
         "action": "moveTo",
         "target": "Clamp2.F1",
         "position": [
-         0,
-         -38,
-         38
+         -7,
+         -55,
+         45
         ]
        },
        {
         "action": "moveTo",
         "target": "Clamp2.F2",
         "position": [
-         0,
-         -38,
-         -38
+         -7,
+         -55,
+         -30
         ]
        }
       ]
@@ -279,18 +289,18 @@
         "action": "moveTo",
         "target": "Clamp2.F1",
         "position": [
-         0,
-         -38,
-         3
+         -7,
+         -55,
+         30
         ]
        },
        {
         "action": "moveTo",
         "target": "Clamp2.F2",
         "position": [
-         0,
-         -38,
-         -3
+         -7,
+         -55,
+         -15
         ]
        }
       ]
@@ -303,7 +313,7 @@
    "type": "https://w3id.org/ontoeng/factory#JawFinger",
    "representations": [
     {
-     "file": "Pick_and_Place_Robot.glb#PP_Finger1",
+     "file": "parallelepiped.glb",
      "unit": 1
     }
    ],
@@ -315,14 +325,19 @@
     "friction": 0.0,
     "MotionType": "ANIMATED",
     "isTrigger": true
-   }
+   },
+   "position": [
+    -7,
+    -55,
+    45
+   ]
   },
   {
    "id": "Clamp2.F2",
    "type": "https://w3id.org/ontoeng/factory#JawFinger",
    "representations": [
     {
-     "file": "Pick_and_Place_Robot.glb#PP_Finger2",
+     "file": "parallelepiped.glb",
      "unit": 1
     }
    ],
@@ -334,7 +349,12 @@
     "friction": 0.0,
     "MotionType": "ANIMATED",
     "isTrigger": true
-   }
+   },
+   "position": [
+    -7,
+    -55,
+    -30
+   ]
   },
   {
    "id": "part_2",
@@ -348,7 +368,7 @@
    "position": [
     2,
     229,
-    -6
+    0
    ],
    "rotation": [
     0,
@@ -396,18 +416,18 @@
         "action": "moveTo",
         "target": "Clamp3.F1",
         "position": [
-         0,
-         -38,
-         38
+         -7,
+         -55,
+         45
         ]
        },
        {
         "action": "moveTo",
         "target": "Clamp3.F2",
         "position": [
-         0,
-         -38,
-         -38
+         -7,
+         -55,
+         -30
         ]
        }
       ]
@@ -421,18 +441,18 @@
         "action": "moveTo",
         "target": "Clamp3.F1",
         "position": [
-         0,
-         -38,
-         3
+         -7,
+         -55,
+         30
         ]
        },
        {
         "action": "moveTo",
         "target": "Clamp3.F2",
         "position": [
-         0,
-         -38,
-         -3
+         -7,
+         -55,
+         -15
         ]
        }
       ]
@@ -445,7 +465,7 @@
    "type": "https://w3id.org/ontoeng/factory#JawFinger",
    "representations": [
     {
-     "file": "Pick_and_Place_Robot.glb#PP_Finger1",
+     "file": "parallelepiped.glb",
      "unit": 1
     }
    ],
@@ -457,14 +477,19 @@
     "friction": 0.0,
     "MotionType": "ANIMATED",
     "isTrigger": true
-   }
+   },
+   "position": [
+    -7,
+    -55,
+    45
+   ]
   },
   {
    "id": "Clamp3.F2",
    "type": "https://w3id.org/ontoeng/factory#JawFinger",
    "representations": [
     {
-     "file": "Pick_and_Place_Robot.glb#PP_Finger2",
+     "file": "parallelepiped.glb",
      "unit": 1
     }
    ],
@@ -476,7 +501,12 @@
     "friction": 0.0,
     "MotionType": "ANIMATED",
     "isTrigger": true
-   }
+   },
+   "position": [
+    -7,
+    -55,
+    -30
+   ]
   },
   {
    "id": "part_3",
@@ -490,7 +520,7 @@
    "position": [
     2,
     229,
-    144
+    150
    ],
    "rotation": [
     0,
