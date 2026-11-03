@@ -45,3 +45,6 @@ Test details and data: [`tests/README.md`](../tests/README.md)
 - Engine limits found: dynamic bodies are capped at ~200 mm/s; timeline events must be on a 100 ms grid.
 - Gripper internals (T8): custom JawGripper jaws must be single meshes loaded from the clamp body's own .glb.
 - **Questions:** (1) Is the deck-surface-velocity technique acceptable as "physically consistent" transport? (2) Is the ~200 mm/s cap configurable? (3) Can we correct gravity (−9.81 → −9810)?
+
+## Decision (2026-11-03): Option 1
+Fixed Cartesian robot loads parts into totes ("packaging department"); an AMR carries the totes to the Box and places them inside (4 totes × ≤3 parts in a 2×2 grid). T9: custom tote gripper works, but contents of a lifted tote are left behind → tote must be transferred into the Box by rolling/sliding (T11). **Question for tutor:** are parts inside totes inside the Box acceptable as "parts placed inside the destination box"?

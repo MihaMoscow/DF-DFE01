@@ -244,3 +244,30 @@ AMR deck = kinematic conveyor body (stand-in for the AMR, moved by timeline `mov
 2. **Engine speed cap ≈ 200 mm/s** for dynamic bodies: AMR travel speed with a load must stay below it (125–150 mm/s works).
 3. **Timeline timestamps must be multiples of 100 ms** (the timeline ticks every 100 ms, `Animation.js`), otherwise events are skipped.
 4. Small residual lag in the sideways direction (~10%): compensate with a slightly higher sideways surface velocity or short settle stops; to be tuned in the real model.
+
+---
+
+## T9 – Custom tote gripper (own .glb) lifts a tote ✅ – but the tote's contents stay behind ❌
+
+**Run:** https://digital-factory.io/vebjs/?inputscene=https://mihamoscow.github.io/DF-DFE01/tests/T9_tote_gripper&repoMod3d=https://mihamoscow.github.io/DF-DFE01/assets/
+
+### Set-up
+- New asset `assets/ToteGripper.glb` (generated with trimesh): nodes `TG_Body`, `TG_Jaw1`, `TG_Jaw2`, each a single box mesh.
+- Gripper asset `TG` (type `JawGripper`) loads the whole file; jaws `TG.Jaw1/2` (type `JawFinger`, trigger) load `ToteGripper.glb#TG_Jaw1/2`, mirroring the robot's structure (T8 recipe).
+- **All models now load from our own repo** (`repoMod3d=…/DF-DFE01/assets/`; library models copied there), so the scene is self-contained.
+- Dynamic tote (mass 2) with 3 parts (μ 0.95 / 0.1 / 0.101) on a table. Sequence: descend → close jaws → lift 200 mm.
+
+### Results – run 2026-11-03
+| t | Gripper y | Jaw x | Tote y (parent) | Parts y |
+|---|---|---|---|---|
+| 12.5 s | 351 (down) | 90 (open) | 230 (building) | 234 |
+| 14.5 s | 351 | 67 (**stopped on contact**) | 230 (**TG**) | 234 |
+| 16.5 s | 551 (lifted) | 67 | **430 (lifted with gripper)** | **229 (left on the table)** |
+
+32 trigger events (`TRIGGER_ENTERED Tote|TG.Jaw1/2`) confirm the custom jaws work.
+
+### Conclusions
+1. **Custom grippers work** when built per the T8 recipe; a wide tote gripper is feasible.
+2. A gripped object is made STATIC and parented, so it is moved by teleport again: **loose parts inside a lifted tote are left behind** (same mechanism as T1).
+3. Therefore "AMR lifts the full tote into the Box" is not physically reproducible in VEB.js. A tote with contents must be moved by **velocity** (belt / deck surface velocity, T7/T10) or **gravity**.
+→ **Next (T11):** transfer the tote from the AMR deck into the Box by rolling it off the deck (deck surface velocity) down a short chute, like a roller-top AMR handing over to a gravity roller conveyor.
