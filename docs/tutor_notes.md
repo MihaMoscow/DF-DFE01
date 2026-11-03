@@ -52,3 +52,6 @@ Fixed Cartesian robot loads parts into totes ("packaging department"); an AMR ca
 
 ## Decision (2026-11-03): clamps stay closed in the Box
 The Box is treated as a shipping container ("packaging department"): parts stay clamped in their totes as a **transport lock** (safer during shipping, nothing rattles). Capacity: tote inner 110 × 55 × 200 mm → 3 parts per tote (one row, one layer); 4 totes (12 slots) in a 2 × 2 single layer for 10 parts.
+
+## Note on part friction (2026-11-03)
+part_08 (μ 0.1) and part_09 (μ 0.101) differ from the others (μ 0.95–0.99). Treated as ordinary variation in the provided data, not a design requirement. Effect on our process is negligible: B1 and the station conveyor move parts by surface velocity, and the gripper and tote clamps hold parts by attachment, both independent of friction. To be mentioned briefly in the report (robustness).
