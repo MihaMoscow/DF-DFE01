@@ -48,3 +48,4 @@ Test details and data: [`tests/README.md`](../tests/README.md)
 
 ## Decision (2026-11-03): Option 1
 Fixed Cartesian robot loads parts into totes ("packaging department"); an AMR carries the totes to the Box and places them inside (4 totes × ≤3 parts in a 2×2 grid). T9: custom tote gripper works, but contents of a lifted tote are left behind → tote must be transferred into the Box by rolling/sliding (T11). **Question for tutor:** are parts inside totes inside the Box acceptable as "parts placed inside the destination box"?
+- **T12 (2026-11-03): solved lifting a full tote.** Clamps inside the tote (JawGripper + StateChart) hold the parts; a custom tote gripper lifts the tote; all parts travel. Based on documented behaviour: `attach` only re-parents (Animation.js), the JawGripper also sets the body STATIC.

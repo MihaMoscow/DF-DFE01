@@ -271,3 +271,32 @@ AMR deck = kinematic conveyor body (stand-in for the AMR, moved by timeline `mov
 2. A gripped object is made STATIC and parented, so it is moved by teleport again: **loose parts inside a lifted tote are left behind** (same mechanism as T1).
 3. Therefore "AMR lifts the full tote into the Box" is not physically reproducible in VEB.js. A tote with contents must be moved by **velocity** (belt / deck surface velocity, T7/T10) or **gravity**.
 → **Next (T11):** transfer the tote from the AMR deck into the Box by rolling it off the deck (deck surface velocity) down a short chute, like a roller-top AMR handing over to a gravity roller conveyor.
+
+---
+
+## Documentation check (2026-11-03)
+- VLFT docs, *Animations*: event `attach` = "the asset keeps its absolute position … but its location in the scene graph is updated according to `placementRelTo`".
+- VEB.js source (`Animation.js` l.1027–1037): `attach` only calls `setParent()`; the physics motion type is **not** changed. A DYNAMIC part therefore stays physics-driven and does not follow its new parent (explains T4).
+- `JawGripper` (`Control.js`) additionally sets the gripped body STATIC before `setParent()`; this is the mechanism that makes carried objects follow.
+- Built-in behaviour classes: `Conveyor`, `JawGripper`, `Actuator`/`Robot`, `SensorBarrier`, `SensorVolume`, `ButtonActuator`, `RotarySwitchActuator`, `SnapZoneActuator`.
+
+## T12 – Clamping tote: parts clamped inside the tote, tote lifted by the tote gripper ✅
+
+**Run:** https://digital-factory.io/vebjs/?inputscene=https://mihamoscow.github.io/DF-DFE01/tests/T12_clamping_tote&repoMod3d=https://mihamoscow.github.io/DF-DFE01/assets/
+
+### Set-up
+- T9 scene + three clamps `C1–C3` inside the tote (children of the tote), one per part. Each clamp is a `JawGripper` from a new asset `assets/ToteClamp.glb` (`TC_Body`, `TC_Jaw1`, `TC_Jaw2`) with a StateChart `open ⇄ closed`.
+- Sequence: clamps `clamp` at 1 s → tote gripper descends, closes, lifts 200 mm → clamps `unclamp` at 16 s.
+
+### Results – run 2026-11-03
+| t | Tote y (parent) | Parts y (parent) | Event |
+|---|---|---|---|
+| 12.5 s | 230 (building) | 234 (**C1, C2, C3**) | all three parts clamped (incl. μ 0.1 / 0.101) |
+| 16.5 s | 230 (**TG**) | 234 (C1–C3) | tote gripped |
+| 18.5 s | **430** (TG) | **434** (C1–C3) | **tote lifted with all parts** |
+| 26.5 s | 430 (TG) | 434 (released) | clamps opened; parts rest in the tote |
+
+72 trigger events (`TRIGGER_ENTERED/EXITED part_i|Ci.JawK`).
+
+### Conclusion
+**A full tote can be lifted and carried with its contents**, using only built-in VEB.js mechanisms (`JawGripper` + StateCharts): part → clamp → tote → tote gripper. This enables Option 1: robot loads parts into a clamping tote, the AMR's tote gripper lifts and carries it and sets it into the Box, then the clamps release.
