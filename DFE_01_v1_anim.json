@@ -52,7 +52,7 @@
     {
      "trigger": {
       "type": "timestamp",
-      "data": "16500"
+      "data": "20000"
      },
      "event": {
       "type": "sendEvent",
@@ -62,7 +62,7 @@
     {
      "trigger": {
       "type": "timestamp",
-      "data": "19100"
+      "data": "22600"
      },
      "event": {
       "type": "sendEvent",
@@ -72,7 +72,7 @@
     {
      "trigger": {
       "type": "timestamp",
-      "data": "26000"
+      "data": "33000"
      },
      "event": {
       "type": "sendEvent",
@@ -82,7 +82,7 @@
     {
      "trigger": {
       "type": "timestamp",
-      "data": "28600"
+      "data": "35600"
      },
      "event": {
       "type": "sendEvent",
@@ -137,7 +137,7 @@
     {
      "trigger": {
       "type": "timestamp",
-      "data": "10500"
+      "data": "11500"
      },
      "event": {
       "type": "sendEvent",
@@ -147,7 +147,17 @@
     {
      "trigger": {
       "type": "timestamp",
-      "data": "11500"
+      "data": "13000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goUp"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "14500"
      },
      "event": {
       "type": "sendEvent",
@@ -157,31 +167,11 @@
     {
      "trigger": {
       "type": "timestamp",
-      "data": "12500"
+      "data": "16000"
      },
      "event": {
       "type": "sendEvent",
       "data": "goPick"
-     }
-    },
-    {
-     "trigger": {
-      "type": "timestamp",
-      "data": "15000"
-     },
-     "event": {
-      "type": "sendEvent",
-      "data": "goLift"
-     }
-    },
-    {
-     "trigger": {
-      "type": "timestamp",
-      "data": "16500"
-     },
-     "event": {
-      "type": "sendEvent",
-      "data": "goSlot2"
      }
     },
     {
@@ -191,7 +181,7 @@
      },
      "event": {
       "type": "sendEvent",
-      "data": "goLower"
+      "data": "goLift"
      }
     },
     {
@@ -201,17 +191,7 @@
      },
      "event": {
       "type": "sendEvent",
-      "data": "goRelease"
-     }
-    },
-    {
-     "trigger": {
-      "type": "timestamp",
-      "data": "21000"
-     },
-     "event": {
-      "type": "sendEvent",
-      "data": "goRest"
+      "data": "goSlot2"
      }
     },
     {
@@ -221,7 +201,7 @@
      },
      "event": {
       "type": "sendEvent",
-      "data": "goPick"
+      "data": "goLower"
      }
     },
     {
@@ -231,7 +211,7 @@
      },
      "event": {
       "type": "sendEvent",
-      "data": "goLift"
+      "data": "goRelease"
      }
     },
     {
@@ -241,13 +221,53 @@
      },
      "event": {
       "type": "sendEvent",
+      "data": "goUp"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "27500"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goRest"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "29000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goPick"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "31500"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goLift"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "33000"
+     },
+     "event": {
+      "type": "sendEvent",
       "data": "goSlot3"
      }
     },
     {
      "trigger": {
       "type": "timestamp",
-      "data": "28000"
+      "data": "35000"
      },
      "event": {
       "type": "sendEvent",
@@ -257,7 +277,7 @@
     {
      "trigger": {
       "type": "timestamp",
-      "data": "29500"
+      "data": "37500"
      },
      "event": {
       "type": "sendEvent",
@@ -267,7 +287,17 @@
     {
      "trigger": {
       "type": "timestamp",
-      "data": "30500"
+      "data": "39000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goUp"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "40500"
      },
      "event": {
       "type": "sendEvent",
@@ -282,7 +312,7 @@
     {
      "trigger": {
       "type": "timestamp",
-      "data": "11000"
+      "data": "12500"
      },
      "event": {
       "type": "sendEvent",
@@ -297,7 +327,7 @@
     {
      "trigger": {
       "type": "timestamp",
-      "data": "20500"
+      "data": "25500"
      },
      "event": {
       "type": "sendEvent",
@@ -312,7 +342,7 @@
     {
      "trigger": {
       "type": "timestamp",
-      "data": "30000"
+      "data": "38500"
      },
      "event": {
       "type": "sendEvent",

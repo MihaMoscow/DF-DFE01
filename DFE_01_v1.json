@@ -673,7 +673,7 @@
      },
      "release": {
       "on": {
-       "goRest": "rest"
+       "goUp": "up"
       },
       "entry": [
        {
@@ -692,6 +692,22 @@
          0,
          -38,
          -38
+        ]
+       }
+      ]
+     },
+     "up": {
+      "on": {
+       "goRest": "rest"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "PP.FloatingY",
+        "position": [
+         -6,
+         -40,
+         -171
         ]
        }
       ]

@@ -49,7 +49,8 @@ states = {
     "pick":    {"on": {"goLift": "lift"}, "entry": [FZ(0), FY(DOWN_PICK)] + FING(3, 1500)},
     "lift":    {"on": {"goSlot1": "slot1", "goSlot2": "slot2", "goSlot3": "slot3"}, "entry": [FY(UP)]},
     "lower":   {"on": {"goRelease": "release"}, "entry": [FY(DOWN_PLACE)]},
-    "release": {"on": {"goRest": "rest"}, "entry": FING(38)},
+    "release": {"on": {"goUp": "up"}, "entry": FING(38)},
+    "up":      {"on": {"goRest": "rest"}, "entry": [FY(UP)]},          # lift vertically before travelling back
 }
 for k in range(3):
     states[f"slot{k+1}"] = {"on": {"goLower": "lower"}, "entry": [FZ(SLOT_AXIS[k])]}
@@ -117,10 +118,10 @@ belt = [ev(1000, "B1startF"), ev(1500, "B1stop")]      # bring the first part to
 T = 3000
 for k in range(1, 4):
     robot += [ev(T, "goPick"), ev(T + 2500, "goLift"), ev(T + 4000, f"goSlot{k}"), ev(T + 6000, "goLower"),
-              ev(T + 7500, "goRelease"), ev(T + 8500, "goRest")]
-    clamps[k].append(ev(T + 8000, "clamp"))
+              ev(T + 8500, "goRelease"), ev(T + 10000, "goUp"), ev(T + 11500, "goRest")]
+    clamps[k].append(ev(T + 9500, "clamp"))
     belt += [ev(T + 4000, "B1startF"), ev(T + 6600, "B1stop")]   # index the next part (200 mm pitch at 80 mm/s)
-    T += 9500
+    T += 13000
 nodes = [{"id": "B1", "actions": belt}, {"id": "PP", "actions": robot}]
 nodes += [{"id": f"Tote1.C{k}", "actions": clamps[k]} for k in range(1, 4)]
 json.dump({"context": {"assetTrail": False, "UnitOfMeasureScale": 0.001, "Zup": False, "RepoAnim": ""},
