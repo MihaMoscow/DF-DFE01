@@ -1,0 +1,357 @@
+{
+ "context": {
+  "assetTrail": false,
+  "UnitOfMeasureScale": 0.001,
+  "Zup": false,
+  "RepoAnim": ""
+ },
+ "nodes": [
+  {
+   "id": "B1",
+   "actions": [
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "1000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "B1startF"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "1500"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "B1stop"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "7000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "B1startF"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "9600"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "B1stop"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "22000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "B1startF"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "24600"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "B1stop"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "37000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "B1startF"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "39600"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "B1stop"
+     }
+    }
+   ]
+  },
+  {
+   "id": "PP",
+   "actions": [
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "3000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goPick"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "5500"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goLift"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "7000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goSlot1"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "10500"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goLower"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "13000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goRelease"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "14500"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goUp"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "16000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goRest"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "18000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goPick"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "20500"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goLift"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "22000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goSlot2"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "25500"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goLower"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "28000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goRelease"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "29500"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goUp"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "31000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goRest"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "33000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goPick"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "35500"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goLift"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "37000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goSlot3"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "40500"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goLower"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "43000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goRelease"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "44500"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goUp"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "46000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goRest"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Tote1.C1",
+   "actions": [
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "14000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "clamp"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Tote1.C2",
+   "actions": [
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "29000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "clamp"
+     }
+    }
+   ]
+  },
+  {
+   "id": "Tote1.C3",
+   "actions": [
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "44000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "clamp"
+     }
+    }
+   ]
+  }
+ ],
+ "sequences": [],
+ "bookmarks": []
+}

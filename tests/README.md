@@ -1,0 +1,302 @@
+# Feasibility tests
+
+Small throw-away scenes used to de-risk design choices **before** building them into the main model `DFE_01`. Each test isolates one question, so a failure points to a single cause.
+
+## T1 – Can a moving carrier transport loose parts reliably? (AMR concept)
+
+**Run:** https://digital-factory.io/vebjs/?inputscene=https://mihamoscow.github.io/DF-DFE01/tests/T1_cart&repoMod3d=https://difactory.github.io/repository/models/PickPlaceCell/
+
+### Why this test
+The candidate concept replaces a long floor conveyor with an **AMR (autonomous mobile robot) carrying a tote**, a common solution in highly automated plants because it keeps the floor free and is easy to re-route. In VEB.js the carrier is a kinematic (`MotionType: ANIMATED`) body moved by the timeline, while the parts are dynamic bodies simulated by the Havok physics engine. It is not obvious that dynamic parts will ride stably on a kinematic body that moves, stops and turns. This is the single biggest technical risk of the concept, so it is tested first and in isolation.
+
+The parts of DFE_01 are identical except for friction: most have μ ≈ 0.95, while `part_08` (μ = 0.1) and `part_09` (μ = 0.101) are very slippery. The test therefore includes both kinds of part.
+
+### Set-up
+| Carrier | Asset | Load |
+|---|---|---|
+| **A – walled tote** | `Box_part.glb` (120 × 60 × 210 mm, 5 mm floor) | 3 parts in a row: μ = 0.95, 0.1, 0.101 |
+| **B – open pallet** | `Pallet.glb` (180 × 62 × 180 mm) | 2 parts: μ = 0.95, 0.1 |
+
+Both carriers are kinematic (mass 0), start side by side 400 mm apart, and run **the same motion profile**, so the only difference is the container (walls vs no walls).
+
+### Motion profile (from `T1_cart_anim.json`)
+| Time | Move | Purpose |
+|---|---|---|
+| 3–7 s | +1000 mm in 4 s (0.25 m/s) | normal, gentle transport speed for a loaded AMR |
+| 9–10 s | −1000 mm in 1 s (1.0 m/s), instant start/stop | stress case: abrupt acceleration and braking |
+| 12–14 s | 90° turn on the spot in 2 s | turning (centrifugal effect on loose parts) |
+
+### Expected results and what they mean
+| Observation | Interpretation | Decision |
+|---|---|---|
+| A keeps all 3 parts in every phase | totes contain parts, including slippery ones | AMR + tote concept is feasible |
+| B loses the slippery part (especially in phase 2 or 3) | open platforms are not robust for μ = 0.1 parts | justifies using a walled tote |
+| parts jitter, sink through, or are left behind as the carrier moves | the physics engine does not drag dynamic bodies along with a moving kinematic one | AMR concept not reliable in VEB.js → fall back to conveyor + robot |
+| the 90° turn has no effect | rotation is not supported in timeline `moveAdditive` | route the AMR with straight legs only |
+
+### Results – run 2026-11-02 (positions logged every 0.5 s from the Babylon scene)
+
+| Time after Play | ToteA z | A_grip (x, y, z) | Observation |
+|---|---|---|---|
+| 0 s (at rest) | 0 | (0, 4, −65) | all 3 parts rest correctly on the tote floor |
+| 4.0 s | 140 | (0, 3, −65) | tote starts moving; **parts do not move with it** |
+| 5.5 s | 515 | (0, −14, −65) | tote has left; parts fall where they were |
+| 8.5 s | 1000 | (0, −91, −65) | tote arrived empty; parts keep falling |
+| 25 s | 0 | (0, −751, −65) | parts in free fall (no physical floor below y = 0) |
+
+Additional observations:
+- The tote's **rear wall passed through the parts** without pushing them (z of A_grip constant at −65 while the wall swept past).
+- On the open pallet, the slippery part (μ = 0.1) slid off **before any motion**, just from settling on the uneven pallet top.
+- The scene floor is visual only: anything that falls off a device falls forever.
+- Carrier motion itself (translation via timeline `moveAdditive`) works exactly as specified (250 mm/s, 1 m/s).
+
+### Conclusion
+In VEB.js, an object moved by the timeline (`moveAdditive`/`moveTo`) is **teleported frame by frame**: the physics engine sees a body without velocity, so friction does not drag parts and walls do not push them. A carrier can *support* parts when stationary but cannot *transport* them physically.
+
+This also explains why the provided conveyor works: `surfaceVelocity` explicitly gives the belt surface a velocity that the physics engine uses.
+
+**Consequences for the design**
+1. A free-roaming AMR carrying loose parts is **not physically feasible** in VEB.js as is. It would only work if parts are rigidly attached to the cart during travel (`attach` event), which is weaker against the "no transport that ignores physics" rule.
+2. Physical transport of loose parts must use **surface velocity (conveyors)**, **gravity (chutes/slides)** or **grasping (robot gripper)**.
+3. Every transfer must be caught by a physical surface: there is no floor collider.
+4. Slippery parts (part_08, part_09) need positive containment; open flat surfaces are not robust.
+
+---
+
+## T2 – Does the Cartesian robot gripper pick, carry and release parts, regardless of friction?
+
+**Run:** https://digital-factory.io/vebjs/?inputscene=https://mihamoscow.github.io/DF-DFE01/tests/T2_gripper&repoMod3d=https://difactory.github.io/repository/models/PickPlaceCell/
+
+### Why this test
+T1 showed that only belts, gravity and grasping can move loose parts. The robot is therefore a key building block, and the parts' different friction values might affect a gripper. The robot's fingers are configured as *triggers* (mass 0, friction 0, `isTrigger: true`), which suggests grasping is not friction-based. This test checks that directly.
+
+### Set-up
+Three identical cells side by side, each a copy of the DFE_01 robot `PP` (same StateChart: `rest → pick → place → rest`) with one part placed on a stationary conveyor directly under its pick point:
+
+| Cell | Part friction μ | Represents |
+|---|---|---|
+| PP1 | 0.95 | normal parts |
+| PP2 | 0.1 | part_08 |
+| PP3 | 0.101 | part_09 |
+
+The pick point (robot x − 71 mm, belt height 230 mm) was taken from the official PickPlaceCell example. Timeline: `goPick` at 1 s, `goPlace` at 3.5 s, `goRest` at 6 s. Positions of parts, gripper and fingers were logged every 0.25 s.
+
+### Results – run 2026-11-02
+| Time | Gripper (PP1) | Part 1 | Part parent | What happens |
+|---|---|---|---|---|
+| 0–2 s | y 426 → 291 | (−941, 229, −5) | building | gripper descends; part untouched |
+| 3.5 s | fingers close to 67 mm gap | (−941, 229, −5) | **PP1.Gripper** | part is **attached to the gripper** |
+| 5 s | moves +200 mm in x, rises to y 426 | (−741, 364, −5) | PP1.Gripper | part carried rigidly with the gripper |
+| 6 s | opens | (−741, 362, −5) | none | part released **in mid-air, 130 mm above the belt** |
+| 6–30 s | back to rest | y 362 → 36 → … | none | part falls **very slowly** (~4.5 s for 130 mm), lands beyond the belt edge, keeps falling |
+
+All three cells behaved **identically** (positions equal to the millimetre).
+
+### Conclusions
+1. **Grasping works and is independent of friction.** When the closing fingers overlap the part, VEB.js attaches the part to the gripper; on opening it detaches it. The slippery parts are no problem for the robot.
+2. **The default program is not usable as it is.** The place position is only 200 mm from the pick position and the part is released mid-air: the StateChart must be rewritten (lower the gripper before opening; new place coordinates).
+3. **The robot does not reach B1.** In DFE_01 its pick point is at x ≈ −941, while B1 runs along x = 0. The robot must be repositioned, or parts brought to it.
+4. **Gravity is about 1000× too weak.** A free fall of 130 mm took ~4.5 s (real: 0.16 s). The environment sets gravity to `[0, −9.81, 0]` while the scene uses millimetres, so it acts as 9.81 mm/s². This makes drops look like slow motion, and it also weakens friction on belts (friction force ∝ normal force ∝ g). **To verify next (T3):** set gravity to `[0, −9810, 0]` and check that falls, belts and chutes behave realistically.
+
+---
+
+## T4 – AMR retest: three ways to move the carrier, gravity corrected
+
+**Run:** https://digital-factory.io/vebjs/?inputscene=https://mihamoscow.github.io/DF-DFE01/tests/T4_amr&repoMod3d=https://difactory.github.io/repository/models/PickPlaceCell/
+
+Env gravity set to `[0, -9810, 0]` (mm/s²). Three totes (`Box_part`), each with one grippy (μ 0.95) and one slippery (μ 0.1) part, plus one part dropped from 1000 mm as a gravity check.
+
+| Tote | Motion method | Result |
+|---|---|---|
+| A | StateChart `moveTo` (same mechanism as robot axes) | tote moved 1000 mm in < 1 s; **parts stayed and fell** |
+| B | timeline `moveAdditive` + `attach` parts to tote at t = 1.5 s | attach had **no effect** on these parts; **parts stayed and fell** |
+| C | timeline `moveAdditive` + `surfaceVelocity` 250 mm/s on tote floor | **parts stayed and fell** |
+
+Gravity check: the dropped part accelerated at first, then fell at a **constant ~200 mm/s**. The physics engine appears to cap speed at ~200 units/s, i.e. 200 mm/s in this scene. Correcting g therefore does not make falls realistic on its own.
+
+Side effect: with g = 9810, the parts sank through the tote's 5 mm floor while settling (resting at y ≈ −11, inside the floor). Thin mesh floors are not reliable at high gravity.
+
+### Conclusion
+Every way of moving a kinematic carrier tested so far moves the carrier but not the loose parts on it. The only mechanism observed to carry parts is the **gripper attachment** (T2). That suggests a feasible AMR variant: a **mobile manipulator**, i.e. a robot/gripper mounted on the moving base that holds the part during travel (like KUKA KMR). To test next (T5).
+
+---
+
+## T5 – Mobile manipulator: robot drives while holding a part ✅
+
+**Run:** https://digital-factory.io/vebjs/?inputscene=https://mihamoscow.github.io/DF-DFE01/tests/T5_mobile_manip&repoMod3d=https://difactory.github.io/repository/models/PickPlaceCell/
+
+### Why
+T1/T4 showed that moving carriers cannot carry loose parts, and VEB.js offers no "set velocity" action. But T2 showed the gripper holds parts by attachment, so a part held by the gripper should travel with anything that moves the gripper. This mirrors real mobile manipulators (KUKA KMR, MiR + UR, Yandex Robotics' picking robot).
+
+### Set-up
+- Robot `PP` from DFE_01 with one new StateChart state, **`carry`** (lift with fingers closed), inserted between `pick` and `place`.
+- New controller asset **`AMR`** whose StateChart drives the whole robot with `moveTo` (`PP` → z = 1500 mm).
+- One slippery part (μ = 0.1, like part_08) on a pick table; a place table 1.5 m away.
+- Timeline: `goPick` 1 s → `goCarry` 3.5 s → `drive` 5 s → `goPlace` 9 s. Default gravity.
+
+### Results – run 2026-11-02
+| Time | Robot base | Part | Part parent |
+|---|---|---|---|
+| 4.3 s | (−870, 0, 0) | (−941, 229, −5) | **PP.Gripper** (gripped) |
+| 6.3 s | (−870, 0, 0) | (−941, 364, −5) | PP.Gripper (lifted) |
+| 7.3 s | (−870, 0, 1363) | (−941, 364, 1358) | PP.Gripper (**travelling with the robot**) |
+| 8.3 s | (−870, 0, 1500) | (−941, 364, 1495) | PP.Gripper (arrived) |
+| 12.3 s | (−870, 0, 1500) | (−741, 363, 1495) | released over the place table, falls onto it |
+
+### Conclusion
+**A mobile manipulator works in VEB.js.** The part stays exactly in the gripper during travel (offset constant to the millimetre) and is released at the destination. The concept is feasible. Open points for the real design: the drive is fast (~1.5 m in ~1.5 s, needs a realistic speed), the robot needs a visible mobile base (3D asset), and the default place still releases 130 mm above the surface.
+
+---
+
+## T6 – AMR deck with clamp fixture (3 clamps, 3 parts) ❌ not yet working
+
+**Run:** https://digital-factory.io/vebjs/?inputscene=https://mihamoscow.github.io/DF-DFE01/tests/T6b_fixture_amr&repoMod3d=https://difactory.github.io/repository/models/PickPlaceCell/
+
+### What we learned from the VEB.js source (`js/Control.js`)
+- Any asset of type `JawGripper` with two `JawFinger` children becomes a gripper (class registry by type, line ~320). It does not need to be part of a robot.
+- A part is attached when **both fingers' trigger shapes report `TRIGGER_ENTERED`** for the same dynamic body. The finger animation is then stopped, the part is set STATIC and `setParent(gripper)`. On exit it is set DYNAMIC and `setParent(null)`. **One part per gripper.**
+- The timeline `attach` event has no handler in this VEB.js version (explains T4/B).
+
+### Set-up
+A pallet "Deck" (AMR stand-in) with 3 `JawGripper` clamps as children; each clamp has 2 jaw blocks (`parallelepiped.glb`, trigger) around one part (μ 0.95 / 0.1 / 0.101). Clamp → drive 2.5 m → unclamp.
+
+### Results
+- Run 1: jaws used `#PP_Finger1/2` from the robot model → loaded **without geometry** (zero-size bounding box), so nothing could touch the part.
+- Run 2 (T6b, solid jaw blocks): jaws have geometry and close through the part's volume (z −105 → −120), but **no attachment occurs**; the deck then drives away with the clamps and the parts stay behind.
+
+### Hypotheses for next session
+1. Jaws are children of a moving ANIMATED deck: their physics bodies may not follow the meshes (Havok `disablePreStep`), so the trigger never overlaps physically. Test: same clamp **not** parented to the deck.
+2. Trigger events may require the jaws to approach from above, as the robot does (descend, then close). Test: clamp descends onto the part before closing.
+3. If both fail, fall back to the onboard robot carrying parts (T5), or ask the tutor how to model a fixture.
+
+Note: GitHub Pages caches files for ~10 min; when re-testing a changed scene, publish under a new name (T6 → T6b) or wait.
+
+---
+
+## T7 – Dynamic tote / pallet carried by a running belt ✅ (tote)
+
+**Run:** https://digital-factory.io/vebjs/?inputscene=https://mihamoscow.github.io/DF-DFE01/tests/T7_pallet_belt&repoMod3d=https://difactory.github.io/repository/models/PickPlaceCell/
+
+### Why
+In T1/T4 the carriers were kinematic (mass 0) and teleported, so physics could not transmit motion. Here the carriers have **mass (2 kg), i.e. they are dynamic bodies**, and they are moved by a belt with `surfaceVelocity` (80 mm/s, same as B1): the one mechanism the engine treats as real velocity.
+
+### Set-up
+One belt; a walled tote (`Box_part.glb`) and an open pallet (`Pallet.glb`), each holding one grippy (μ 0.95) and one slippery (μ 0.1) part. Belt on at 1 s, off at 16 s.
+
+### Results – run 2026-11-02
+| t | Tote z | Tote parts z (grip / slip) | Pallet z | Pallet parts z (grip / slip) |
+|---|---|---|---|---|
+| 0.5 s | −700 | −745 / −655 | −300 | −340 / −260 |
+| 6.5 s | −494 | −565 / −513 | −91 | −335 (left behind) / −28 |
+| 11 s | −134 | −206 / −142 | 269 | −3, **fell onto the belt** / 385 |
+| 15.5 s | 226 | 154 / 219 | 629 | 357 (riding the belt, not the pallet) / 745 |
+
+- **Tote: both parts travel with it**, the slippery one included. They settle against the rear wall and keep a constant offset (y ≈ 234, inside the tote).
+- **Open pallet: the grippy part slid off** the back and continued on the bare belt; the slippery part stayed on the pallet's top by chance.
+
+### Conclusion
+**A dynamic, walled tote on a conveyor transports loose parts physically**, no attachment needed. Walls are essential: the open pallet is not reliable. The robust building blocks are now:
+1. belt + walled tote for batch transport (all 10 parts at once, physically correct);
+2. gripper for pick and place (one part, independent of friction);
+3. robot base moved by StateChart carrying a gripped part (mobile manipulator, T5).
+
+---
+
+## T8 – Why custom clamps do not grip (diagnostic) 🔍
+
+**Runs:** `tests/T8_clamp`, `tests/T8b_clamp` (two standalone clamps: A closes sideways then lifts; B descends, closes, lifts). A JS hook on the Havok plugin's `onTriggerCollisionObservable` / `onCollisionObservable` counted contact events involving the jaws.
+
+| Check | Robot gripper (T2, calibration) | Clamp T8 (jaw = `parallelepiped.glb`) | Clamp T8b (jaw = `parallelepiped.glb#Parallelepiped v1`) |
+|---|---|---|---|
+| Jaw shape is a trigger | ✅ `isTrigger = true` (single mesh shape) | ❌ false: the asset has a child mesh, so the loader builds a *container* shape | ✅ true |
+| Jaw mesh has geometry | ✅ | ✅ | ❌ zero-size: a `#node` reference loads geometry only when the **parent asset loads the same .glb** (as the robot's fingers do from `Pick_and_Place_Robot.glb`) |
+| Trigger events | 192 (`TRIGGER_ENTERED`/`EXITED` per finger) | 0 | 0 |
+| Part attached / lifted | ✅ | ❌ | ❌ |
+
+### Conclusion: requirements for a working custom gripper/clamp in VEB.js
+1. Each jaw must be a **single mesh** (no child meshes), otherwise the trigger flag is not applied (`Loader.js` ≈ l.1480 vs 1491).
+2. Jaws must be referenced as **`<same file>.glb#<node>`** where the **clamp body loads that same .glb**, exactly like the robot (`Pick_and_Place_Robot.glb` + `#PP_Finger1/2`).
+
+→ **Next step (T9):** build a small custom `Clamp.glb` (nodes: `Body`, `Jaw1`, `Jaw2`, each a single box mesh) in `assets/`, load the clamp body from it and the jaws as `Clamp.glb#Jaw1/2`. Also to verify: whether VEB.js can load a model from our own repo (custom `RepoPath` / absolute URL) alongside the PickPlaceCell library.
+
+---
+
+## T10 – AMR deck with matched surface velocity carries a tote with loose parts ✅
+
+**Run (final):** https://digital-factory.io/vebjs/?inputscene=https://mihamoscow.github.io/DF-DFE01/tests/T10d_amr_deck&repoMod3d=https://difactory.github.io/repository/models/PickPlaceCell/
+
+### Idea
+VEB.js moves kinematic assets by rewriting their position every frame (zero velocity for physics), so nothing on them is carried. Fix: while the AMR deck moves at speed *v*, its surface is given `surfaceVelocity` = *v* in the same direction. The physics engine then drives the dynamic tote at *v*, in step with the deck; the tote's walls carry the parts (as in T7).
+
+### Set-up
+AMR deck = kinematic conveyor body (stand-in for the AMR, moved by timeline `moveAdditive`) with a StateChart switching its `surfaceVelocity`. Dynamic tote (`Box_part`, mass 2) with one grippy (μ 0.95) and one slippery (μ 0.1) part. Route: 1000 mm forward (+z), then 500 mm sideways (+x). Default gravity.
+
+### Runs
+| Run | Speed | Result |
+|---|---|---|
+| T10 | 250 mm/s, matched | tote lags: 783/1000 mm, 355/500 mm |
+| T10b | 250 mm/s deck, 312/350 mm/s surface | no improvement (tote capped at ~200 mm/s); slippery part ejected after the sideways leg |
+| T10c | 150 mm/s, timestamps 9667/13833 ms | forward leg perfect (offset change 13 mm); later events **never fired** (timestamps must be multiples of 100 ms) |
+| **T10d** | **125 mm/s, 100 ms grid** | **forward: tote +998 mm for deck +1000 mm; sideways: +452 for +500; both parts stay in the tote and settle** |
+
+### Findings
+1. **An AMR can transport a tote with loose parts in VEB.js** if its deck has a surface velocity matched to its travel speed.
+2. **Engine speed cap ≈ 200 mm/s** for dynamic bodies: AMR travel speed with a load must stay below it (125–150 mm/s works).
+3. **Timeline timestamps must be multiples of 100 ms** (the timeline ticks every 100 ms, `Animation.js`), otherwise events are skipped.
+4. Small residual lag in the sideways direction (~10%): compensate with a slightly higher sideways surface velocity or short settle stops; to be tuned in the real model.
+
+---
+
+## T9 – Custom tote gripper (own .glb) lifts a tote ✅ – but the tote's contents stay behind ❌
+
+**Run:** https://digital-factory.io/vebjs/?inputscene=https://mihamoscow.github.io/DF-DFE01/tests/T9_tote_gripper&repoMod3d=https://mihamoscow.github.io/DF-DFE01/assets/
+
+### Set-up
+- New asset `assets/ToteGripper.glb` (generated with trimesh): nodes `TG_Body`, `TG_Jaw1`, `TG_Jaw2`, each a single box mesh.
+- Gripper asset `TG` (type `JawGripper`) loads the whole file; jaws `TG.Jaw1/2` (type `JawFinger`, trigger) load `ToteGripper.glb#TG_Jaw1/2`, mirroring the robot's structure (T8 recipe).
+- **All models now load from our own repo** (`repoMod3d=…/DF-DFE01/assets/`; library models copied there), so the scene is self-contained.
+- Dynamic tote (mass 2) with 3 parts (μ 0.95 / 0.1 / 0.101) on a table. Sequence: descend → close jaws → lift 200 mm.
+
+### Results – run 2026-11-03
+| t | Gripper y | Jaw x | Tote y (parent) | Parts y |
+|---|---|---|---|---|
+| 12.5 s | 351 (down) | 90 (open) | 230 (building) | 234 |
+| 14.5 s | 351 | 67 (**stopped on contact**) | 230 (**TG**) | 234 |
+| 16.5 s | 551 (lifted) | 67 | **430 (lifted with gripper)** | **229 (left on the table)** |
+
+32 trigger events (`TRIGGER_ENTERED Tote|TG.Jaw1/2`) confirm the custom jaws work.
+
+### Conclusions
+1. **Custom grippers work** when built per the T8 recipe; a wide tote gripper is feasible.
+2. A gripped object is made STATIC and parented, so it is moved by teleport again: **loose parts inside a lifted tote are left behind** (same mechanism as T1).
+3. Therefore "AMR lifts the full tote into the Box" is not physically reproducible in VEB.js. A tote with contents must be moved by **velocity** (belt / deck surface velocity, T7/T10) or **gravity**.
+→ **Next (T11):** transfer the tote from the AMR deck into the Box by rolling it off the deck (deck surface velocity) down a short chute, like a roller-top AMR handing over to a gravity roller conveyor.
+
+---
+
+## Documentation check (2026-11-03)
+- VLFT docs, *Animations*: event `attach` = "the asset keeps its absolute position … but its location in the scene graph is updated according to `placementRelTo`".
+- VEB.js source (`Animation.js` l.1027–1037): `attach` only calls `setParent()`; the physics motion type is **not** changed. A DYNAMIC part therefore stays physics-driven and does not follow its new parent (explains T4).
+- `JawGripper` (`Control.js`) additionally sets the gripped body STATIC before `setParent()`; this is the mechanism that makes carried objects follow.
+- Built-in behaviour classes: `Conveyor`, `JawGripper`, `Actuator`/`Robot`, `SensorBarrier`, `SensorVolume`, `ButtonActuator`, `RotarySwitchActuator`, `SnapZoneActuator`.
+
+## T12 – Clamping tote: parts clamped inside the tote, tote lifted by the tote gripper ✅
+
+**Run:** https://digital-factory.io/vebjs/?inputscene=https://mihamoscow.github.io/DF-DFE01/tests/T12_clamping_tote&repoMod3d=https://mihamoscow.github.io/DF-DFE01/assets/
+
+### Set-up
+- T9 scene + three clamps `C1–C3` inside the tote (children of the tote), one per part. Each clamp is a `JawGripper` from a new asset `assets/ToteClamp.glb` (`TC_Body`, `TC_Jaw1`, `TC_Jaw2`) with a StateChart `open ⇄ closed`.
+- Sequence: clamps `clamp` at 1 s → tote gripper descends, closes, lifts 200 mm → clamps `unclamp` at 16 s.
+
+### Results – run 2026-11-03
+| t | Tote y (parent) | Parts y (parent) | Event |
+|---|---|---|---|
+| 12.5 s | 230 (building) | 234 (**C1, C2, C3**) | all three parts clamped (incl. μ 0.1 / 0.101) |
+| 16.5 s | 230 (**TG**) | 234 (C1–C3) | tote gripped |
+| 18.5 s | **430** (TG) | **434** (C1–C3) | **tote lifted with all parts** |
+| 26.5 s | 430 (TG) | 434 (released) | clamps opened; parts rest in the tote |
+
+72 trigger events (`TRIGGER_ENTERED/EXITED part_i|Ci.JawK`).
+
+### Conclusion
+**A full tote can be lifted and carried with its contents**, using only built-in VEB.js mechanisms (`JawGripper` + StateCharts): part → clamp → tote → tote gripper. This enables Option 1: robot loads parts into a clamping tote, the AMR's tote gripper lifts and carries it and sets it into the Box, then the clamps release.

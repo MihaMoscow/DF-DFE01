@@ -1,0 +1,89 @@
+{
+ "context": {
+  "assetTrail": false,
+  "UnitOfMeasureScale": 0.001,
+  "Zup": false,
+  "RepoAnim": ""
+ },
+ "nodes": [
+  {
+   "id": "AMRdeck",
+   "actions": [
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "3000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "vz"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "3000"
+     },
+     "event": {
+      "type": "moveAdditive",
+      "position": [
+       0,
+       0,
+       1000
+      ],
+      "data": 8000,
+      "loop": false
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "11000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "stop"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "12000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "vx"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "12000"
+     },
+     "event": {
+      "type": "moveAdditive",
+      "position": [
+       500,
+       0,
+       0
+      ],
+      "data": 4000,
+      "loop": false
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "16000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "stop"
+     }
+    }
+   ]
+  }
+ ],
+ "sequences": [],
+ "bookmarks": []
+}

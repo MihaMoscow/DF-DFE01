@@ -1,0 +1,102 @@
+{
+ "context": {
+  "assetTrail": false,
+  "UnitOfMeasureScale": 0.001,
+  "Zup": false,
+  "RepoAnim": ""
+ },
+ "nodes": [
+  {
+   "id": "C1",
+   "actions": [
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "1000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "clamp"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "16000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "unclamp"
+     }
+    }
+   ]
+  },
+  {
+   "id": "C2",
+   "actions": [
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "1000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "clamp"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "16000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "unclamp"
+     }
+    }
+   ]
+  },
+  {
+   "id": "C3",
+   "actions": [
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "1000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "clamp"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "16000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "unclamp"
+     }
+    }
+   ]
+  },
+  {
+   "id": "TG",
+   "actions": [
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "3000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "go"
+     }
+    }
+   ]
+  }
+ ],
+ "sequences": [],
+ "bookmarks": []
+}

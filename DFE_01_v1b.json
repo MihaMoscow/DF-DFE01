@@ -1,0 +1,2893 @@
+{
+ "context": {
+  "UnitOfMeasureScale": 0.001,
+  "Zup": false,
+  "RepoPath": "https://mihamoscow.github.io/DF-DFE01/assets/"
+ },
+ "scene": [
+  "building",
+  "B1",
+  "part_01",
+  "part_02",
+  "part_03",
+  "part_04",
+  "part_05",
+  "part_06",
+  "part_07",
+  "part_08",
+  "part_09",
+  "part_10",
+  "Grid",
+  "Box",
+  "Stopper_B1",
+  "Sensor_B1",
+  "PP",
+  "PP.FloatingX",
+  "PP.FloatingZ",
+  "PP.FloatingY",
+  "PP.Gripper",
+  "PP.Finger1",
+  "PP.Finger2",
+  "ToteConveyor",
+  "Tote1",
+  "Tote1.C1",
+  "Tote1.C1.Jaw1",
+  "Tote1.C1.Jaw2",
+  "Tote1.C2",
+  "Tote1.C2.Jaw1",
+  "Tote1.C2.Jaw2",
+  "Tote1.C3",
+  "Tote1.C3.Jaw1",
+  "Tote1.C3.Jaw2",
+  "Tote2",
+  "Tote2.C1",
+  "Tote2.C1.Jaw1",
+  "Tote2.C1.Jaw2",
+  "Tote2.C2",
+  "Tote2.C2.Jaw1",
+  "Tote2.C2.Jaw2",
+  "Tote2.C3",
+  "Tote2.C3.Jaw1",
+  "Tote2.C3.Jaw2",
+  "Tote3",
+  "Tote3.C1",
+  "Tote3.C1.Jaw1",
+  "Tote3.C1.Jaw2",
+  "Tote3.C2",
+  "Tote3.C2.Jaw1",
+  "Tote3.C2.Jaw2",
+  "Tote3.C3",
+  "Tote3.C3.Jaw1",
+  "Tote3.C3.Jaw2",
+  "Tote4",
+  "Tote4.C1",
+  "Tote4.C1.Jaw1",
+  "Tote4.C1.Jaw2",
+  "Tote4.C2",
+  "Tote4.C2.Jaw1",
+  "Tote4.C2.Jaw2",
+  "Tote4.C3",
+  "Tote4.C3.Jaw1",
+  "Tote4.C3.Jaw2",
+  "Fence_W1",
+  "Fence_W2",
+  "Fence_E1",
+  "Fence_E2",
+  "Fence_N1",
+  "Fence_S1",
+  "Fence_S2",
+  "LightCurtain",
+  "SignalPole",
+  "AMR"
+ ],
+ "assets": [
+  {
+   "id": "building",
+   "type": "https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD1/OWL#IfcBuilding"
+  },
+  {
+   "id": "B1",
+   "type": "https://w3id.org/ontoeng/factory#Conveyor",
+   "representations": [
+    {
+     "file": "ConveyorNew.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.3,
+    "friction": 0.0,
+    "MotionType": "ANIMATED"
+   },
+   "statechart": {
+    "id": "B1_SC",
+    "initial": "idle",
+    "states": {
+     "idle": {
+      "on": {
+       "B1startF": "forward",
+       "B1startB": "backward"
+      },
+      "entry": {
+       "action": "surfaceVelocity",
+       "target": "B1",
+       "velocity": [
+        0,
+        0,
+        0
+       ]
+      }
+     },
+     "forward": {
+      "on": {
+       "B1stop": "idle"
+      },
+      "entry": {
+       "action": "surfaceVelocity",
+       "target": "B1",
+       "velocity": [
+        0,
+        0,
+        80
+       ]
+      }
+     },
+     "backward": {
+      "on": {
+       "B1stop": "idle"
+      },
+      "entry": {
+       "action": "surfaceVelocity",
+       "target": "B1",
+       "velocity": [
+        0,
+        0,
+        -80
+       ]
+      }
+     }
+    }
+   }
+  },
+  {
+   "id": "part_01",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    230,
+    -900
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.95
+   }
+  },
+  {
+   "id": "part_02",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    230,
+    -700
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.95
+   }
+  },
+  {
+   "id": "part_03",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    230,
+    -500
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.95
+   }
+  },
+  {
+   "id": "part_04",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    230,
+    -300
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.96
+   }
+  },
+  {
+   "id": "part_05",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    230,
+    -100
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.97
+   }
+  },
+  {
+   "id": "part_06",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    230,
+    100
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.98
+   }
+  },
+  {
+   "id": "part_07",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    230,
+    300
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.99
+   }
+  },
+  {
+   "id": "part_08",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    230,
+    500
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.1
+   }
+  },
+  {
+   "id": "part_09",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    230,
+    700
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.101
+   }
+  },
+  {
+   "id": "part_10",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    230,
+    900
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.95
+   }
+  },
+  {
+   "id": "Grid",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Grid.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -2000,
+    540,
+    1100
+   ],
+   "rotation": [
+    0,
+    0,
+    -1.5707963267949
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.3,
+    "friction": 0.0,
+    "MotionType": "ANIMATED"
+   }
+  },
+  {
+   "id": "Box",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Box_large.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -2200,
+    0,
+    1100
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.3,
+    "friction": 0.0,
+    "MotionType": "ANIMATED"
+   }
+  },
+  {
+   "id": "Stopper_B1",
+   "type": "https://w3id.org/ontoeng/factory#Actuator",
+   "representations": [
+    {
+     "file": "Stopper.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -77,
+    230,
+    960
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.1,
+    "friction": 0.5,
+    "MotionType": "STATIC"
+   }
+  },
+  {
+   "id": "Sensor_B1",
+   "type": "https://w3id.org/ontoeng/factory#SensorBarrier",
+   "representations": [
+    {
+     "file": "Sensor.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -150,
+    230,
+    900
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building"
+  },
+  {
+   "id": "PP",
+   "type": "https://w3id.org/ontoeng/factory#Robot",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    71,
+    0,
+    936
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "statechart": {
+    "id": "PP_SC",
+    "initial": "rest",
+    "states": {
+     "rest": {
+      "on": {
+       "goPick": "pick"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "PP.FloatingZ",
+        "position": [
+         -120,
+         80,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "PP.FloatingY",
+        "position": [
+         -6,
+         -40,
+         -171
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "PP.Finger1",
+        "position": [
+         0,
+         -38,
+         38
+        ],
+        "delay": 500
+       },
+       {
+        "action": "moveTo",
+        "target": "PP.Finger2",
+        "position": [
+         0,
+         -38,
+         -38
+        ],
+        "delay": 500
+       }
+      ]
+     },
+     "pick": {
+      "on": {
+       "goLift": "lift"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "PP.FloatingZ",
+        "position": [
+         -120,
+         80,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "PP.FloatingY",
+        "position": [
+         -6,
+         -175,
+         -171
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "PP.Finger1",
+        "position": [
+         0,
+         -38,
+         3
+        ],
+        "delay": 1500
+       },
+       {
+        "action": "moveTo",
+        "target": "PP.Finger2",
+        "position": [
+         0,
+         -38,
+         -3
+        ],
+        "delay": 1500
+       }
+      ]
+     },
+     "lift": {
+      "on": {
+       "goSlot1": "slot1",
+       "goSlot2": "slot2",
+       "goSlot3": "slot3"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "PP.FloatingY",
+        "position": [
+         -6,
+         -40,
+         -171
+        ]
+       }
+      ]
+     },
+     "lower": {
+      "on": {
+       "goRelease": "release"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "PP.FloatingY",
+        "position": [
+         -6,
+         -167,
+         -171
+        ]
+       }
+      ]
+     },
+     "release": {
+      "on": {
+       "goRest": "rest"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "PP.Finger1",
+        "position": [
+         0,
+         -38,
+         38
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "PP.Finger2",
+        "position": [
+         0,
+         -38,
+         -38
+        ]
+       }
+      ]
+     },
+     "slot1": {
+      "on": {
+       "goLower": "lower"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "PP.FloatingZ",
+        "position": [
+         -120,
+         80,
+         -305
+        ]
+       }
+      ]
+     },
+     "slot2": {
+      "on": {
+       "goLower": "lower"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "PP.FloatingZ",
+        "position": [
+         -120,
+         80,
+         -370
+        ]
+       }
+      ]
+     },
+     "slot3": {
+      "on": {
+       "goLower": "lower"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "PP.FloatingZ",
+        "position": [
+         -120,
+         80,
+         -435
+        ]
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "PP.FloatingX",
+   "type": "https://w3id.org/ontoeng/factory#RobotArm",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Floating_X",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "PP",
+   "parentObject": "PP"
+  },
+  {
+   "id": "PP.FloatingZ",
+   "type": "https://w3id.org/ontoeng/factory#RobotArm",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Floating_Z",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "PP.FloatingX",
+   "parentObject": "PP.FloatingX"
+  },
+  {
+   "id": "PP.FloatingY",
+   "type": "https://w3id.org/ontoeng/factory#RobotArm",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Floating_Y",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "PP.FloatingZ",
+   "parentObject": "PP.FloatingZ"
+  },
+  {
+   "id": "PP.Gripper",
+   "type": "https://w3id.org/ontoeng/factory#JawGripper",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Gripper",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "PP.FloatingY",
+   "parentObject": "PP.FloatingY"
+  },
+  {
+   "id": "PP.Finger1",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Finger1",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "PP.Gripper",
+   "parentObject": "PP.Gripper",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.0,
+    "friction": 0.0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "PP.Finger2",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Finger2",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "PP.Gripper",
+   "parentObject": "PP.Gripper",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.0,
+    "friction": 0.0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "ToteConveyor",
+   "type": "https://w3id.org/ontoeng/factory#Conveyor",
+   "representations": [
+    {
+     "file": "ConveyorNew.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    370,
+    0,
+    721
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.3,
+    "friction": 0.0,
+    "MotionType": "ANIMATED"
+   },
+   "statechart": {
+    "id": "ToteConveyor_SC",
+    "initial": "idle",
+    "states": {
+     "idle": {
+      "on": {
+       "ToteConvstartF": "forward",
+       "ToteConvstartB": "backward"
+      },
+      "entry": {
+       "action": "surfaceVelocity",
+       "target": "ToteConveyor",
+       "velocity": [
+        0,
+        0,
+        0
+       ]
+      }
+     },
+     "forward": {
+      "on": {
+       "ToteConvstop": "idle"
+      },
+      "entry": {
+       "action": "surfaceVelocity",
+       "target": "ToteConveyor",
+       "velocity": [
+        0,
+        0,
+        80
+       ]
+      }
+     },
+     "backward": {
+      "on": {
+       "ToteConvstop": "idle"
+      },
+      "entry": {
+       "action": "surfaceVelocity",
+       "target": "ToteConveyor",
+       "velocity": [
+        0,
+        0,
+        -80
+       ]
+      }
+     }
+    }
+   },
+   "scale": [
+    1,
+    1,
+    0.55
+   ]
+  },
+  {
+   "id": "Tote1",
+   "type": "https://w3id.org/ontoeng/factory#Pallet",
+   "representations": [
+    {
+     "file": "Box_part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    370,
+    231,
+    931
+   ],
+   "rotation": [
+    0,
+    1.5707963267948966,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 2,
+    "restitution": 0.1,
+    "friction": 0.9
+   }
+  },
+  {
+   "id": "Tote1.C1",
+   "type": "https://w3id.org/ontoeng/factory#JawGripper",
+   "representations": [
+    {
+     "file": "ToteClamp.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    55,
+    -65
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "Tote1",
+   "parentObject": "Tote1",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED"
+   },
+   "statechart": {
+    "id": "Tote1.C1_SC",
+    "initial": "open",
+    "states": {
+     "open": {
+      "on": {
+       "clamp": "closed"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Tote1.C1.Jaw1",
+        "position": [
+         47,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Tote1.C1.Jaw2",
+        "position": [
+         -47,
+         -35,
+         0
+        ]
+       }
+      ]
+     },
+     "closed": {
+      "on": {
+       "unclamp": "open"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Tote1.C1.Jaw1",
+        "position": [
+         31,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Tote1.C1.Jaw2",
+        "position": [
+         -31,
+         -35,
+         0
+        ]
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "Tote1.C1.Jaw1",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw1",
+     "unit": 1
+    }
+   ],
+   "position": [
+    47,
+    -35,
+    0
+   ],
+   "placementRelTo": "Tote1.C1",
+   "parentObject": "Tote1.C1",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Tote1.C1.Jaw2",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw2",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -47,
+    -35,
+    0
+   ],
+   "placementRelTo": "Tote1.C1",
+   "parentObject": "Tote1.C1",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Tote1.C2",
+   "type": "https://w3id.org/ontoeng/factory#JawGripper",
+   "representations": [
+    {
+     "file": "ToteClamp.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    55,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "Tote1",
+   "parentObject": "Tote1",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED"
+   },
+   "statechart": {
+    "id": "Tote1.C2_SC",
+    "initial": "open",
+    "states": {
+     "open": {
+      "on": {
+       "clamp": "closed"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Tote1.C2.Jaw1",
+        "position": [
+         47,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Tote1.C2.Jaw2",
+        "position": [
+         -47,
+         -35,
+         0
+        ]
+       }
+      ]
+     },
+     "closed": {
+      "on": {
+       "unclamp": "open"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Tote1.C2.Jaw1",
+        "position": [
+         31,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Tote1.C2.Jaw2",
+        "position": [
+         -31,
+         -35,
+         0
+        ]
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "Tote1.C2.Jaw1",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw1",
+     "unit": 1
+    }
+   ],
+   "position": [
+    47,
+    -35,
+    0
+   ],
+   "placementRelTo": "Tote1.C2",
+   "parentObject": "Tote1.C2",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Tote1.C2.Jaw2",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw2",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -47,
+    -35,
+    0
+   ],
+   "placementRelTo": "Tote1.C2",
+   "parentObject": "Tote1.C2",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Tote1.C3",
+   "type": "https://w3id.org/ontoeng/factory#JawGripper",
+   "representations": [
+    {
+     "file": "ToteClamp.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    55,
+    65
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "Tote1",
+   "parentObject": "Tote1",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED"
+   },
+   "statechart": {
+    "id": "Tote1.C3_SC",
+    "initial": "open",
+    "states": {
+     "open": {
+      "on": {
+       "clamp": "closed"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Tote1.C3.Jaw1",
+        "position": [
+         47,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Tote1.C3.Jaw2",
+        "position": [
+         -47,
+         -35,
+         0
+        ]
+       }
+      ]
+     },
+     "closed": {
+      "on": {
+       "unclamp": "open"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Tote1.C3.Jaw1",
+        "position": [
+         31,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Tote1.C3.Jaw2",
+        "position": [
+         -31,
+         -35,
+         0
+        ]
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "Tote1.C3.Jaw1",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw1",
+     "unit": 1
+    }
+   ],
+   "position": [
+    47,
+    -35,
+    0
+   ],
+   "placementRelTo": "Tote1.C3",
+   "parentObject": "Tote1.C3",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Tote1.C3.Jaw2",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw2",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -47,
+    -35,
+    0
+   ],
+   "placementRelTo": "Tote1.C3",
+   "parentObject": "Tote1.C3",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Tote2",
+   "type": "https://w3id.org/ontoeng/factory#Pallet",
+   "representations": [
+    {
+     "file": "Box_part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    370,
+    231,
+    791
+   ],
+   "rotation": [
+    0,
+    1.5707963267948966,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 2,
+    "restitution": 0.1,
+    "friction": 0.9
+   }
+  },
+  {
+   "id": "Tote2.C1",
+   "type": "https://w3id.org/ontoeng/factory#JawGripper",
+   "representations": [
+    {
+     "file": "ToteClamp.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    55,
+    -65
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "Tote2",
+   "parentObject": "Tote2",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED"
+   },
+   "statechart": {
+    "id": "Tote2.C1_SC",
+    "initial": "open",
+    "states": {
+     "open": {
+      "on": {
+       "clamp": "closed"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Tote2.C1.Jaw1",
+        "position": [
+         47,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Tote2.C1.Jaw2",
+        "position": [
+         -47,
+         -35,
+         0
+        ]
+       }
+      ]
+     },
+     "closed": {
+      "on": {
+       "unclamp": "open"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Tote2.C1.Jaw1",
+        "position": [
+         31,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Tote2.C1.Jaw2",
+        "position": [
+         -31,
+         -35,
+         0
+        ]
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "Tote2.C1.Jaw1",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw1",
+     "unit": 1
+    }
+   ],
+   "position": [
+    47,
+    -35,
+    0
+   ],
+   "placementRelTo": "Tote2.C1",
+   "parentObject": "Tote2.C1",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Tote2.C1.Jaw2",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw2",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -47,
+    -35,
+    0
+   ],
+   "placementRelTo": "Tote2.C1",
+   "parentObject": "Tote2.C1",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Tote2.C2",
+   "type": "https://w3id.org/ontoeng/factory#JawGripper",
+   "representations": [
+    {
+     "file": "ToteClamp.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    55,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "Tote2",
+   "parentObject": "Tote2",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED"
+   },
+   "statechart": {
+    "id": "Tote2.C2_SC",
+    "initial": "open",
+    "states": {
+     "open": {
+      "on": {
+       "clamp": "closed"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Tote2.C2.Jaw1",
+        "position": [
+         47,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Tote2.C2.Jaw2",
+        "position": [
+         -47,
+         -35,
+         0
+        ]
+       }
+      ]
+     },
+     "closed": {
+      "on": {
+       "unclamp": "open"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Tote2.C2.Jaw1",
+        "position": [
+         31,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Tote2.C2.Jaw2",
+        "position": [
+         -31,
+         -35,
+         0
+        ]
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "Tote2.C2.Jaw1",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw1",
+     "unit": 1
+    }
+   ],
+   "position": [
+    47,
+    -35,
+    0
+   ],
+   "placementRelTo": "Tote2.C2",
+   "parentObject": "Tote2.C2",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Tote2.C2.Jaw2",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw2",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -47,
+    -35,
+    0
+   ],
+   "placementRelTo": "Tote2.C2",
+   "parentObject": "Tote2.C2",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Tote2.C3",
+   "type": "https://w3id.org/ontoeng/factory#JawGripper",
+   "representations": [
+    {
+     "file": "ToteClamp.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    55,
+    65
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "Tote2",
+   "parentObject": "Tote2",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED"
+   },
+   "statechart": {
+    "id": "Tote2.C3_SC",
+    "initial": "open",
+    "states": {
+     "open": {
+      "on": {
+       "clamp": "closed"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Tote2.C3.Jaw1",
+        "position": [
+         47,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Tote2.C3.Jaw2",
+        "position": [
+         -47,
+         -35,
+         0
+        ]
+       }
+      ]
+     },
+     "closed": {
+      "on": {
+       "unclamp": "open"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Tote2.C3.Jaw1",
+        "position": [
+         31,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Tote2.C3.Jaw2",
+        "position": [
+         -31,
+         -35,
+         0
+        ]
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "Tote2.C3.Jaw1",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw1",
+     "unit": 1
+    }
+   ],
+   "position": [
+    47,
+    -35,
+    0
+   ],
+   "placementRelTo": "Tote2.C3",
+   "parentObject": "Tote2.C3",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Tote2.C3.Jaw2",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw2",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -47,
+    -35,
+    0
+   ],
+   "placementRelTo": "Tote2.C3",
+   "parentObject": "Tote2.C3",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Tote3",
+   "type": "https://w3id.org/ontoeng/factory#Pallet",
+   "representations": [
+    {
+     "file": "Box_part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    370,
+    231,
+    651
+   ],
+   "rotation": [
+    0,
+    1.5707963267948966,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 2,
+    "restitution": 0.1,
+    "friction": 0.9
+   }
+  },
+  {
+   "id": "Tote3.C1",
+   "type": "https://w3id.org/ontoeng/factory#JawGripper",
+   "representations": [
+    {
+     "file": "ToteClamp.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    55,
+    -65
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "Tote3",
+   "parentObject": "Tote3",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED"
+   },
+   "statechart": {
+    "id": "Tote3.C1_SC",
+    "initial": "open",
+    "states": {
+     "open": {
+      "on": {
+       "clamp": "closed"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Tote3.C1.Jaw1",
+        "position": [
+         47,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Tote3.C1.Jaw2",
+        "position": [
+         -47,
+         -35,
+         0
+        ]
+       }
+      ]
+     },
+     "closed": {
+      "on": {
+       "unclamp": "open"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Tote3.C1.Jaw1",
+        "position": [
+         31,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Tote3.C1.Jaw2",
+        "position": [
+         -31,
+         -35,
+         0
+        ]
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "Tote3.C1.Jaw1",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw1",
+     "unit": 1
+    }
+   ],
+   "position": [
+    47,
+    -35,
+    0
+   ],
+   "placementRelTo": "Tote3.C1",
+   "parentObject": "Tote3.C1",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Tote3.C1.Jaw2",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw2",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -47,
+    -35,
+    0
+   ],
+   "placementRelTo": "Tote3.C1",
+   "parentObject": "Tote3.C1",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Tote3.C2",
+   "type": "https://w3id.org/ontoeng/factory#JawGripper",
+   "representations": [
+    {
+     "file": "ToteClamp.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    55,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "Tote3",
+   "parentObject": "Tote3",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED"
+   },
+   "statechart": {
+    "id": "Tote3.C2_SC",
+    "initial": "open",
+    "states": {
+     "open": {
+      "on": {
+       "clamp": "closed"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Tote3.C2.Jaw1",
+        "position": [
+         47,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Tote3.C2.Jaw2",
+        "position": [
+         -47,
+         -35,
+         0
+        ]
+       }
+      ]
+     },
+     "closed": {
+      "on": {
+       "unclamp": "open"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Tote3.C2.Jaw1",
+        "position": [
+         31,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Tote3.C2.Jaw2",
+        "position": [
+         -31,
+         -35,
+         0
+        ]
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "Tote3.C2.Jaw1",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw1",
+     "unit": 1
+    }
+   ],
+   "position": [
+    47,
+    -35,
+    0
+   ],
+   "placementRelTo": "Tote3.C2",
+   "parentObject": "Tote3.C2",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Tote3.C2.Jaw2",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw2",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -47,
+    -35,
+    0
+   ],
+   "placementRelTo": "Tote3.C2",
+   "parentObject": "Tote3.C2",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Tote3.C3",
+   "type": "https://w3id.org/ontoeng/factory#JawGripper",
+   "representations": [
+    {
+     "file": "ToteClamp.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    55,
+    65
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "Tote3",
+   "parentObject": "Tote3",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED"
+   },
+   "statechart": {
+    "id": "Tote3.C3_SC",
+    "initial": "open",
+    "states": {
+     "open": {
+      "on": {
+       "clamp": "closed"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Tote3.C3.Jaw1",
+        "position": [
+         47,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Tote3.C3.Jaw2",
+        "position": [
+         -47,
+         -35,
+         0
+        ]
+       }
+      ]
+     },
+     "closed": {
+      "on": {
+       "unclamp": "open"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Tote3.C3.Jaw1",
+        "position": [
+         31,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Tote3.C3.Jaw2",
+        "position": [
+         -31,
+         -35,
+         0
+        ]
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "Tote3.C3.Jaw1",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw1",
+     "unit": 1
+    }
+   ],
+   "position": [
+    47,
+    -35,
+    0
+   ],
+   "placementRelTo": "Tote3.C3",
+   "parentObject": "Tote3.C3",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Tote3.C3.Jaw2",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw2",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -47,
+    -35,
+    0
+   ],
+   "placementRelTo": "Tote3.C3",
+   "parentObject": "Tote3.C3",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Tote4",
+   "type": "https://w3id.org/ontoeng/factory#Pallet",
+   "representations": [
+    {
+     "file": "Box_part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    370,
+    231,
+    511
+   ],
+   "rotation": [
+    0,
+    1.5707963267948966,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 2,
+    "restitution": 0.1,
+    "friction": 0.9
+   }
+  },
+  {
+   "id": "Tote4.C1",
+   "type": "https://w3id.org/ontoeng/factory#JawGripper",
+   "representations": [
+    {
+     "file": "ToteClamp.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    55,
+    -65
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "Tote4",
+   "parentObject": "Tote4",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED"
+   },
+   "statechart": {
+    "id": "Tote4.C1_SC",
+    "initial": "open",
+    "states": {
+     "open": {
+      "on": {
+       "clamp": "closed"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Tote4.C1.Jaw1",
+        "position": [
+         47,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Tote4.C1.Jaw2",
+        "position": [
+         -47,
+         -35,
+         0
+        ]
+       }
+      ]
+     },
+     "closed": {
+      "on": {
+       "unclamp": "open"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Tote4.C1.Jaw1",
+        "position": [
+         31,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Tote4.C1.Jaw2",
+        "position": [
+         -31,
+         -35,
+         0
+        ]
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "Tote4.C1.Jaw1",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw1",
+     "unit": 1
+    }
+   ],
+   "position": [
+    47,
+    -35,
+    0
+   ],
+   "placementRelTo": "Tote4.C1",
+   "parentObject": "Tote4.C1",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Tote4.C1.Jaw2",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw2",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -47,
+    -35,
+    0
+   ],
+   "placementRelTo": "Tote4.C1",
+   "parentObject": "Tote4.C1",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Tote4.C2",
+   "type": "https://w3id.org/ontoeng/factory#JawGripper",
+   "representations": [
+    {
+     "file": "ToteClamp.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    55,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "Tote4",
+   "parentObject": "Tote4",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED"
+   },
+   "statechart": {
+    "id": "Tote4.C2_SC",
+    "initial": "open",
+    "states": {
+     "open": {
+      "on": {
+       "clamp": "closed"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Tote4.C2.Jaw1",
+        "position": [
+         47,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Tote4.C2.Jaw2",
+        "position": [
+         -47,
+         -35,
+         0
+        ]
+       }
+      ]
+     },
+     "closed": {
+      "on": {
+       "unclamp": "open"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Tote4.C2.Jaw1",
+        "position": [
+         31,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Tote4.C2.Jaw2",
+        "position": [
+         -31,
+         -35,
+         0
+        ]
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "Tote4.C2.Jaw1",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw1",
+     "unit": 1
+    }
+   ],
+   "position": [
+    47,
+    -35,
+    0
+   ],
+   "placementRelTo": "Tote4.C2",
+   "parentObject": "Tote4.C2",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Tote4.C2.Jaw2",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw2",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -47,
+    -35,
+    0
+   ],
+   "placementRelTo": "Tote4.C2",
+   "parentObject": "Tote4.C2",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Tote4.C3",
+   "type": "https://w3id.org/ontoeng/factory#JawGripper",
+   "representations": [
+    {
+     "file": "ToteClamp.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    55,
+    65
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "Tote4",
+   "parentObject": "Tote4",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED"
+   },
+   "statechart": {
+    "id": "Tote4.C3_SC",
+    "initial": "open",
+    "states": {
+     "open": {
+      "on": {
+       "clamp": "closed"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Tote4.C3.Jaw1",
+        "position": [
+         47,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Tote4.C3.Jaw2",
+        "position": [
+         -47,
+         -35,
+         0
+        ]
+       }
+      ]
+     },
+     "closed": {
+      "on": {
+       "unclamp": "open"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "Tote4.C3.Jaw1",
+        "position": [
+         31,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "Tote4.C3.Jaw2",
+        "position": [
+         -31,
+         -35,
+         0
+        ]
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "Tote4.C3.Jaw1",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw1",
+     "unit": 1
+    }
+   ],
+   "position": [
+    47,
+    -35,
+    0
+   ],
+   "placementRelTo": "Tote4.C3",
+   "parentObject": "Tote4.C3",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Tote4.C3.Jaw2",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw2",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -47,
+    -35,
+    0
+   ],
+   "placementRelTo": "Tote4.C3",
+   "parentObject": "Tote4.C3",
+   "properties": {
+    "mass": 0,
+    "restitution": 0,
+    "friction": 0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "Fence_W1",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Grid_second.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -250,
+    540,
+    780
+   ],
+   "rotation": [
+    0,
+    0,
+    -1.5707963267948966
+   ],
+   "scale": [
+    1,
+    1,
+    1.0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.1,
+    "friction": 0.5,
+    "MotionType": "STATIC"
+   }
+  },
+  {
+   "id": "Fence_W2",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Grid_second.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -250,
+    540,
+    1170
+   ],
+   "rotation": [
+    0,
+    0,
+    -1.5707963267948966
+   ],
+   "scale": [
+    1,
+    1,
+    1.0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.1,
+    "friction": 0.5,
+    "MotionType": "STATIC"
+   }
+  },
+  {
+   "id": "Fence_E1",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Grid_second.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    650,
+    540,
+    780
+   ],
+   "rotation": [
+    0,
+    0,
+    -1.5707963267948966
+   ],
+   "scale": [
+    1,
+    1,
+    1.0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.1,
+    "friction": 0.5,
+    "MotionType": "STATIC"
+   }
+  },
+  {
+   "id": "Fence_E2",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Grid_second.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    650,
+    540,
+    1170
+   ],
+   "rotation": [
+    0,
+    0,
+    -1.5707963267948966
+   ],
+   "scale": [
+    1,
+    1,
+    1.0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.1,
+    "friction": 0.5,
+    "MotionType": "STATIC"
+   }
+  },
+  {
+   "id": "Fence_N1",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Grid_second.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -25,
+    540,
+    1500
+   ],
+   "rotation": [
+    0,
+    1.5707963267948966,
+    -1.5707963267948966
+   ],
+   "scale": [
+    1,
+    1,
+    0.682
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.1,
+    "friction": 0.5,
+    "MotionType": "STATIC"
+   }
+  },
+  {
+   "id": "Fence_S1",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Grid_second.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -190,
+    540,
+    450
+   ],
+   "rotation": [
+    0,
+    1.5707963267948966,
+    -1.5707963267948966
+   ],
+   "scale": [
+    1,
+    1,
+    0.182
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.1,
+    "friction": 0.5,
+    "MotionType": "STATIC"
+   }
+  },
+  {
+   "id": "Fence_S2",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Grid_second.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    430,
+    540,
+    450
+   ],
+   "rotation": [
+    0,
+    1.5707963267948966,
+    -1.5707963267948966
+   ],
+   "scale": [
+    1,
+    1,
+    0.667
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.1,
+    "friction": 0.5,
+    "MotionType": "STATIC"
+   }
+  },
+  {
+   "id": "LightCurtain",
+   "type": "https://w3id.org/ontoeng/factory#SensorBarrier",
+   "representations": [
+    {
+     "file": "LightCurtain.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    400,
+    0,
+    1500
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building"
+  },
+  {
+   "id": "SignalPole",
+   "type": "https://w3id.org/ontoeng/factory#Actuator",
+   "representations": [
+    {
+     "file": "SignalPole.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    680,
+    0,
+    470
+   ],
+   "rotation": [
+    -1.5707963267948966,
+    0,
+    0
+   ],
+   "placementRelTo": "building"
+  },
+  {
+   "id": "AMR",
+   "type": "https://w3id.org/ontoeng/factory#Robot",
+   "representations": [
+    {
+     "file": "AMR.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    400,
+    0,
+    1900
+   ],
+   "rotation": [
+    0,
+    3.141592653589793,
+    0
+   ],
+   "placementRelTo": "building"
+  }
+ ]
+}

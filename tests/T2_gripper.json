@@ -1,0 +1,949 @@
+{
+ "context": {
+  "UnitOfMeasureScale": 0.001,
+  "Zup": false,
+  "RepoPath": ""
+ },
+ "scene": [
+  "building",
+  "PP1",
+  "PP1.FloatingX",
+  "PP1.FloatingZ",
+  "PP1.FloatingY",
+  "PP1.Gripper",
+  "PP1.Finger1",
+  "PP1.Finger2",
+  "T1",
+  "part_1",
+  "PP2",
+  "PP2.FloatingX",
+  "PP2.FloatingZ",
+  "PP2.FloatingY",
+  "PP2.Gripper",
+  "PP2.Finger1",
+  "PP2.Finger2",
+  "T2",
+  "part_2",
+  "PP3",
+  "PP3.FloatingX",
+  "PP3.FloatingZ",
+  "PP3.FloatingY",
+  "PP3.Gripper",
+  "PP3.Finger1",
+  "PP3.Finger2",
+  "T3",
+  "part_3"
+ ],
+ "assets": [
+  {
+   "id": "building",
+   "type": "https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD1/OWL#IfcBuilding"
+  },
+  {
+   "id": "PP1",
+   "type": "https://w3id.org/ontoeng/factory#Robot",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -870,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "statechart": {
+    "id": "PP1_SC",
+    "initial": "rest",
+    "states": {
+     "rest": {
+      "on": {
+       "goPick": "pick"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "PP1.FloatingZ",
+        "position": [
+         -120,
+         80,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "PP1.FloatingY",
+        "position": [
+         -6,
+         -40,
+         -171
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "PP1.Finger1",
+        "position": [
+         0,
+         -38,
+         38
+        ],
+        "delay": 1000
+       },
+       {
+        "action": "moveTo",
+        "target": "PP1.Finger2",
+        "position": [
+         0,
+         -38,
+         -38
+        ],
+        "delay": 1000
+       }
+      ]
+     },
+     "pick": {
+      "on": {
+       "goPlace": "place",
+       "goRest": "rest"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "PP1.FloatingZ",
+        "position": [
+         -120,
+         80,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "PP1.FloatingY",
+        "position": [
+         -6,
+         -175,
+         -171
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "PP1.Finger1",
+        "position": [
+         0,
+         -38,
+         3
+        ],
+        "delay": 1500
+       },
+       {
+        "action": "moveTo",
+        "target": "PP1.Finger2",
+        "position": [
+         0,
+         -38,
+         -3
+        ],
+        "delay": 1500
+       }
+      ]
+     },
+     "place": {
+      "on": {
+       "goRest": "rest"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "PP1.FloatingZ",
+        "position": [
+         -120,
+         80,
+         -200
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "PP1.FloatingY",
+        "position": [
+         -6,
+         -40,
+         -171
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "PP1.Finger1",
+        "position": [
+         0,
+         -38,
+         38
+        ],
+        "delay": 1500
+       },
+       {
+        "action": "moveTo",
+        "target": "PP1.Finger2",
+        "position": [
+         0,
+         -38,
+         -38
+        ],
+        "delay": 1500
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "PP1.FloatingX",
+   "type": "https://w3id.org/ontoeng/factory#RobotArm",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Floating_X",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "PP1",
+   "parentObject": "PP1"
+  },
+  {
+   "id": "PP1.FloatingZ",
+   "type": "https://w3id.org/ontoeng/factory#RobotArm",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Floating_Z",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "PP1.FloatingX",
+   "parentObject": "PP1.FloatingX"
+  },
+  {
+   "id": "PP1.FloatingY",
+   "type": "https://w3id.org/ontoeng/factory#RobotArm",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Floating_Y",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "PP1.FloatingZ",
+   "parentObject": "PP1.FloatingZ"
+  },
+  {
+   "id": "PP1.Gripper",
+   "type": "https://w3id.org/ontoeng/factory#JawGripper",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Gripper",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "PP1.FloatingY",
+   "parentObject": "PP1.FloatingY"
+  },
+  {
+   "id": "PP1.Finger1",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Finger1",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "PP1.Gripper",
+   "parentObject": "PP1.Gripper",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.0,
+    "friction": 0.0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "PP1.Finger2",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Finger2",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "PP1.Gripper",
+   "parentObject": "PP1.Gripper",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.0,
+    "friction": 0.0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "T1",
+   "type": "https://w3id.org/ontoeng/factory#Conveyor",
+   "representations": [
+    {
+     "file": "ConveyorNew.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -941,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.3,
+    "friction": 0.0,
+    "MotionType": "ANIMATED"
+   }
+  },
+  {
+   "id": "part_1",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -941,
+    230,
+    -5
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.95
+   }
+  },
+  {
+   "id": "PP2",
+   "type": "https://w3id.org/ontoeng/factory#Robot",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -70,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "statechart": {
+    "id": "PP2_SC",
+    "initial": "rest",
+    "states": {
+     "rest": {
+      "on": {
+       "goPick": "pick"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "PP2.FloatingZ",
+        "position": [
+         -120,
+         80,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "PP2.FloatingY",
+        "position": [
+         -6,
+         -40,
+         -171
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "PP2.Finger1",
+        "position": [
+         0,
+         -38,
+         38
+        ],
+        "delay": 1000
+       },
+       {
+        "action": "moveTo",
+        "target": "PP2.Finger2",
+        "position": [
+         0,
+         -38,
+         -38
+        ],
+        "delay": 1000
+       }
+      ]
+     },
+     "pick": {
+      "on": {
+       "goPlace": "place",
+       "goRest": "rest"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "PP2.FloatingZ",
+        "position": [
+         -120,
+         80,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "PP2.FloatingY",
+        "position": [
+         -6,
+         -175,
+         -171
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "PP2.Finger1",
+        "position": [
+         0,
+         -38,
+         3
+        ],
+        "delay": 1500
+       },
+       {
+        "action": "moveTo",
+        "target": "PP2.Finger2",
+        "position": [
+         0,
+         -38,
+         -3
+        ],
+        "delay": 1500
+       }
+      ]
+     },
+     "place": {
+      "on": {
+       "goRest": "rest"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "PP2.FloatingZ",
+        "position": [
+         -120,
+         80,
+         -200
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "PP2.FloatingY",
+        "position": [
+         -6,
+         -40,
+         -171
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "PP2.Finger1",
+        "position": [
+         0,
+         -38,
+         38
+        ],
+        "delay": 1500
+       },
+       {
+        "action": "moveTo",
+        "target": "PP2.Finger2",
+        "position": [
+         0,
+         -38,
+         -38
+        ],
+        "delay": 1500
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "PP2.FloatingX",
+   "type": "https://w3id.org/ontoeng/factory#RobotArm",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Floating_X",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "PP2",
+   "parentObject": "PP2"
+  },
+  {
+   "id": "PP2.FloatingZ",
+   "type": "https://w3id.org/ontoeng/factory#RobotArm",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Floating_Z",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "PP2.FloatingX",
+   "parentObject": "PP2.FloatingX"
+  },
+  {
+   "id": "PP2.FloatingY",
+   "type": "https://w3id.org/ontoeng/factory#RobotArm",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Floating_Y",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "PP2.FloatingZ",
+   "parentObject": "PP2.FloatingZ"
+  },
+  {
+   "id": "PP2.Gripper",
+   "type": "https://w3id.org/ontoeng/factory#JawGripper",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Gripper",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "PP2.FloatingY",
+   "parentObject": "PP2.FloatingY"
+  },
+  {
+   "id": "PP2.Finger1",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Finger1",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "PP2.Gripper",
+   "parentObject": "PP2.Gripper",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.0,
+    "friction": 0.0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "PP2.Finger2",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Finger2",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "PP2.Gripper",
+   "parentObject": "PP2.Gripper",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.0,
+    "friction": 0.0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "T2",
+   "type": "https://w3id.org/ontoeng/factory#Conveyor",
+   "representations": [
+    {
+     "file": "ConveyorNew.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -141,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.3,
+    "friction": 0.0,
+    "MotionType": "ANIMATED"
+   }
+  },
+  {
+   "id": "part_2",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -141,
+    230,
+    -5
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.1
+   }
+  },
+  {
+   "id": "PP3",
+   "type": "https://w3id.org/ontoeng/factory#Robot",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    730,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "statechart": {
+    "id": "PP3_SC",
+    "initial": "rest",
+    "states": {
+     "rest": {
+      "on": {
+       "goPick": "pick"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "PP3.FloatingZ",
+        "position": [
+         -120,
+         80,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "PP3.FloatingY",
+        "position": [
+         -6,
+         -40,
+         -171
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "PP3.Finger1",
+        "position": [
+         0,
+         -38,
+         38
+        ],
+        "delay": 1000
+       },
+       {
+        "action": "moveTo",
+        "target": "PP3.Finger2",
+        "position": [
+         0,
+         -38,
+         -38
+        ],
+        "delay": 1000
+       }
+      ]
+     },
+     "pick": {
+      "on": {
+       "goPlace": "place",
+       "goRest": "rest"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "PP3.FloatingZ",
+        "position": [
+         -120,
+         80,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "PP3.FloatingY",
+        "position": [
+         -6,
+         -175,
+         -171
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "PP3.Finger1",
+        "position": [
+         0,
+         -38,
+         3
+        ],
+        "delay": 1500
+       },
+       {
+        "action": "moveTo",
+        "target": "PP3.Finger2",
+        "position": [
+         0,
+         -38,
+         -3
+        ],
+        "delay": 1500
+       }
+      ]
+     },
+     "place": {
+      "on": {
+       "goRest": "rest"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "PP3.FloatingZ",
+        "position": [
+         -120,
+         80,
+         -200
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "PP3.FloatingY",
+        "position": [
+         -6,
+         -40,
+         -171
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "PP3.Finger1",
+        "position": [
+         0,
+         -38,
+         38
+        ],
+        "delay": 1500
+       },
+       {
+        "action": "moveTo",
+        "target": "PP3.Finger2",
+        "position": [
+         0,
+         -38,
+         -38
+        ],
+        "delay": 1500
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "PP3.FloatingX",
+   "type": "https://w3id.org/ontoeng/factory#RobotArm",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Floating_X",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "PP3",
+   "parentObject": "PP3"
+  },
+  {
+   "id": "PP3.FloatingZ",
+   "type": "https://w3id.org/ontoeng/factory#RobotArm",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Floating_Z",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "PP3.FloatingX",
+   "parentObject": "PP3.FloatingX"
+  },
+  {
+   "id": "PP3.FloatingY",
+   "type": "https://w3id.org/ontoeng/factory#RobotArm",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Floating_Y",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "PP3.FloatingZ",
+   "parentObject": "PP3.FloatingZ"
+  },
+  {
+   "id": "PP3.Gripper",
+   "type": "https://w3id.org/ontoeng/factory#JawGripper",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Gripper",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "PP3.FloatingY",
+   "parentObject": "PP3.FloatingY"
+  },
+  {
+   "id": "PP3.Finger1",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Finger1",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "PP3.Gripper",
+   "parentObject": "PP3.Gripper",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.0,
+    "friction": 0.0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "PP3.Finger2",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "Pick_and_Place_Robot.glb#PP_Finger2",
+     "unit": 1
+    }
+   ],
+   "placementRelTo": "PP3.Gripper",
+   "parentObject": "PP3.Gripper",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.0,
+    "friction": 0.0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "T3",
+   "type": "https://w3id.org/ontoeng/factory#Conveyor",
+   "representations": [
+    {
+     "file": "ConveyorNew.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    659,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.3,
+    "friction": 0.0,
+    "MotionType": "ANIMATED"
+   }
+  },
+  {
+   "id": "part_3",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    659,
+    230,
+    -5
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.101
+   }
+  }
+ ]
+}

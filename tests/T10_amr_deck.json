@@ -1,0 +1,174 @@
+{
+ "context": {
+  "UnitOfMeasureScale": 0.001,
+  "Zup": false,
+  "RepoPath": ""
+ },
+ "scene": [
+  "building",
+  "AMRdeck",
+  "Tote",
+  "grip",
+  "slip"
+ ],
+ "assets": [
+  {
+   "id": "building",
+   "type": "https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD1/OWL#IfcBuilding"
+  },
+  {
+   "id": "AMRdeck",
+   "type": "https://w3id.org/ontoeng/factory#Conveyor",
+   "representations": [
+    {
+     "file": "ConveyorNew.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.3,
+    "friction": 0.0,
+    "MotionType": "ANIMATED"
+   },
+   "statechart": {
+    "id": "AMRdeck_SC",
+    "initial": "idle",
+    "states": {
+     "idle": {
+      "on": {
+       "vz": "vz",
+       "vx": "vx"
+      },
+      "entry": {
+       "action": "surfaceVelocity",
+       "target": "AMRdeck",
+       "velocity": [
+        0,
+        0,
+        0
+       ]
+      }
+     },
+     "vz": {
+      "on": {
+       "stop": "idle"
+      },
+      "entry": {
+       "action": "surfaceVelocity",
+       "target": "AMRdeck",
+       "velocity": [
+        0,
+        0,
+        250
+       ]
+      }
+     },
+     "vx": {
+      "on": {
+       "stop": "idle"
+      },
+      "entry": {
+       "action": "surfaceVelocity",
+       "target": "AMRdeck",
+       "velocity": [
+        250,
+        0,
+        0
+       ]
+      }
+     }
+    }
+   }
+  },
+  {
+   "id": "Tote",
+   "type": "https://w3id.org/ontoeng/factory#Pallet",
+   "representations": [
+    {
+     "file": "Box_part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    231,
+    -500
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 2,
+    "restitution": 0.1,
+    "friction": 0.9
+   }
+  },
+  {
+   "id": "grip",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    238,
+    -545
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.95
+   }
+  },
+  {
+   "id": "slip",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    238,
+    -455
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.1
+   }
+  }
+ ]
+}

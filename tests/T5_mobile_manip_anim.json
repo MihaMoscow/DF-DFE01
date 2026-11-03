@@ -1,0 +1,62 @@
+{
+ "context": {
+  "assetTrail": false,
+  "UnitOfMeasureScale": 0.001,
+  "Zup": false,
+  "RepoAnim": ""
+ },
+ "nodes": [
+  {
+   "id": "PP",
+   "actions": [
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "1000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goPick"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "3500"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goCarry"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "9000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "goPlace"
+     }
+    }
+   ]
+  },
+  {
+   "id": "AMR",
+   "actions": [
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "5000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "drive"
+     }
+    }
+   ]
+  }
+ ],
+ "sequences": [],
+ "bookmarks": []
+}
