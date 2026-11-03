@@ -18,6 +18,76 @@
       "type": "sendEvent",
       "data": "B1startF"
      }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "1500"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "B1stop"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "7000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "B1startF"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "9600"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "B1stop"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "16500"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "B1startF"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "19100"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "B1stop"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "26000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "B1startF"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "28600"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "B1stop"
+     }
     }
    ]
   },

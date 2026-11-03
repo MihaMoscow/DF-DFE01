@@ -101,7 +101,7 @@ panel("Fence_S1", -190, Z0, "x", 120); panel("Fence_S2", 430, Z0, "x", 440)   # 
 add({"id": "LightCurtain", "type": FT + "SensorBarrier", "representations": [{"file": "LightCurtain.glb", "unit": 1}],
      "position": [400, 0, Z1], "rotation": [0, 0, 0], "placementRelTo": "building"})
 add({"id": "SignalPole", "type": FT + "Actuator", "representations": [{"file": "SignalPole.glb", "unit": 1}],
-     "position": [X1 + 30, 0, Z0 + 20], "rotation": [0, 0, 0], "placementRelTo": "building"})
+     "position": [X1 + 30, 0, Z0 + 20], "rotation": [-math.pi / 2, 0, 0], "placementRelTo": "building"})
 
 # ---------- AMR placeholder, parked outside the door ----------
 add({"id": "AMR", "type": FT + "Robot", "representations": [{"file": "AMR.glb", "unit": 1}],
@@ -113,13 +113,15 @@ json.dump({"context": ctx, "scene": [a["id"] for a in assets], "assets": assets}
 # ---------- timeline: B1 runs, robot fills tote 1 (3 parts), clamps close ----------
 ev = lambda t, d: {"trigger": {"type": "timestamp", "data": str(t)}, "event": {"type": "sendEvent", "data": d}}
 robot, clamps = [], {k: [] for k in range(1, 4)}
+belt = [ev(1000, "B1startF"), ev(1500, "B1stop")]      # bring the first part to the stopper
 T = 3000
 for k in range(1, 4):
     robot += [ev(T, "goPick"), ev(T + 2500, "goLift"), ev(T + 4000, f"goSlot{k}"), ev(T + 6000, "goLower"),
               ev(T + 7500, "goRelease"), ev(T + 8500, "goRest")]
     clamps[k].append(ev(T + 8000, "clamp"))
+    belt += [ev(T + 4000, "B1startF"), ev(T + 6600, "B1stop")]   # index the next part (200 mm pitch at 80 mm/s)
     T += 9500
-nodes = [{"id": "B1", "actions": [ev(1000, "B1startF")]}, {"id": "PP", "actions": robot}]
+nodes = [{"id": "B1", "actions": belt}, {"id": "PP", "actions": robot}]
 nodes += [{"id": f"Tote1.C{k}", "actions": clamps[k]} for k in range(1, 4)]
 json.dump({"context": {"assetTrail": False, "UnitOfMeasureScale": 0.001, "Zup": False, "RepoAnim": ""},
            "nodes": nodes, "sequences": [], "bookmarks": []}, open("DFE_01_v1_anim.json", "w"), indent=1)
