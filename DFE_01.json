@@ -277,8 +277,8 @@
           "unit": 1
         }
       ],
-      "position": [-870, 0, 0],
-      "rotation": [0, 0, 0],
+      "position": [269.5, 0, 857.1],
+      "rotation": [0, 3.14159265358979, 0],
       "placementRelTo": "building",
       "statechart": {
                          "id":  "PP_SC",
