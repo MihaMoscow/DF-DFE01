@@ -4,13 +4,13 @@
    "id": "camera.d1",
    "type": "FreeCamera",
    "position": [
-    1700,
     1500,
-    2700
+    1300,
+    -300
    ],
    "rotation": [
-    0.5,
-    -2.5,
+    0.54,
+    -0.83,
     0
    ],
    "speed": 64,
@@ -21,13 +21,13 @@
    "id": "camera.d2",
    "type": "FreeCamera",
    "position": [
-    700,
-    700,
-    1200
+    900,
+    650,
+    300
    ],
    "rotation": [
-    0.55,
-    -2.2,
+    0.46,
+    -0.7,
     0
    ],
    "speed": 32,

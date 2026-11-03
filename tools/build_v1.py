@@ -117,18 +117,18 @@ robot, clamps = [], {k: [] for k in range(1, 4)}
 belt = [ev(1000, "B1startF"), ev(1500, "B1stop")]      # bring the first part to the stopper
 T = 3000
 for k in range(1, 4):
-    robot += [ev(T, "goPick"), ev(T + 2500, "goLift"), ev(T + 4000, f"goSlot{k}"), ev(T + 6000, "goLower"),
-              ev(T + 8500, "goRelease"), ev(T + 10000, "goUp"), ev(T + 11500, "goRest")]
-    clamps[k].append(ev(T + 9500, "clamp"))
+    robot += [ev(T, "goPick"), ev(T + 2500, "goLift"), ev(T + 4000, f"goSlot{k}"), ev(T + 7500, "goLower"),
+              ev(T + 10000, "goRelease"), ev(T + 11500, "goUp"), ev(T + 13000, "goRest")]
+    clamps[k].append(ev(T + 11000, "clamp"))
     belt += [ev(T + 4000, "B1startF"), ev(T + 6600, "B1stop")]   # index the next part (200 mm pitch at 80 mm/s)
-    T += 13000
+    T += 15000
 nodes = [{"id": "B1", "actions": belt}, {"id": "PP", "actions": robot}]
 nodes += [{"id": f"Tote1.C{k}", "actions": clamps[k]} for k in range(1, 4)]
 json.dump({"context": {"assetTrail": False, "UnitOfMeasureScale": 0.001, "Zup": False, "RepoAnim": ""},
            "nodes": nodes, "sequences": [], "bookmarks": []}, open("DFE_01_v1_anim.json", "w"), indent=1)
 
 env = json.load(open("DFE_01_env.json"))
-env["cameras"][0].update({"position": [1700, 1500, 2700], "rotation": [0.5, -2.5, 0], "speed": 64})
-env["cameras"][1].update({"position": [700, 700, 1200], "rotation": [0.55, -2.2, 0], "speed": 32})
+env["cameras"][0].update({"position": [1500, 1300, -300], "rotation": [0.54, -0.83, 0], "speed": 64})   # cell overview
+env["cameras"][1].update({"position": [900, 650, 300], "rotation": [0.46, -0.70, 0], "speed": 32})      # tote close-up
 json.dump(env, open("DFE_01_v1_env.json", "w"), indent=1)
 print(len(assets), "assets; slot axis values", SLOT_AXIS)
