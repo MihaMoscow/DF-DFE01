@@ -1,0 +1,743 @@
+{
+ "context": {
+  "UnitOfMeasureScale": 0.001,
+  "Zup": false,
+  "RepoPath": "https://mihamoscow.github.io/DF-DFE01/assets/"
+ },
+ "scene": [
+  "building",
+  "Table",
+  "Tote",
+  "part_1",
+  "part_2",
+  "part_3",
+  "TG",
+  "TG.Jaw1",
+  "TG.Jaw2",
+  "C1",
+  "C1.Jaw1",
+  "C1.Jaw2",
+  "C2",
+  "C2.Jaw1",
+  "C2.Jaw2",
+  "C3",
+  "C3.Jaw1",
+  "C3.Jaw2"
+ ],
+ "assets": [
+  {
+   "id": "building",
+   "type": "https://standards.buildingsmart.org/IFC/DEV/IFC4/ADD1/OWL#IfcBuilding"
+  },
+  {
+   "id": "Table",
+   "type": "https://w3id.org/ontoeng/factory#Conveyor",
+   "representations": [
+    {
+     "file": "ConveyorNew.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    0,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.3,
+    "friction": 0.0,
+    "MotionType": "ANIMATED"
+   }
+  },
+  {
+   "id": "Tote",
+   "type": "https://w3id.org/ontoeng/factory#Pallet",
+   "representations": [
+    {
+     "file": "Box_part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    231,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 2,
+    "restitution": 0.1,
+    "friction": 0.9
+   }
+  },
+  {
+   "id": "part_1",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    238,
+    -65
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.95
+   }
+  },
+  {
+   "id": "part_2",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    238,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.1
+   }
+  },
+  {
+   "id": "part_3",
+   "type": "https://w3id.org/ontoeng/factory#Artifact",
+   "representations": [
+    {
+     "file": "Part.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    238,
+    65
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "properties": {
+    "mass": 1,
+    "restitution": 0.1,
+    "friction": 0.101
+   }
+  },
+  {
+   "id": "TG",
+   "type": "https://w3id.org/ontoeng/factory#JawGripper",
+   "representations": [
+    {
+     "file": "ToteGripper.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    451,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "building",
+   "statechart": {
+    "id": "TG_SC",
+    "initial": "open",
+    "states": {
+     "open": {
+      "on": {
+       "go": "down"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "TG.Jaw1",
+        "position": [
+         90,
+         -60,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "TG.Jaw2",
+        "position": [
+         -90,
+         -60,
+         0
+        ]
+       }
+      ]
+     },
+     "down": {
+      "after": {
+       "2000": {
+        "target": "closed"
+       }
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "TG",
+        "position": [
+         0,
+         351,
+         0
+        ]
+       }
+      ]
+     },
+     "closed": {
+      "after": {
+       "2000": {
+        "target": "lift"
+       }
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "TG.Jaw1",
+        "position": [
+         62,
+         -60,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "TG.Jaw2",
+        "position": [
+         -62,
+         -60,
+         0
+        ]
+       }
+      ]
+     },
+     "lift": {
+      "on": {
+       "release": "drop"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "TG",
+        "position": [
+         0,
+         551,
+         0
+        ]
+       }
+      ]
+     },
+     "drop": {
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "TG.Jaw1",
+        "position": [
+         90,
+         -60,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "TG.Jaw2",
+        "position": [
+         -90,
+         -60,
+         0
+        ]
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "TG.Jaw1",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteGripper.glb#TG_Jaw1",
+     "unit": 1
+    }
+   ],
+   "position": [
+    90,
+    -60,
+    0
+   ],
+   "placementRelTo": "TG",
+   "parentObject": "TG",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.0,
+    "friction": 0.0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "TG.Jaw2",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteGripper.glb#TG_Jaw2",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -90,
+    -60,
+    0
+   ],
+   "placementRelTo": "TG",
+   "parentObject": "TG",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.0,
+    "friction": 0.0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "C1",
+   "type": "https://w3id.org/ontoeng/factory#JawGripper",
+   "representations": [
+    {
+     "file": "ToteClamp.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    55,
+    -65
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "Tote",
+   "parentObject": "Tote",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.0,
+    "friction": 0.0,
+    "MotionType": "ANIMATED"
+   },
+   "statechart": {
+    "id": "C1_SC",
+    "initial": "open",
+    "states": {
+     "open": {
+      "on": {
+       "clamp": "closed"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "C1.Jaw1",
+        "position": [
+         47,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "C1.Jaw2",
+        "position": [
+         -47,
+         -35,
+         0
+        ]
+       }
+      ]
+     },
+     "closed": {
+      "on": {
+       "unclamp": "open"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "C1.Jaw1",
+        "position": [
+         33,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "C1.Jaw2",
+        "position": [
+         -33,
+         -35,
+         0
+        ]
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "C1.Jaw1",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw1",
+     "unit": 1
+    }
+   ],
+   "position": [
+    47,
+    -35,
+    0
+   ],
+   "placementRelTo": "C1",
+   "parentObject": "C1",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.0,
+    "friction": 0.0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "C1.Jaw2",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw2",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -47,
+    -35,
+    0
+   ],
+   "placementRelTo": "C1",
+   "parentObject": "C1",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.0,
+    "friction": 0.0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "C2",
+   "type": "https://w3id.org/ontoeng/factory#JawGripper",
+   "representations": [
+    {
+     "file": "ToteClamp.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    55,
+    0
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "Tote",
+   "parentObject": "Tote",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.0,
+    "friction": 0.0,
+    "MotionType": "ANIMATED"
+   },
+   "statechart": {
+    "id": "C2_SC",
+    "initial": "open",
+    "states": {
+     "open": {
+      "on": {
+       "clamp": "closed"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "C2.Jaw1",
+        "position": [
+         47,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "C2.Jaw2",
+        "position": [
+         -47,
+         -35,
+         0
+        ]
+       }
+      ]
+     },
+     "closed": {
+      "on": {
+       "unclamp": "open"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "C2.Jaw1",
+        "position": [
+         33,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "C2.Jaw2",
+        "position": [
+         -33,
+         -35,
+         0
+        ]
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "C2.Jaw1",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw1",
+     "unit": 1
+    }
+   ],
+   "position": [
+    47,
+    -35,
+    0
+   ],
+   "placementRelTo": "C2",
+   "parentObject": "C2",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.0,
+    "friction": 0.0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "C2.Jaw2",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw2",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -47,
+    -35,
+    0
+   ],
+   "placementRelTo": "C2",
+   "parentObject": "C2",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.0,
+    "friction": 0.0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "C3",
+   "type": "https://w3id.org/ontoeng/factory#JawGripper",
+   "representations": [
+    {
+     "file": "ToteClamp.glb",
+     "unit": 1
+    }
+   ],
+   "position": [
+    0,
+    55,
+    65
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "placementRelTo": "Tote",
+   "parentObject": "Tote",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.0,
+    "friction": 0.0,
+    "MotionType": "ANIMATED"
+   },
+   "statechart": {
+    "id": "C3_SC",
+    "initial": "open",
+    "states": {
+     "open": {
+      "on": {
+       "clamp": "closed"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "C3.Jaw1",
+        "position": [
+         47,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "C3.Jaw2",
+        "position": [
+         -47,
+         -35,
+         0
+        ]
+       }
+      ]
+     },
+     "closed": {
+      "on": {
+       "unclamp": "open"
+      },
+      "entry": [
+       {
+        "action": "moveTo",
+        "target": "C3.Jaw1",
+        "position": [
+         33,
+         -35,
+         0
+        ]
+       },
+       {
+        "action": "moveTo",
+        "target": "C3.Jaw2",
+        "position": [
+         -33,
+         -35,
+         0
+        ]
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "C3.Jaw1",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw1",
+     "unit": 1
+    }
+   ],
+   "position": [
+    47,
+    -35,
+    0
+   ],
+   "placementRelTo": "C3",
+   "parentObject": "C3",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.0,
+    "friction": 0.0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  },
+  {
+   "id": "C3.Jaw2",
+   "type": "https://w3id.org/ontoeng/factory#JawFinger",
+   "representations": [
+    {
+     "file": "ToteClamp.glb#TC_Jaw2",
+     "unit": 1
+    }
+   ],
+   "position": [
+    -47,
+    -35,
+    0
+   ],
+   "placementRelTo": "C3",
+   "parentObject": "C3",
+   "properties": {
+    "mass": 0,
+    "restitution": 0.0,
+    "friction": 0.0,
+    "MotionType": "ANIMATED",
+    "isTrigger": true
+   }
+  }
+ ]
+}
