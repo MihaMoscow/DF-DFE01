@@ -24,12 +24,11 @@ for aid in ["building", "B1"] + [f"part_{i:02d}" for i in range(1, 11)] + ["Grid
 # ---------- layout parameters ----------
 PICK_Z = 931            # where the front part stops on B1 (stopper face at z = 960)
 ROBOT = [71, 0, 936]    # robot base: pick point = base + (-71, *, -5)  (from T2 / PickPlaceCell example)
-TOTE_X = 370            # tote station line (x), totes rotated 90 deg: long axis along x
+TOTE_X = 370            # tote station line (x); tote long axis along z (station conveyor direction)
 TOTE_Y = 231            # tote bottom on the station conveyor belt (belt top 230)
-TOTE_Z = [931, 791, 651, 511]   # tote 1 = filling position, aligned with the robot
+TOTE_Z = [996, 766, 536, 306]   # tote 1: slot 1 under the place point (z 931); station indexes 65 mm per part
 SLOT_LOCAL = [-65, 0, 65]       # slot centres along the tote's long axis (local z)
-SLOT_X = [TOTE_X + s for s in SLOT_LOCAL]          # world x of slots (local z -> world x)
-SLOT_AXIS = [-x for x in SLOT_X]                   # robot FloatingZ axis value for each slot
+SLOT_AXIS = [-TOTE_X] * 3                          # robot always places at the same point (x = TOTE_X, z = 931)
 
 # ---------- stopper at the end of B1 ----------
 add({"id": "Stopper_B1", "type": FT + "Actuator", "representations": [{"file": "Stopper.glb", "unit": 1}],
@@ -73,7 +72,7 @@ def jaws(c, x): return [{"action": "moveTo", "target": f"{c}.Jaw1", "position": 
 for t, z in enumerate(TOTE_Z, 1):
     tid = f"Tote{t}"
     add({"id": tid, "type": FT + "Pallet", "representations": [{"file": "Box_part.glb", "unit": 1}],
-         "position": [TOTE_X, TOTE_Y, z], "rotation": [0, math.pi / 2, 0], "placementRelTo": "building",
+         "position": [TOTE_X, TOTE_Y, z], "rotation": [0, 0, 0], "placementRelTo": "building",
          "properties": {"mass": 2, "restitution": 0.1, "friction": 0.9}})
     for k, sz in enumerate(SLOT_LOCAL, 1):
         c = f"{tid}.C{k}"
@@ -102,7 +101,7 @@ panel("Fence_S1", -190, Z0, "x", 120); panel("Fence_S2", 430, Z0, "x", 440)   # 
 add({"id": "LightCurtain", "type": FT + "SensorBarrier", "representations": [{"file": "LightCurtain.glb", "unit": 1}],
      "position": [400, 0, Z1], "rotation": [0, 0, 0], "placementRelTo": "building"})
 add({"id": "SignalPole", "type": FT + "Actuator", "representations": [{"file": "SignalPole.glb", "unit": 1}],
-     "position": [X1 + 30, 0, Z0 + 20], "rotation": [-math.pi / 2, 0, 0], "placementRelTo": "building"})
+     "position": [X1 + 30, 0, Z1 - 220], "rotation": [-math.pi / 2, 0, 0], "placementRelTo": "building"})
 
 # ---------- AMR placeholder, parked outside the door ----------
 add({"id": "AMR", "type": FT + "Robot", "representations": [{"file": "AMR.glb", "unit": 1}],
@@ -115,14 +114,17 @@ json.dump({"context": ctx, "scene": [a["id"] for a in assets], "assets": assets}
 ev = lambda t, d: {"trigger": {"type": "timestamp", "data": str(t)}, "event": {"type": "sendEvent", "data": d}}
 robot, clamps = [], {k: [] for k in range(1, 4)}
 belt = [ev(1000, "B1startF"), ev(1500, "B1stop")]      # bring the first part to the stopper
+station = []
 T = 3000
 for k in range(1, 4):
     robot += [ev(T, "goPick"), ev(T + 2500, "goLift"), ev(T + 4000, f"goSlot{k}"), ev(T + 7500, "goLower"),
               ev(T + 10000, "goRelease"), ev(T + 11500, "goUp"), ev(T + 13000, "goRest")]
     clamps[k].append(ev(T + 11000, "clamp"))
     belt += [ev(T + 4000, "B1startF"), ev(T + 6600, "B1stop")]   # index the next part (200 mm pitch at 80 mm/s)
+    if k > 1:   # index the tote one slot (65 mm at 80 mm/s ~ 0.8 s) while the robot picks over B1
+        station += [ev(T, "ToteConvstartB"), ev(T + 800, "ToteConvstop")]
     T += 15000
-nodes = [{"id": "B1", "actions": belt}, {"id": "PP", "actions": robot}]
+nodes = [{"id": "B1", "actions": belt}, {"id": "PP", "actions": robot}, {"id": "ToteConveyor", "actions": station}]
 nodes += [{"id": f"Tote1.C{k}", "actions": clamps[k]} for k in range(1, 4)]
 json.dump({"context": {"assetTrail": False, "UnitOfMeasureScale": 0.001, "Zup": False, "RepoAnim": ""},
            "nodes": nodes, "sequences": [], "bookmarks": []}, open("DFE_01_v1_anim.json", "w"), indent=1)

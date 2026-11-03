@@ -307,6 +307,51 @@
    ]
   },
   {
+   "id": "ToteConveyor",
+   "actions": [
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "18000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "ToteConvstartB"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "18800"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "ToteConvstop"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "33000"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "ToteConvstartB"
+     }
+    },
+    {
+     "trigger": {
+      "type": "timestamp",
+      "data": "33800"
+     },
+     "event": {
+      "type": "sendEvent",
+      "data": "ToteConvstop"
+     }
+    }
+   ]
+  },
+  {
    "id": "Tote1.C1",
    "actions": [
     {
