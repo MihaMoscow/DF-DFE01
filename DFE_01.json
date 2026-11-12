@@ -7,6 +7,44 @@
   "scene":  [
     "building",
     "B1",
+    "Stopper_B1",
+    "Sensor_B1",
+    "TotePad",
+    "Tote5",
+    "Tote5.C1",
+    "Tote5.C1.Jaw1",
+    "Tote5.C1.Jaw2",
+    "Tote5.C2",
+    "Tote5.C2.Jaw1",
+    "Tote5.C2.Jaw2",
+    "Tote4",
+    "Tote4.C1",
+    "Tote4.C1.Jaw1",
+    "Tote4.C1.Jaw2",
+    "Tote4.C2",
+    "Tote4.C2.Jaw1",
+    "Tote4.C2.Jaw2",
+    "Tote3",
+    "Tote3.C1",
+    "Tote3.C1.Jaw1",
+    "Tote3.C1.Jaw2",
+    "Tote3.C2",
+    "Tote3.C2.Jaw1",
+    "Tote3.C2.Jaw2",
+    "Tote2",
+    "Tote2.C1",
+    "Tote2.C1.Jaw1",
+    "Tote2.C1.Jaw2",
+    "Tote2.C2",
+    "Tote2.C2.Jaw1",
+    "Tote2.C2.Jaw2",
+    "Tote1",
+    "Tote1.C1",
+    "Tote1.C1.Jaw1",
+    "Tote1.C1.Jaw2",
+    "Tote1.C2",
+    "Tote1.C2.Jaw1",
+    "Tote1.C2.Jaw2",
     "part_01",
     "part_02",
     "part_03",
@@ -24,8 +62,20 @@
     "PP.Gripper",
     "PP.Finger1",
     "PP.Finger2",
+    "AMR",
+    "TG",
+    "TG.Jaw1",
+    "TG.Jaw2",
     "Grid",
-    "Box"
+    "Box",
+    "Fence_S1",
+    "Fence_E1",
+    "Fence_N1",
+    "Fence_W1",
+    "Fence_Box_S",
+    "LightCurtain_Infeed",
+    "LightCurtain_Out",
+    "SignalPole"
   ],
    "assets":  [
     {
@@ -46,46 +96,1187 @@
       "placementRelTo": "building",
       "properties": {
         "mass":  0,
-          "restitution":  0.3,
-         "friction":  0.0,
+         "restitution":  0.3,
+         "friction":  0,
          "MotionType":  "ANIMATED"
       },
       "statechart": {
-                         "id":  "B1_SC",
-                         "initial":  "idle",
-                         "states":  {
-                               "idle":  {
-                                     "on":  {
-                                           "B1startF":  "forward",
-                            "B1startB":  "backward"                         
+           "id":  "B1_SC",
+           "initial":  "idle",
+           "states":  {
+               "idle":  {
+                   "on":  {
+                       "B1startF":  "forward",
+                       "B1startB":  "backward"       
             },
-                                     "entry":  {
-                                           "action":  "surfaceVelocity",
-                                           "target":  "B1",
-                                           "velocity":  [0, 0, 0]                         
-            }                     
+                   "entry":  {
+                       "action":  "surfaceVelocity",
+                       "target":  "B1",
+                       "velocity":  [           0, 0, 0         ]       
+            }     
           },
-                               "forward":  {
-                                     "on":  {
-                                           "B1stop":  "idle"                         
+               "forward":  {
+                   "on":  {
+                       "B1stop":  "idle"       
             },
-                                     "entry":  {
-                                           "action":  "surfaceVelocity",
-                                           "target":  "B1",
-                                           "velocity":  [0, 0, 80]                         
-            }                     
+                   "entry":  {
+                       "action":  "surfaceVelocity",
+                       "target":  "B1",
+                       "velocity":  [           0, 0, 80         ]       
+            }     
           },
-                               "backward":  {
-                                     "on":  {
-                                           "B1stop":  "idle"                         
+               "backward":  {
+                   "on":  {
+                       "B1stop":  "idle"       
             },
-                                     "entry":  {
-                                           "action":  "surfaceVelocity",
-                                           "target":  "B1",
-                                           "velocity":  [0, 0, -80]                         
-            }                     
-          }                 
-        }             
+                   "entry":  {
+                       "action":  "surfaceVelocity",
+                       "target":  "B1",
+                       "velocity":  [           0, 0, -80         ]       
+            }     
+          }   
+        } 
+      }
+    },
+    {
+      "id":  "Stopper_B1",
+      "type": "https://w3id.org/ontoeng/factory#Actuator",
+      "representations": [
+        {
+          "file": "Stopper.glb",
+          "unit": 1
+        }
+      ],
+      "position": [-77.5, 230, 1005],
+      "rotation": [0, 0, 0],
+      "placementRelTo": "building",
+      "properties": {
+        "mass":  0,
+         "restitution":  0.1,
+         "friction":  0.5,
+         "MotionType":  "STATIC"
+      }
+    },
+    {
+      "id":  "Sensor_B1",
+      "type": "https://w3id.org/ontoeng/factory#SensorBarrier",
+      "representations": [
+        {
+          "file": "Sensor.glb",
+          "unit": 1
+        }
+      ],
+      "position": [-65, 245, 976],
+      "rotation": [0, 0, -1.5707963267949],
+      "placementRelTo": "building"
+    },
+    {
+      "id":  "TotePad",
+      "type": "https://w3id.org/ontoeng/factory#Artifact",
+      "representations": [
+        {
+          "file": "FloorPad.glb",
+          "unit": 1
+        }
+      ],
+      "position": [0, 0, 1230],
+      "rotation": [0, 0, 0],
+      "placementRelTo": "building",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0.9,
+         "MotionType":  "STATIC"
+      }
+    },
+    {
+      "id":  "Tote5",
+      "type": "https://w3id.org/ontoeng/factory#Pallet",
+      "representations": [
+        {
+          "file": "Box_part.glb",
+          "unit": 1
+        }
+      ],
+      "position": [0, 4, 1230],
+      "rotation": [0, 1.5707963267949, 0],
+      "placementRelTo": "building",
+      "properties": {
+        "mass":  2,
+         "restitution":  0,
+         "friction":  0.9
+      }
+    },
+    {
+      "id":  "Tote5.C1",
+      "type": "https://w3id.org/ontoeng/factory#JawGripper",
+      "representations": [
+        {
+          "file": "ToteClamp.glb",
+          "unit": 1
+        }
+      ],
+      "position": [0, 55, -40],
+      "rotation": [0, 0, 0],
+      "placementRelTo": "Tote5",
+      "parentObject": "Tote5",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED"
+      },
+      "statechart": {
+           "id":  "Tote5.C1_SC",
+           "initial":  "open",
+           "states":  {
+               "open":  {
+                   "on":  {
+                       "clamp":  "closed"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote5.C1.Jaw1",
+                           "position":  [             47, -35, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote5.C1.Jaw2",
+                           "position":  [             -47, -35, 0           ]         
+              }       
+            ]     
+          },
+               "closed":  {
+                   "on":  {
+                       "unclamp":  "open"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote5.C1.Jaw1",
+                           "position":  [             27, -35, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote5.C1.Jaw2",
+                           "position":  [             -27, -35, 0           ]         
+              }       
+            ]     
+          }   
+        } 
+      }
+    },
+    {
+      "id":  "Tote5.C1.Jaw1",
+      "type": "https://w3id.org/ontoeng/factory#JawFinger",
+      "representations": [
+        {
+          "file": "ToteClamp.glb#TC_Jaw1",
+          "unit": 1
+        }
+      ],
+      "position": [47, -35, 0],
+      "placementRelTo": "Tote5.C1",
+      "parentObject": "Tote5.C1",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED",
+         "isTrigger":  true
+      }
+    },
+    {
+      "id":  "Tote5.C1.Jaw2",
+      "type": "https://w3id.org/ontoeng/factory#JawFinger",
+      "representations": [
+        {
+          "file": "ToteClamp.glb#TC_Jaw2",
+          "unit": 1
+        }
+      ],
+      "position": [-47, -35, 0],
+      "placementRelTo": "Tote5.C1",
+      "parentObject": "Tote5.C1",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED",
+         "isTrigger":  true
+      }
+    },
+    {
+      "id":  "Tote5.C2",
+      "type": "https://w3id.org/ontoeng/factory#JawGripper",
+      "representations": [
+        {
+          "file": "ToteClamp.glb",
+          "unit": 1
+        }
+      ],
+      "position": [0, 55, 40],
+      "rotation": [0, 0, 0],
+      "placementRelTo": "Tote5",
+      "parentObject": "Tote5",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED"
+      },
+      "statechart": {
+           "id":  "Tote5.C2_SC",
+           "initial":  "open",
+           "states":  {
+               "open":  {
+                   "on":  {
+                       "clamp":  "closed"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote5.C2.Jaw1",
+                           "position":  [             47, -35, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote5.C2.Jaw2",
+                           "position":  [             -47, -35, 0           ]         
+              }       
+            ]     
+          },
+               "closed":  {
+                   "on":  {
+                       "unclamp":  "open"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote5.C2.Jaw1",
+                           "position":  [             27, -35, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote5.C2.Jaw2",
+                           "position":  [             -27, -35, 0           ]         
+              }       
+            ]     
+          }   
+        } 
+      }
+    },
+    {
+      "id":  "Tote5.C2.Jaw1",
+      "type": "https://w3id.org/ontoeng/factory#JawFinger",
+      "representations": [
+        {
+          "file": "ToteClamp.glb#TC_Jaw1",
+          "unit": 1
+        }
+      ],
+      "position": [47, -35, 0],
+      "placementRelTo": "Tote5.C2",
+      "parentObject": "Tote5.C2",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED",
+         "isTrigger":  true
+      }
+    },
+    {
+      "id":  "Tote5.C2.Jaw2",
+      "type": "https://w3id.org/ontoeng/factory#JawFinger",
+      "representations": [
+        {
+          "file": "ToteClamp.glb#TC_Jaw2",
+          "unit": 1
+        }
+      ],
+      "position": [-47, -35, 0],
+      "placementRelTo": "Tote5.C2",
+      "parentObject": "Tote5.C2",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED",
+         "isTrigger":  true
+      }
+    },
+    {
+      "id":  "Tote4",
+      "type": "https://w3id.org/ontoeng/factory#Pallet",
+      "representations": [
+        {
+          "file": "Box_part.glb",
+          "unit": 1
+        }
+      ],
+      "position": [0, 64, 1230],
+      "rotation": [0, 1.5707963267949, 0],
+      "placementRelTo": "building",
+      "properties": {
+        "mass":  2,
+         "restitution":  0,
+         "friction":  0.9
+      }
+    },
+    {
+      "id":  "Tote4.C1",
+      "type": "https://w3id.org/ontoeng/factory#JawGripper",
+      "representations": [
+        {
+          "file": "ToteClamp.glb",
+          "unit": 1
+        }
+      ],
+      "position": [0, 55, -40],
+      "rotation": [0, 0, 0],
+      "placementRelTo": "Tote4",
+      "parentObject": "Tote4",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED"
+      },
+      "statechart": {
+           "id":  "Tote4.C1_SC",
+           "initial":  "open",
+           "states":  {
+               "open":  {
+                   "on":  {
+                       "clamp":  "closed"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote4.C1.Jaw1",
+                           "position":  [             47, -35, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote4.C1.Jaw2",
+                           "position":  [             -47, -35, 0           ]         
+              }       
+            ]     
+          },
+               "closed":  {
+                   "on":  {
+                       "unclamp":  "open"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote4.C1.Jaw1",
+                           "position":  [             27, -35, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote4.C1.Jaw2",
+                           "position":  [             -27, -35, 0           ]         
+              }       
+            ]     
+          }   
+        } 
+      }
+    },
+    {
+      "id":  "Tote4.C1.Jaw1",
+      "type": "https://w3id.org/ontoeng/factory#JawFinger",
+      "representations": [
+        {
+          "file": "ToteClamp.glb#TC_Jaw1",
+          "unit": 1
+        }
+      ],
+      "position": [47, -35, 0],
+      "placementRelTo": "Tote4.C1",
+      "parentObject": "Tote4.C1",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED",
+         "isTrigger":  true
+      }
+    },
+    {
+      "id":  "Tote4.C1.Jaw2",
+      "type": "https://w3id.org/ontoeng/factory#JawFinger",
+      "representations": [
+        {
+          "file": "ToteClamp.glb#TC_Jaw2",
+          "unit": 1
+        }
+      ],
+      "position": [-47, -35, 0],
+      "placementRelTo": "Tote4.C1",
+      "parentObject": "Tote4.C1",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED",
+         "isTrigger":  true
+      }
+    },
+    {
+      "id":  "Tote4.C2",
+      "type": "https://w3id.org/ontoeng/factory#JawGripper",
+      "representations": [
+        {
+          "file": "ToteClamp.glb",
+          "unit": 1
+        }
+      ],
+      "position": [0, 55, 40],
+      "rotation": [0, 0, 0],
+      "placementRelTo": "Tote4",
+      "parentObject": "Tote4",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED"
+      },
+      "statechart": {
+           "id":  "Tote4.C2_SC",
+           "initial":  "open",
+           "states":  {
+               "open":  {
+                   "on":  {
+                       "clamp":  "closed"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote4.C2.Jaw1",
+                           "position":  [             47, -35, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote4.C2.Jaw2",
+                           "position":  [             -47, -35, 0           ]         
+              }       
+            ]     
+          },
+               "closed":  {
+                   "on":  {
+                       "unclamp":  "open"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote4.C2.Jaw1",
+                           "position":  [             27, -35, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote4.C2.Jaw2",
+                           "position":  [             -27, -35, 0           ]         
+              }       
+            ]     
+          }   
+        } 
+      }
+    },
+    {
+      "id":  "Tote4.C2.Jaw1",
+      "type": "https://w3id.org/ontoeng/factory#JawFinger",
+      "representations": [
+        {
+          "file": "ToteClamp.glb#TC_Jaw1",
+          "unit": 1
+        }
+      ],
+      "position": [47, -35, 0],
+      "placementRelTo": "Tote4.C2",
+      "parentObject": "Tote4.C2",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED",
+         "isTrigger":  true
+      }
+    },
+    {
+      "id":  "Tote4.C2.Jaw2",
+      "type": "https://w3id.org/ontoeng/factory#JawFinger",
+      "representations": [
+        {
+          "file": "ToteClamp.glb#TC_Jaw2",
+          "unit": 1
+        }
+      ],
+      "position": [-47, -35, 0],
+      "placementRelTo": "Tote4.C2",
+      "parentObject": "Tote4.C2",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED",
+         "isTrigger":  true
+      }
+    },
+    {
+      "id":  "Tote3",
+      "type": "https://w3id.org/ontoeng/factory#Pallet",
+      "representations": [
+        {
+          "file": "Box_part.glb",
+          "unit": 1
+        }
+      ],
+      "position": [0, 124, 1230],
+      "rotation": [0, 1.5707963267949, 0],
+      "placementRelTo": "building",
+      "properties": {
+        "mass":  2,
+         "restitution":  0,
+         "friction":  0.9
+      }
+    },
+    {
+      "id":  "Tote3.C1",
+      "type": "https://w3id.org/ontoeng/factory#JawGripper",
+      "representations": [
+        {
+          "file": "ToteClamp.glb",
+          "unit": 1
+        }
+      ],
+      "position": [0, 55, -40],
+      "rotation": [0, 0, 0],
+      "placementRelTo": "Tote3",
+      "parentObject": "Tote3",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED"
+      },
+      "statechart": {
+           "id":  "Tote3.C1_SC",
+           "initial":  "open",
+           "states":  {
+               "open":  {
+                   "on":  {
+                       "clamp":  "closed"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote3.C1.Jaw1",
+                           "position":  [             47, -35, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote3.C1.Jaw2",
+                           "position":  [             -47, -35, 0           ]         
+              }       
+            ]     
+          },
+               "closed":  {
+                   "on":  {
+                       "unclamp":  "open"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote3.C1.Jaw1",
+                           "position":  [             27, -35, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote3.C1.Jaw2",
+                           "position":  [             -27, -35, 0           ]         
+              }       
+            ]     
+          }   
+        } 
+      }
+    },
+    {
+      "id":  "Tote3.C1.Jaw1",
+      "type": "https://w3id.org/ontoeng/factory#JawFinger",
+      "representations": [
+        {
+          "file": "ToteClamp.glb#TC_Jaw1",
+          "unit": 1
+        }
+      ],
+      "position": [47, -35, 0],
+      "placementRelTo": "Tote3.C1",
+      "parentObject": "Tote3.C1",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED",
+         "isTrigger":  true
+      }
+    },
+    {
+      "id":  "Tote3.C1.Jaw2",
+      "type": "https://w3id.org/ontoeng/factory#JawFinger",
+      "representations": [
+        {
+          "file": "ToteClamp.glb#TC_Jaw2",
+          "unit": 1
+        }
+      ],
+      "position": [-47, -35, 0],
+      "placementRelTo": "Tote3.C1",
+      "parentObject": "Tote3.C1",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED",
+         "isTrigger":  true
+      }
+    },
+    {
+      "id":  "Tote3.C2",
+      "type": "https://w3id.org/ontoeng/factory#JawGripper",
+      "representations": [
+        {
+          "file": "ToteClamp.glb",
+          "unit": 1
+        }
+      ],
+      "position": [0, 55, 40],
+      "rotation": [0, 0, 0],
+      "placementRelTo": "Tote3",
+      "parentObject": "Tote3",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED"
+      },
+      "statechart": {
+           "id":  "Tote3.C2_SC",
+           "initial":  "open",
+           "states":  {
+               "open":  {
+                   "on":  {
+                       "clamp":  "closed"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote3.C2.Jaw1",
+                           "position":  [             47, -35, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote3.C2.Jaw2",
+                           "position":  [             -47, -35, 0           ]         
+              }       
+            ]     
+          },
+               "closed":  {
+                   "on":  {
+                       "unclamp":  "open"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote3.C2.Jaw1",
+                           "position":  [             27, -35, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote3.C2.Jaw2",
+                           "position":  [             -27, -35, 0           ]         
+              }       
+            ]     
+          }   
+        } 
+      }
+    },
+    {
+      "id":  "Tote3.C2.Jaw1",
+      "type": "https://w3id.org/ontoeng/factory#JawFinger",
+      "representations": [
+        {
+          "file": "ToteClamp.glb#TC_Jaw1",
+          "unit": 1
+        }
+      ],
+      "position": [47, -35, 0],
+      "placementRelTo": "Tote3.C2",
+      "parentObject": "Tote3.C2",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED",
+         "isTrigger":  true
+      }
+    },
+    {
+      "id":  "Tote3.C2.Jaw2",
+      "type": "https://w3id.org/ontoeng/factory#JawFinger",
+      "representations": [
+        {
+          "file": "ToteClamp.glb#TC_Jaw2",
+          "unit": 1
+        }
+      ],
+      "position": [-47, -35, 0],
+      "placementRelTo": "Tote3.C2",
+      "parentObject": "Tote3.C2",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED",
+         "isTrigger":  true
+      }
+    },
+    {
+      "id":  "Tote2",
+      "type": "https://w3id.org/ontoeng/factory#Pallet",
+      "representations": [
+        {
+          "file": "Box_part.glb",
+          "unit": 1
+        }
+      ],
+      "position": [0, 184, 1230],
+      "rotation": [0, 1.5707963267949, 0],
+      "placementRelTo": "building",
+      "properties": {
+        "mass":  2,
+         "restitution":  0,
+         "friction":  0.9
+      }
+    },
+    {
+      "id":  "Tote2.C1",
+      "type": "https://w3id.org/ontoeng/factory#JawGripper",
+      "representations": [
+        {
+          "file": "ToteClamp.glb",
+          "unit": 1
+        }
+      ],
+      "position": [0, 55, -40],
+      "rotation": [0, 0, 0],
+      "placementRelTo": "Tote2",
+      "parentObject": "Tote2",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED"
+      },
+      "statechart": {
+           "id":  "Tote2.C1_SC",
+           "initial":  "open",
+           "states":  {
+               "open":  {
+                   "on":  {
+                       "clamp":  "closed"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote2.C1.Jaw1",
+                           "position":  [             47, -35, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote2.C1.Jaw2",
+                           "position":  [             -47, -35, 0           ]         
+              }       
+            ]     
+          },
+               "closed":  {
+                   "on":  {
+                       "unclamp":  "open"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote2.C1.Jaw1",
+                           "position":  [             27, -35, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote2.C1.Jaw2",
+                           "position":  [             -27, -35, 0           ]         
+              }       
+            ]     
+          }   
+        } 
+      }
+    },
+    {
+      "id":  "Tote2.C1.Jaw1",
+      "type": "https://w3id.org/ontoeng/factory#JawFinger",
+      "representations": [
+        {
+          "file": "ToteClamp.glb#TC_Jaw1",
+          "unit": 1
+        }
+      ],
+      "position": [47, -35, 0],
+      "placementRelTo": "Tote2.C1",
+      "parentObject": "Tote2.C1",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED",
+         "isTrigger":  true
+      }
+    },
+    {
+      "id":  "Tote2.C1.Jaw2",
+      "type": "https://w3id.org/ontoeng/factory#JawFinger",
+      "representations": [
+        {
+          "file": "ToteClamp.glb#TC_Jaw2",
+          "unit": 1
+        }
+      ],
+      "position": [-47, -35, 0],
+      "placementRelTo": "Tote2.C1",
+      "parentObject": "Tote2.C1",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED",
+         "isTrigger":  true
+      }
+    },
+    {
+      "id":  "Tote2.C2",
+      "type": "https://w3id.org/ontoeng/factory#JawGripper",
+      "representations": [
+        {
+          "file": "ToteClamp.glb",
+          "unit": 1
+        }
+      ],
+      "position": [0, 55, 40],
+      "rotation": [0, 0, 0],
+      "placementRelTo": "Tote2",
+      "parentObject": "Tote2",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED"
+      },
+      "statechart": {
+           "id":  "Tote2.C2_SC",
+           "initial":  "open",
+           "states":  {
+               "open":  {
+                   "on":  {
+                       "clamp":  "closed"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote2.C2.Jaw1",
+                           "position":  [             47, -35, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote2.C2.Jaw2",
+                           "position":  [             -47, -35, 0           ]         
+              }       
+            ]     
+          },
+               "closed":  {
+                   "on":  {
+                       "unclamp":  "open"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote2.C2.Jaw1",
+                           "position":  [             27, -35, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote2.C2.Jaw2",
+                           "position":  [             -27, -35, 0           ]         
+              }       
+            ]     
+          }   
+        } 
+      }
+    },
+    {
+      "id":  "Tote2.C2.Jaw1",
+      "type": "https://w3id.org/ontoeng/factory#JawFinger",
+      "representations": [
+        {
+          "file": "ToteClamp.glb#TC_Jaw1",
+          "unit": 1
+        }
+      ],
+      "position": [47, -35, 0],
+      "placementRelTo": "Tote2.C2",
+      "parentObject": "Tote2.C2",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED",
+         "isTrigger":  true
+      }
+    },
+    {
+      "id":  "Tote2.C2.Jaw2",
+      "type": "https://w3id.org/ontoeng/factory#JawFinger",
+      "representations": [
+        {
+          "file": "ToteClamp.glb#TC_Jaw2",
+          "unit": 1
+        }
+      ],
+      "position": [-47, -35, 0],
+      "placementRelTo": "Tote2.C2",
+      "parentObject": "Tote2.C2",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED",
+         "isTrigger":  true
+      }
+    },
+    {
+      "id":  "Tote1",
+      "type": "https://w3id.org/ontoeng/factory#Pallet",
+      "representations": [
+        {
+          "file": "Box_part.glb",
+          "unit": 1
+        }
+      ],
+      "position": [0, 244, 1230],
+      "rotation": [0, 1.5707963267949, 0],
+      "placementRelTo": "building",
+      "properties": {
+        "mass":  2,
+         "restitution":  0,
+         "friction":  0.9
+      }
+    },
+    {
+      "id":  "Tote1.C1",
+      "type": "https://w3id.org/ontoeng/factory#JawGripper",
+      "representations": [
+        {
+          "file": "ToteClamp.glb",
+          "unit": 1
+        }
+      ],
+      "position": [0, 55, -40],
+      "rotation": [0, 0, 0],
+      "placementRelTo": "Tote1",
+      "parentObject": "Tote1",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED"
+      },
+      "statechart": {
+           "id":  "Tote1.C1_SC",
+           "initial":  "open",
+           "states":  {
+               "open":  {
+                   "on":  {
+                       "clamp":  "closed"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote1.C1.Jaw1",
+                           "position":  [             47, -35, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote1.C1.Jaw2",
+                           "position":  [             -47, -35, 0           ]         
+              }       
+            ]     
+          },
+               "closed":  {
+                   "on":  {
+                       "unclamp":  "open"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote1.C1.Jaw1",
+                           "position":  [             27, -35, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote1.C1.Jaw2",
+                           "position":  [             -27, -35, 0           ]         
+              }       
+            ]     
+          }   
+        } 
+      }
+    },
+    {
+      "id":  "Tote1.C1.Jaw1",
+      "type": "https://w3id.org/ontoeng/factory#JawFinger",
+      "representations": [
+        {
+          "file": "ToteClamp.glb#TC_Jaw1",
+          "unit": 1
+        }
+      ],
+      "position": [47, -35, 0],
+      "placementRelTo": "Tote1.C1",
+      "parentObject": "Tote1.C1",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED",
+         "isTrigger":  true
+      }
+    },
+    {
+      "id":  "Tote1.C1.Jaw2",
+      "type": "https://w3id.org/ontoeng/factory#JawFinger",
+      "representations": [
+        {
+          "file": "ToteClamp.glb#TC_Jaw2",
+          "unit": 1
+        }
+      ],
+      "position": [-47, -35, 0],
+      "placementRelTo": "Tote1.C1",
+      "parentObject": "Tote1.C1",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED",
+         "isTrigger":  true
+      }
+    },
+    {
+      "id":  "Tote1.C2",
+      "type": "https://w3id.org/ontoeng/factory#JawGripper",
+      "representations": [
+        {
+          "file": "ToteClamp.glb",
+          "unit": 1
+        }
+      ],
+      "position": [0, 55, 40],
+      "rotation": [0, 0, 0],
+      "placementRelTo": "Tote1",
+      "parentObject": "Tote1",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED"
+      },
+      "statechart": {
+           "id":  "Tote1.C2_SC",
+           "initial":  "open",
+           "states":  {
+               "open":  {
+                   "on":  {
+                       "clamp":  "closed"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote1.C2.Jaw1",
+                           "position":  [             47, -35, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote1.C2.Jaw2",
+                           "position":  [             -47, -35, 0           ]         
+              }       
+            ]     
+          },
+               "closed":  {
+                   "on":  {
+                       "unclamp":  "open"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote1.C2.Jaw1",
+                           "position":  [             27, -35, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "Tote1.C2.Jaw2",
+                           "position":  [             -27, -35, 0           ]         
+              }       
+            ]     
+          }   
+        } 
+      }
+    },
+    {
+      "id":  "Tote1.C2.Jaw1",
+      "type": "https://w3id.org/ontoeng/factory#JawFinger",
+      "representations": [
+        {
+          "file": "ToteClamp.glb#TC_Jaw1",
+          "unit": 1
+        }
+      ],
+      "position": [47, -35, 0],
+      "placementRelTo": "Tote1.C2",
+      "parentObject": "Tote1.C2",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED",
+         "isTrigger":  true
+      }
+    },
+    {
+      "id":  "Tote1.C2.Jaw2",
+      "type": "https://w3id.org/ontoeng/factory#JawFinger",
+      "representations": [
+        {
+          "file": "ToteClamp.glb#TC_Jaw2",
+          "unit": 1
+        }
+      ],
+      "position": [-47, -35, 0],
+      "placementRelTo": "Tote1.C2",
+      "parentObject": "Tote1.C2",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED",
+         "isTrigger":  true
       }
     },
     {
@@ -229,7 +1420,7 @@
       "properties": {
         "mass":  1,
          "restitution":  0.1,
-         "friction":  0.100
+         "friction":  0.1
       }
     },
     {
@@ -277,102 +1468,210 @@
           "unit": 1
         }
       ],
-      "position": [269.5, 0, 857.1],
+      "position": [29, 0, 1180],
       "rotation": [0, 3.14159265358979, 0],
       "placementRelTo": "building",
       "statechart": {
-                         "id":  "PP_SC",
-                         "initial":  "rest",
-                         "states":  {
-                             "rest":  {
-                                 "on":  {
-               "goPick":  "pick" 
+           "id":  "PP_SC",
+           "initial":  "rest",
+           "states":  {
+               "rest":  {
+                   "on":  {
+                       "goPick":  "pick"       
             },
-                                 "entry":  [
-                                       {
-                 "action":  "moveTo",
-                 "target":  "PP.FloatingZ",
-                 "position":  [-120, 80, 0] 
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "PP.FloatingZ",
+                           "position":  [             89, 80, -100           ]         
               },
-                                       {
-                 "action":  "moveTo",
-                 "target":  "PP.FloatingY",
-                 "position":  [-6, -40, -171]
+                       {
+                           "action":  "moveTo",
+                           "target":  "PP.FloatingY",
+                           "position":  [             -6, -40, -171           ]         
               },
-                     {
-                 "action":  "moveTo",
-                 "target":  "PP.Finger1",
-                 "position":  [0, -38, 38],
-                "delay": 1000
+                       {
+                           "action":  "moveTo",
+                           "target":  "PP.Finger1",
+                           "position":  [             0, -38, 38           ],
+                           "delay":  500         
               },
-                                       {
-                 "action":  "moveTo",
-                 "target":  "PP.Finger2",
-                 "position":  [0, -38, -38],
-                "delay": 1000
-              }                         
-            ]                   
-          },
-                             "pick":  {
-                                 "on":  {
-               "goPlace":  "place" ,
-               "goRest":  "rest" 
-            },
-                                 "entry":  [
-                     {
-                 "action":  "moveTo",
-                 "target":  "PP.FloatingZ",
-                 "position":  [-120, 80, 0] 
-              },
-                     {
-                 "action":  "moveTo",
-                 "target":  "PP.FloatingY",
-                 "position":  [-6, -175, -171]
-              },
-                     {
-                 "action":  "moveTo",
-                 "target":  "PP.Finger1",
-                 "position":  [0, -38, 3],
-                "delay": 1500
-              },
-                                       {
-                 "action":  "moveTo",
-                 "target":  "PP.Finger2",
-                 "position":  [0, -38, -3],
-                "delay": 1500
+                       {
+                           "action":  "moveTo",
+                           "target":  "PP.Finger2",
+                           "position":  [             0, -38, -38           ],
+                           "delay":  500         
               }       
-            ]                   
+            ]     
           },
-                             "place":  {
-                                 "on":  {
-               "goRest":  "rest" 
+               "pick":  {
+                   "on":  {
+                       "goLift":  "lift",
+                       "goRest":  "rest"       
             },
-                                 "entry":  [
-                                       {
-                 "action":  "moveTo",
-                 "target":  "PP.FloatingZ",
-                 "position":  [-120, 80, -200] 
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "PP.FloatingZ",
+                           "position":  [             89, 80, -100           ]         
               },
-                        {
-                 "action":  "moveTo",
-                 "target":  "PP.FloatingY",
-                 "position":  [-6, -40, -171]
+                       {
+                           "action":  "moveTo",
+                           "target":  "PP.FloatingY",
+                           "position":  [             -6, -175, -171           ]         
               },
-                     {
-                 "action":  "moveTo",
-                 "target":  "PP.Finger1",
-                 "position":  [0, -38, 38],
-                "delay": 1500
+                       {
+                           "action":  "moveTo",
+                           "target":  "PP.Finger1",
+                           "position":  [             0, -38, 3           ],
+                           "delay":  1500         
               },
-                                       {
-                 "action":  "moveTo",
-                 "target":  "PP.Finger2",
-                 "position":  [0, -38, -38],
-                "delay": 1500
-              }                     
-            ]                   
-          }                 
-        }               
+                       {
+                           "action":  "moveTo",
+                           "target":  "PP.Finger2",
+                           "position":  [             0, -38, -3           ],
+                           "delay":  1500         
+              }       
+            ]     
+          },
+               "lift":  {
+                   "on":  {
+                       "goPlace1":  "place1",
+                       "goPlace2":  "place2",
+                       "goRest":  "rest"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "PP.FloatingY",
+                           "position":  [             -6, -40, -171           ]         
+              }       
+            ]     
+          },
+               "place1":  {
+                   "on":  {
+                       "goLower1":  "lower1",
+                       "goLower2":  "lower2",
+                       "goLower3":  "lower3",
+                       "goLower4":  "lower4",
+                       "goLower5":  "lower5",
+                       "goRest":  "rest"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "PP.FloatingZ",
+                           "position":  [             -171, 80, -140           ]         
+              }       
+            ]     
+          },
+               "place2":  {
+                   "on":  {
+                       "goLower1":  "lower1",
+                       "goLower2":  "lower2",
+                       "goLower3":  "lower3",
+                       "goLower4":  "lower4",
+                       "goLower5":  "lower5",
+                       "goRest":  "rest"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "PP.FloatingZ",
+                           "position":  [             -171, 80, -60           ]         
+              }       
+            ]     
+          },
+               "release":  {
+                   "on":  {
+                       "goUp":  "up"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "PP.Finger1",
+                           "position":  [             0, -38, 38           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "PP.Finger2",
+                           "position":  [             0, -38, -38           ]         
+              }       
+            ]     
+          },
+               "up":  {
+                   "on":  {
+                       "goRest":  "rest"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "PP.FloatingY",
+                           "position":  [             -6, -40, -171           ]         
+              }       
+            ]     
+          },
+               "lower1":  {
+                   "on":  {
+                       "goRelease":  "release"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "PP.FloatingY",
+                           "position":  [             -6, -153, -171           ]         
+              }       
+            ]     
+          },
+               "lower2":  {
+                   "on":  {
+                       "goRelease":  "release"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "PP.FloatingY",
+                           "position":  [             -6, -213, -171           ]         
+              }       
+            ]     
+          },
+               "lower3":  {
+                   "on":  {
+                       "goRelease":  "release"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "PP.FloatingY",
+                           "position":  [             -6, -273, -171           ]         
+              }       
+            ]     
+          },
+               "lower4":  {
+                   "on":  {
+                       "goRelease":  "release"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "PP.FloatingY",
+                           "position":  [             -6, -333, -171           ]         
+              }       
+            ]     
+          },
+               "lower5":  {
+                   "on":  {
+                       "goRelease":  "release"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "PP.FloatingY",
+                           "position":  [             -6, -393, -171           ]         
+              }       
+            ]     
+          }   
+        } 
       }
     },
     {
@@ -436,8 +1735,8 @@
       "parentObject": "PP.Gripper",
       "properties": {
         "mass":  0,
-          "restitution":  0.0,
-         "friction":  0.0,
+         "restitution":  0,
+         "friction":  0,
          "MotionType":  "ANIMATED",
          "isTrigger":  true
       }
@@ -455,8 +1754,639 @@
       "parentObject": "PP.Gripper",
       "properties": {
         "mass":  0,
-          "restitution":  0.0,
-         "friction":  0.0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED",
+         "isTrigger":  true
+      }
+    },
+    {
+      "id":  "AMR",
+      "type": "https://w3id.org/ontoeng/factory#Robot",
+      "representations": [
+        {
+          "file": "AMR.glb",
+          "unit": 1
+        }
+      ],
+      "position": [-870, 0, 1230],
+      "rotation": [0, -1.5707963267949, 0],
+      "placementRelTo": "building"
+    },
+    {
+      "id":  "TG",
+      "type": "https://w3id.org/ontoeng/factory#JawGripper",
+      "representations": [
+        {
+          "file": "ToteGripper.glb",
+          "unit": 1
+        }
+      ],
+      "position": [-400, 551, 1230],
+      "rotation": [0, 1.5707963267949, 0],
+      "placementRelTo": "building",
+      "statechart": {
+           "id":  "TG_SC",
+           "initial":  "home",
+           "states":  {
+               "home":  {
+                   "on":  {
+                       "goDock":  "dock",
+                       "goPickApproach":  "pickApproach"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             -400, 551, 1230           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "AMR",
+                           "position":  [             -870, 0, 1230           ],
+                           "rotation":  [             0, -1.5707963267949, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG.Jaw1",
+                           "position":  [             90, -60, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG.Jaw2",
+                           "position":  [             -90, -60, 0           ]         
+              }       
+            ]     
+          },
+               "pickApproach":  {
+                   "on":  {
+                       "goDock":  "dock"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             -400, 551, 1230           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "AMR",
+                           "position":  [             -870, 0, 1230           ],
+                           "rotation":  [             0, -1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "dock":  {
+                   "on":  {
+                       "goDown1":  "down1",
+                       "goDown2":  "down2",
+                       "goDown3":  "down3",
+                       "goDown4":  "down4",
+                       "goDown5":  "down5"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             0, 551, 1230           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "AMR",
+                           "position":  [             -470, 0, 1230           ],
+                           "rotation":  [             0, -1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "grip":  {
+                   "on":  {
+                       "goLift":  "lift"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG.Jaw1",
+                           "position":  [             62, -60, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG.Jaw2",
+                           "position":  [             -62, -60, 0           ]         
+              }       
+            ]     
+          },
+               "lift":  {
+                   "on":  {
+                       "goUndock":  "undock"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             0, 551, 1230           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "undock":  {
+                   "on":  {
+                       "goAisleOut":  "aisleOut"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             -400, 551, 1230           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "AMR",
+                           "position":  [             -870, 0, 1230           ],
+                           "rotation":  [             0, -1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "aisleOut":  {
+                   "on":  {
+                       "goBoxNorth":  "boxNorth"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             -400, 551, 1800           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "AMR",
+                           "position":  [             -870, 0, 1800           ],
+                           "rotation":  [             0, -1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "boxNorth":  {
+                   "on":  {
+                       "goBoxSlot1":  "boxSlot1",
+                       "goBoxSlot2":  "boxSlot2",
+                       "goBoxSlot3":  "boxSlot3",
+                       "goBoxSlot4":  "boxSlot4",
+                       "goBoxSlot5":  "boxSlot5",
+                       "goAisleIn":  "aisleIn"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             -2200, 551, 1800           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "AMR",
+                           "position":  [             -2670, 0, 1800           ],
+                           "rotation":  [             0, -1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "aisleIn":  {
+                   "on":  {
+                       "goHome":  "home",
+                       "goPickApproach":  "pickApproach"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             -400, 551, 1800           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "AMR",
+                           "position":  [             -870, 0, 1800           ],
+                           "rotation":  [             0, -1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "down1":  {
+                   "on":  {
+                       "goGrip":  "grip"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             0, 364, 1230           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "down2":  {
+                   "on":  {
+                       "goGrip":  "grip"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             0, 304, 1230           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "down3":  {
+                   "on":  {
+                       "goGrip":  "grip"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             0, 244, 1230           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "down4":  {
+                   "on":  {
+                       "goGrip":  "grip"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             0, 184, 1230           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "down5":  {
+                   "on":  {
+                       "goGrip":  "grip"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             0, 124, 1230           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "boxSlot1":  {
+                   "on":  {
+                       "goBoxLower1":  "boxLower1"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             -2200, 551, 1000           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "AMR",
+                           "position":  [             -2670, 0, 1000           ],
+                           "rotation":  [             0, -1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "boxLower1":  {
+                   "on":  {
+                       "goRelease1":  "release1"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             -2200, 138, 1000           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "release1":  {
+                   "on":  {
+                       "goBoxUp1":  "boxUp1"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG.Jaw1",
+                           "position":  [             90, -60, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG.Jaw2",
+                           "position":  [             -90, -60, 0           ]         
+              }       
+            ]     
+          },
+               "boxUp1":  {
+                   "on":  {
+                       "goBoxNorth":  "boxNorth"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             -2200, 551, 1000           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "boxSlot2":  {
+                   "on":  {
+                       "goBoxLower2":  "boxLower2"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             -2200, 551, 1200           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "AMR",
+                           "position":  [             -2670, 0, 1200           ],
+                           "rotation":  [             0, -1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "boxLower2":  {
+                   "on":  {
+                       "goRelease2":  "release2"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             -2200, 138, 1200           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "release2":  {
+                   "on":  {
+                       "goBoxUp2":  "boxUp2"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG.Jaw1",
+                           "position":  [             90, -60, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG.Jaw2",
+                           "position":  [             -90, -60, 0           ]         
+              }       
+            ]     
+          },
+               "boxUp2":  {
+                   "on":  {
+                       "goBoxNorth":  "boxNorth"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             -2200, 551, 1200           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "boxSlot3":  {
+                   "on":  {
+                       "goBoxLower3":  "boxLower3"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             -2200, 551, 1000           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "AMR",
+                           "position":  [             -2670, 0, 1000           ],
+                           "rotation":  [             0, -1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "boxLower3":  {
+                   "on":  {
+                       "goRelease3":  "release3"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             -2200, 198, 1000           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "release3":  {
+                   "on":  {
+                       "goBoxUp3":  "boxUp3"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG.Jaw1",
+                           "position":  [             90, -60, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG.Jaw2",
+                           "position":  [             -90, -60, 0           ]         
+              }       
+            ]     
+          },
+               "boxUp3":  {
+                   "on":  {
+                       "goBoxNorth":  "boxNorth"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             -2200, 551, 1000           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "boxSlot4":  {
+                   "on":  {
+                       "goBoxLower4":  "boxLower4"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             -2200, 551, 1200           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "AMR",
+                           "position":  [             -2670, 0, 1200           ],
+                           "rotation":  [             0, -1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "boxLower4":  {
+                   "on":  {
+                       "goRelease4":  "release4"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             -2200, 198, 1200           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "release4":  {
+                   "on":  {
+                       "goBoxUp4":  "boxUp4"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG.Jaw1",
+                           "position":  [             90, -60, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG.Jaw2",
+                           "position":  [             -90, -60, 0           ]         
+              }       
+            ]     
+          },
+               "boxUp4":  {
+                   "on":  {
+                       "goBoxNorth":  "boxNorth"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             -2200, 551, 1200           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "boxSlot5":  {
+                   "on":  {
+                       "goBoxLower5":  "boxLower5"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             -2200, 551, 1000           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "AMR",
+                           "position":  [             -2670, 0, 1000           ],
+                           "rotation":  [             0, -1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "boxLower5":  {
+                   "on":  {
+                       "goRelease5":  "release5"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             -2200, 258, 1000           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              }       
+            ]     
+          },
+               "release5":  {
+                   "on":  {
+                       "goBoxUp5":  "boxUp5"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG.Jaw1",
+                           "position":  [             90, -60, 0           ]         
+              },
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG.Jaw2",
+                           "position":  [             -90, -60, 0           ]         
+              }       
+            ]     
+          },
+               "boxUp5":  {
+                   "on":  {
+                       "goBoxNorth":  "boxNorth"       
+            },
+                   "entry":  [
+                       {
+                           "action":  "moveTo",
+                           "target":  "TG",
+                           "position":  [             -2200, 551, 1000           ],
+                           "rotation":  [             0, 1.5707963267949, 0           ]         
+              }       
+            ]     
+          }   
+        } 
+      }
+    },
+    {
+      "id":  "TG.Jaw1",
+      "type": "https://w3id.org/ontoeng/factory#JawFinger",
+      "representations": [
+        {
+          "file": "ToteGripper.glb#TG_Jaw1",
+          "unit": 1
+        }
+      ],
+      "position": [90, -60, 0],
+      "placementRelTo": "TG",
+      "parentObject": "TG",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
+         "MotionType":  "ANIMATED",
+         "isTrigger":  true
+      }
+    },
+    {
+      "id":  "TG.Jaw2",
+      "type": "https://w3id.org/ontoeng/factory#JawFinger",
+      "representations": [
+        {
+          "file": "ToteGripper.glb#TG_Jaw2",
+          "unit": 1
+        }
+      ],
+      "position": [-90, -60, 0],
+      "placementRelTo": "TG",
+      "parentObject": "TG",
+      "properties": {
+        "mass":  0,
+         "restitution":  0,
+         "friction":  0,
          "MotionType":  "ANIMATED",
          "isTrigger":  true
       }
@@ -475,8 +2405,8 @@
       "placementRelTo": "building",
       "properties": {
         "mass":  0,
-          "restitution":  0.3,
-         "friction":  0.0,
+         "restitution":  0.3,
+         "friction":  0,
          "MotionType":  "ANIMATED"
       }
     },
@@ -494,10 +2424,144 @@
       "placementRelTo": "building",
       "properties": {
         "mass":  0,
-          "restitution":  0.3,
-         "friction":  0.0,
+         "restitution":  0.3,
+         "friction":  0,
          "MotionType":  "ANIMATED"
       }
+    },
+    {
+      "id":  "Fence_S1",
+      "type": "https://w3id.org/ontoeng/factory#Artifact",
+      "representations": [
+        {
+          "file": "Grid_second.glb",
+          "unit": 1
+        }
+      ],
+      "position": [555, 540, 750],
+      "rotation": [0, 1.5707963267949, -1.5707963267949],
+      "placementRelTo": "building",
+      "properties": {
+        "mass":  0,
+         "restitution":  0.1,
+         "friction":  0.5,
+         "MotionType":  "STATIC"
+      }
+    },
+    {
+      "id":  "Fence_E1",
+      "type": "https://w3id.org/ontoeng/factory#Artifact",
+      "representations": [
+        {
+          "file": "Grid_second.glb",
+          "unit": 1
+        }
+      ],
+      "position": [885, 540, 1080],
+      "rotation": [0, 0, -1.5707963267949],
+      "placementRelTo": "building",
+      "properties": {
+        "mass":  0,
+         "restitution":  0.1,
+         "friction":  0.5,
+         "MotionType":  "STATIC"
+      }
+    },
+    {
+      "id":  "Fence_N1",
+      "type": "https://w3id.org/ontoeng/factory#Artifact",
+      "representations": [
+        {
+          "file": "Grid_second.glb",
+          "unit": 1
+        }
+      ],
+      "position": [555, 540, 1410],
+      "rotation": [0, 1.5707963267949, -1.5707963267949],
+      "placementRelTo": "building",
+      "properties": {
+        "mass":  0,
+         "restitution":  0.1,
+         "friction":  0.5,
+         "MotionType":  "STATIC"
+      }
+    },
+    {
+      "id":  "Fence_W1",
+      "type": "https://w3id.org/ontoeng/factory#Artifact",
+      "representations": [
+        {
+          "file": "Grid_second.glb",
+          "unit": 1
+        }
+      ],
+      "position": [-200, 540, 420],
+      "rotation": [0, 0, -1.5707963267949],
+      "placementRelTo": "building",
+      "properties": {
+        "mass":  0,
+         "restitution":  0.1,
+         "friction":  0.5,
+         "MotionType":  "STATIC"
+      }
+    },
+    {
+      "id":  "Fence_Box_S",
+      "type": "https://w3id.org/ontoeng/factory#Artifact",
+      "representations": [
+        {
+          "file": "Grid_second.glb",
+          "unit": 1
+        }
+      ],
+      "position": [-2330, 540, 750],
+      "rotation": [0, 1.5707963267949, -1.5707963267949],
+      "placementRelTo": "building",
+      "properties": {
+        "mass":  0,
+         "restitution":  0.1,
+         "friction":  0.5,
+         "MotionType":  "STATIC"
+      }
+    },
+    {
+      "id":  "LightCurtain_Infeed",
+      "type": "https://w3id.org/ontoeng/factory#SensorBarrier",
+      "representations": [
+        {
+          "file": "LightCurtain.glb",
+          "unit": 1
+        }
+      ],
+      "position": [0, 0, 750],
+      "rotation": [0, 0, 0],
+      "placementRelTo": "building"
+    },
+    {
+      "id":  "LightCurtain_Out",
+      "type": "https://w3id.org/ontoeng/factory#SensorBarrier",
+      "representations": [
+        {
+          "file": "LightCurtain.glb",
+          "unit": 1
+        }
+      ],
+      "position": [-135, 0, 1230],
+      "rotation": [0, 1.5707963267949, 0],
+      "placementRelTo": "building"
+    },
+    {
+      "id":  "SignalPole",
+      "type": "https://w3id.org/ontoeng/factory#Actuator",
+      "representations": [
+        {
+          "file": "SignalPole.glb",
+          "unit": 1
+        }
+      ],
+      "position": [900, 0, 750],
+      "rotation": [-1.5707963267949, 0, 0],
+      "placementRelTo": "building"
     }
   ]
 }
