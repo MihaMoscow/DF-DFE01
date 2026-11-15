@@ -57,21 +57,21 @@
 			"id": "light.0",
 			"type": "HemisphericLight",
 			"direction": [
+				0,
 				1,
-				0.3,
-				0.1
+				0
 			],
-			"intensity": 0.1
+			"intensity": 0.85
 		},
 		{
 			"id": "light.1",
 			"type": "PointLight",
 			"position": [
-				0,
-				1100,
-				0
+				-800,
+				3000,
+				1200
 			],
-			"intensity": 3.5
+			"intensity": 2.5
 		}
 	],
 	"shadows": {
@@ -155,16 +155,16 @@
 	"env": {
 		"skyboxTexture": "textures/studio.env",
 		"backgroundColor": [
-			0.2,
-			0.3,
-			0.5
+			0.15,
+			0.18,
+			0.22
 		],
 		"ground": {
 			"texture": "textures/concrete.jpg",
 			"size": [
-				10000,
-				10000,
-				400
+				1,
+				1,
+				1
 			]
 		}
 	},
