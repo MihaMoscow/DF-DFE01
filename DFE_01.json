@@ -2,7 +2,7 @@
   "context":  {
      "UnitOfMeasureScale":  0.001,
     "Zup":  false,
-     "RepoPath":  ""
+     "RepoPath":  "https://mihamoscow.github.io/DF-DFE01/assets/"
   },
   "scene":  [
     "building",

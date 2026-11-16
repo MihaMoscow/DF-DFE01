@@ -5,7 +5,7 @@ Goal: move the 10 parts from conveyor B1 into the destination Box, avoiding the 
 
 ## Run it in VEB.js
 
-https://digital-factory.io/vebjs/?inputscene=https://mihamoscow.github.io/DF-DFE01/DFE_01&repoMod3d=https://difactory.github.io/repository/models/PickPlaceCell/
+https://digital-factory.io/vebjs/?inputscene=https://mihamoscow.github.io/DF-DFE01/DFE_01&repoMod3d=https://mihamoscow.github.io/DF-DFE01/assets/
 
 Original (unmodified) assignment scene, for comparison:
 
