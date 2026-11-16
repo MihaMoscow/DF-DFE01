@@ -71,12 +71,11 @@
     "Grid",
     "Box",
     "Fence_S1",
+    "Fence_S2",
     "Fence_E1",
+    "Fence_E2",
     "Fence_N1",
-    "Fence_W1",
-    "Fence_Box_S",
-    "LightCurtain_Infeed",
-    "LightCurtain_Out",
+    "Fence_N2",
     "SignalPole"
   ],
    "assets":  [
@@ -1510,13 +1509,18 @@
                    "entry":  [
                        {
                            "action":  "moveTo",
+                           "target":  "PP.FloatingX",
+                           "position":  [             -243.7, 369, 324           ]         
+              },
+                       {
+                           "action":  "moveTo",
                            "target":  "PP.FloatingZ",
-                           "position":  [             89, 80, -100           ]         
+                           "position":  [             100, 80, -120.8           ]         
               },
                        {
                            "action":  "moveTo",
                            "target":  "PP.FloatingY",
-                           "position":  [             -6, -40, -171           ]         
+                           "position":  [             171, -40, -6           ]         
               },
                        {
                            "action":  "moveTo",
@@ -1540,13 +1544,18 @@
                    "entry":  [
                        {
                            "action":  "moveTo",
+                           "target":  "PP.FloatingX",
+                           "position":  [             -243.7, 369, 324           ]         
+              },
+                       {
+                           "action":  "moveTo",
                            "target":  "PP.FloatingZ",
-                           "position":  [             89, 80, -100           ]         
+                           "position":  [             100, 80, -120.8           ]         
               },
                        {
                            "action":  "moveTo",
                            "target":  "PP.FloatingY",
-                           "position":  [             -6, -175, -171           ]         
+                           "position":  [             171, -175, -6           ]         
               },
                        {
                            "action":  "moveTo",
@@ -1572,7 +1581,7 @@
                        {
                            "action":  "moveTo",
                            "target":  "PP.FloatingY",
-                           "position":  [             -6, -40, -171           ]         
+                           "position":  [             171, -40, -6           ]         
               }       
             ]     
           },
@@ -1588,8 +1597,13 @@
                    "entry":  [
                        {
                            "action":  "moveTo",
+                           "target":  "PP.FloatingX",
+                           "position":  [             -243.7, 369, 64           ]         
+              },
+                       {
+                           "action":  "moveTo",
                            "target":  "PP.FloatingZ",
-                           "position":  [             -171, 80, -140           ]         
+                           "position":  [             140, 80, -120.8           ]         
               }       
             ]     
           },
@@ -1605,8 +1619,13 @@
                    "entry":  [
                        {
                            "action":  "moveTo",
+                           "target":  "PP.FloatingX",
+                           "position":  [             -243.7, 369, 64           ]         
+              },
+                       {
+                           "action":  "moveTo",
                            "target":  "PP.FloatingZ",
-                           "position":  [             -171, 80, -60           ]         
+                           "position":  [             60, 80, -120.8           ]         
               }       
             ]     
           },
@@ -1635,7 +1654,7 @@
                        {
                            "action":  "moveTo",
                            "target":  "PP.FloatingY",
-                           "position":  [             -6, -40, -171           ]         
+                           "position":  [             171, -40, -6           ]         
               }       
             ]     
           },
@@ -1647,7 +1666,7 @@
                        {
                            "action":  "moveTo",
                            "target":  "PP.FloatingY",
-                           "position":  [             -6, -153, -171           ]         
+                           "position":  [             171, -153, -6           ]         
               }       
             ]     
           },
@@ -1659,7 +1678,7 @@
                        {
                            "action":  "moveTo",
                            "target":  "PP.FloatingY",
-                           "position":  [             -6, -213, -171           ]         
+                           "position":  [             171, -213, -6           ]         
               }       
             ]     
           },
@@ -1671,7 +1690,7 @@
                        {
                            "action":  "moveTo",
                            "target":  "PP.FloatingY",
-                           "position":  [             -6, -273, -171           ]         
+                           "position":  [             171, -273, -6           ]         
               }       
             ]     
           },
@@ -1683,7 +1702,7 @@
                        {
                            "action":  "moveTo",
                            "target":  "PP.FloatingY",
-                           "position":  [             -6, -333, -171           ]         
+                           "position":  [             171, -333, -6           ]         
               }       
             ]     
           },
@@ -1695,7 +1714,7 @@
                        {
                            "action":  "moveTo",
                            "target":  "PP.FloatingY",
-                           "position":  [             -6, -393, -171           ]         
+                           "position":  [             171, -393, -6           ]         
               }       
             ]     
           }   
@@ -2466,7 +2485,26 @@
           "unit": 1
         }
       ],
-      "position": [555, 540, 750],
+      "position": [555, 540, 420],
+      "rotation": [0, 1.5707963267949, -1.5707963267949],
+      "placementRelTo": "building",
+      "properties": {
+        "mass":  0,
+         "restitution":  0.1,
+         "friction":  0.5,
+         "MotionType":  "STATIC"
+      }
+    },
+    {
+      "id":  "Fence_S2",
+      "type": "https://w3id.org/ontoeng/factory#Artifact",
+      "representations": [
+        {
+          "file": "Grid_second.glb",
+          "unit": 1
+        }
+      ],
+      "position": [805, 540, 420],
       "rotation": [0, 1.5707963267949, -1.5707963267949],
       "placementRelTo": "building",
       "properties": {
@@ -2485,7 +2523,26 @@
           "unit": 1
         }
       ],
-      "position": [885, 540, 1080],
+      "position": [1135, 540, 750],
+      "rotation": [0, 0, -1.5707963267949],
+      "placementRelTo": "building",
+      "properties": {
+        "mass":  0,
+         "restitution":  0.1,
+         "friction":  0.5,
+         "MotionType":  "STATIC"
+      }
+    },
+    {
+      "id":  "Fence_E2",
+      "type": "https://w3id.org/ontoeng/factory#Artifact",
+      "representations": [
+        {
+          "file": "Grid_second.glb",
+          "unit": 1
+        }
+      ],
+      "position": [1135, 540, 1080],
       "rotation": [0, 0, -1.5707963267949],
       "placementRelTo": "building",
       "properties": {
@@ -2515,7 +2572,7 @@
       }
     },
     {
-      "id":  "Fence_W1",
+      "id":  "Fence_N2",
       "type": "https://w3id.org/ontoeng/factory#Artifact",
       "representations": [
         {
@@ -2523,26 +2580,7 @@
           "unit": 1
         }
       ],
-      "position": [-200, 540, 420],
-      "rotation": [0, 0, -1.5707963267949],
-      "placementRelTo": "building",
-      "properties": {
-        "mass":  0,
-         "restitution":  0.1,
-         "friction":  0.5,
-         "MotionType":  "STATIC"
-      }
-    },
-    {
-      "id":  "Fence_Box_S",
-      "type": "https://w3id.org/ontoeng/factory#Artifact",
-      "representations": [
-        {
-          "file": "Grid_second.glb",
-          "unit": 1
-        }
-      ],
-      "position": [-2330, 540, 750],
+      "position": [805, 540, 1410],
       "rotation": [0, 1.5707963267949, -1.5707963267949],
       "placementRelTo": "building",
       "properties": {
@@ -2553,32 +2591,6 @@
       }
     },
     {
-      "id":  "LightCurtain_Infeed",
-      "type": "https://w3id.org/ontoeng/factory#SensorBarrier",
-      "representations": [
-        {
-          "file": "LightCurtain.glb",
-          "unit": 1
-        }
-      ],
-      "position": [0, 0, 750],
-      "rotation": [0, 0, 0],
-      "placementRelTo": "building"
-    },
-    {
-      "id":  "LightCurtain_Out",
-      "type": "https://w3id.org/ontoeng/factory#SensorBarrier",
-      "representations": [
-        {
-          "file": "LightCurtain.glb",
-          "unit": 1
-        }
-      ],
-      "position": [-135, 0, 1230],
-      "rotation": [0, 1.5707963267949, 0],
-      "placementRelTo": "building"
-    },
-    {
       "id":  "SignalPole",
       "type": "https://w3id.org/ontoeng/factory#Actuator",
       "representations": [
@@ -2587,7 +2599,7 @@
           "unit": 1
         }
       ],
-      "position": [900, 0, 750],
+      "position": [1150, 0, 420],
       "rotation": [-1.5707963267949, 0, 0],
       "placementRelTo": "building"
     }
