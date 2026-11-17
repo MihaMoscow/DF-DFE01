@@ -15,7 +15,8 @@ import math
 import os
 import struct
 
-ASSETS_DIR = "/Users/mi_sha/Documents/21. PoliMI Studies/2. Courses/2026/7_Digital factory/3_Project/02_model/assets"
+REPO_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repo root (tools/..)
+ASSETS_DIR = os.path.join(REPO_DIR, "assets")
 
 
 def build_glb(gltf_dict, bin_blob):

@@ -17,8 +17,12 @@ leaving PP_Floating_X (60) and PP_Floating_Z (59) and PP_Floating_Y (26) with id
 import json
 import os
 import struct
+import sys
 
-GLB_PATH = "/Users/mi_sha/Documents/21. PoliMI Studies/2. Courses/2026/7_Digital factory/3_Project/02_model/assets/Pick_and_Place_Robot.glb"
+REPO_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repo root (tools/..)
+# Input/output: the ORIGINAL course model (difactory repository, models/PickPlaceCell), modified in place.
+# Optional argument: a different path to the .glb file.
+GLB_PATH = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO_DIR, "assets", "Pick_and_Place_Robot.glb")
 Q_M90_Y = [0.0, -0.7071068286895752, 0.0, 0.7071067094802856]
 
 

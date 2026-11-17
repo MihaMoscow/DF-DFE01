@@ -1,5 +1,8 @@
 import json
+import os
 import re
+
+REPO_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repo root (tools/..)
 
 PI = 3.14159265358979
 HALF_PI = 1.5707963267949
@@ -856,9 +859,8 @@ if __name__ == "__main__":
             return m.group(0)
         return compact_num_array.sub(repl, text)
 
-    scratch = "/Users/mi_sha/.gemini/antigravity/brain/092a3012-2695-43dd-be95-bc9c4d34456e/scratch"
-    model_dir = "/Users/mi_sha/Documents/21. PoliMI Studies/2. Courses/2026/7_Digital factory/3_Project/02_model"
-    for d in [scratch, model_dir]:
+    # Writes DFE_01.json / DFE_01_anim.json in the repo root (then run tools/sync_to_xlsm.py)
+    for d in [REPO_DIR]:
         with open(f"{d}/DFE_01.json", "w", encoding="utf-8") as f:
             f.write(dump_pretty(scene))
         with open(f"{d}/DFE_01_anim.json", "w", encoding="utf-8") as f:

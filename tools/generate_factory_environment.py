@@ -19,7 +19,8 @@ import struct
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
-ASSETS_DIR = "/Users/mi_sha/Documents/21. PoliMI Studies/2. Courses/2026/7_Digital factory/3_Project/02_model/assets"
+REPO_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repo root (tools/..)
+ASSETS_DIR = os.path.join(REPO_DIR, "assets")
 
 # Floor world bounds in mm
 X_MIN, X_MAX = -5000.0, 3000.0  # 8000 mm (8.0 m)

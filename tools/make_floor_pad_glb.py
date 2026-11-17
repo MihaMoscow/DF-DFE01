@@ -1,5 +1,8 @@
 import json
+import os
 import struct
+
+REPO_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repo root (tools/..)
 
 
 def build_box_glb(dx, dy, dz, rgba=(0.25, 0.27, 0.30, 1.0)):
@@ -110,7 +113,7 @@ def build_box_glb(dx, dy, dz, rgba=(0.25, 0.27, 0.30, 1.0)):
 if __name__ == "__main__":
     # 240 mm x 4 mm x 136 mm in metres (unit=1 in VEB.js mm scene)
     glb = build_box_glb(0.240, 0.004, 0.136)
-    out = "/Users/mi_sha/.gemini/antigravity/brain/092a3012-2695-43dd-be95-bc9c4d34456e/scratch/FloorPad.glb"
+    out = os.path.join(REPO_DIR, "assets", "FloorPad.glb")
     with open(out, "wb") as f:
         f.write(glb)
     print(f"Wrote {out} ({len(glb)} bytes)")
