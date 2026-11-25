@@ -39,6 +39,7 @@ pip3 install -r requirements.txt
 python3 tools/generate_amr_glb.py              # assets/AMR.glb, assets/ToteGripper.glb
 python3 tools/generate_factory_environment.py  # assets/FactoryFloor.glb, assets/FactoryWalls.glb
 python3 tools/make_floor_pad_glb.py            # assets/FloorPad.glb
+python3 tools/make_tote_clamp_glb.py           # assets/ToteClamp.glb (tote clamp with jaws TC_Jaw1/TC_Jaw2)
 python3 tools/fix_pp_robot_glb.py              # modifies assets/Pick_and_Place_Robot.glb in place (see note)
 python3 tools/build_step6_floor_stack.py       # DFE_01.json + DFE_01_anim.json, validates StateChart transitions
 python3 tools/sync_to_xlsm.py                  # writes scene + timeline back into DFE_01.xlsm
